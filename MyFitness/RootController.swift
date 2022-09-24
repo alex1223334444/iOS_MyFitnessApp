@@ -9,10 +9,13 @@ import UIKit
 
 struct Constants {
     static let firstButton = 1
+    static let secondButton = 2
 }
 
 class RootController: UIViewController {
     var loginViewController: LoginViewController?
+    var registerViewController: RegisterViewController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -36,6 +39,24 @@ class RootController: UIViewController {
         }
     }
     
+    @IBAction func registerButton(_ sender: UIButton) {
+        let tag = sender.tag;
+        
+        // Create the new view controller, if required.
+        if (tag == Constants.secondButton) {
+            if (registerViewController == nil) {
+                registerViewController = (self.storyboard?.instantiateViewController(withIdentifier: "Register") as! RegisterViewController)
+            }
+        }
+        
+        // Switch view controllers.
+        if (tag == Constants.secondButton) {
+            registerViewController?.view.frame = view.frame
+            switchToViewController(registerViewController)
+            //present(UIViewController: firstViewController, animated: true, completion: nil)
+        }
+    }
+    
     func switchToViewController(_ toVC: UIViewController?) {
         if (toVC != nil) {
             addChild((toVC)!)
@@ -44,9 +65,7 @@ class RootController: UIViewController {
         }
     }
     
-    @IBAction func registerButton(_ sender: UIButton) {
-        print("register")
-    }
+    
     
 }
 

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		83BDDB6B28DE804400CBC81E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB6A28DE804400CBC81E /* AppDelegate.swift */; };
 		83BDDB6D28DE804400CBC81E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB6C28DE804400CBC81E /* SceneDelegate.swift */; };
-		83BDDB6F28DE804400CBC81E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB6E28DE804400CBC81E /* ViewController.swift */; };
+		83BDDB6F28DE804400CBC81E /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB6E28DE804400CBC81E /* RootController.swift */; };
 		83BDDB7228DE804400CBC81E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BDDB7028DE804400CBC81E /* Main.storyboard */; };
 		83BDDB7528DE804400CBC81E /* MyFitness.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB7328DE804400CBC81E /* MyFitness.xcdatamodeld */; };
 		83BDDB7728DE804500CBC81E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BDDB7628DE804500CBC81E /* Assets.xcassets */; };
@@ -17,6 +17,8 @@
 		83BDDB8528DE804500CBC81E /* MyFitnessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB8428DE804500CBC81E /* MyFitnessTests.swift */; };
 		83BDDB8F28DE804600CBC81E /* MyFitnessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB8E28DE804600CBC81E /* MyFitnessUITests.swift */; };
 		83BDDB9128DE804600CBC81E /* MyFitnessUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB9028DE804600CBC81E /* MyFitnessUITestsLaunchTests.swift */; };
+		83BDDBA128DE8A5F00CBC81E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB9F28DE857F00CBC81E /* LoginViewController.swift */; };
+		83BDDBA328DE8CF800CBC81E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDBA228DE8CF700CBC81E /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,7 @@
 		83BDDB6728DE804400CBC81E /* MyFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BDDB6A28DE804400CBC81E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83BDDB6C28DE804400CBC81E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		83BDDB6E28DE804400CBC81E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		83BDDB6E28DE804400CBC81E /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		83BDDB7128DE804400CBC81E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		83BDDB7428DE804400CBC81E /* MyFitness.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyFitness.xcdatamodel; sourceTree = "<group>"; };
 		83BDDB7628DE804500CBC81E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +53,8 @@
 		83BDDB8A28DE804600CBC81E /* MyFitnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFitnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BDDB8E28DE804600CBC81E /* MyFitnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitnessUITests.swift; sourceTree = "<group>"; };
 		83BDDB9028DE804600CBC81E /* MyFitnessUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitnessUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		83BDDB9F28DE857F00CBC81E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		83BDDBA228DE8CF700CBC81E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +107,9 @@
 			children = (
 				83BDDB6A28DE804400CBC81E /* AppDelegate.swift */,
 				83BDDB6C28DE804400CBC81E /* SceneDelegate.swift */,
-				83BDDB6E28DE804400CBC81E /* ViewController.swift */,
+				83BDDB6E28DE804400CBC81E /* RootController.swift */,
+				83BDDB9F28DE857F00CBC81E /* LoginViewController.swift */,
+				83BDDBA228DE8CF700CBC81E /* RegisterViewController.swift */,
 				83BDDB7028DE804400CBC81E /* Main.storyboard */,
 				83BDDB7628DE804500CBC81E /* Assets.xcassets */,
 				83BDDB7828DE804500CBC81E /* LaunchScreen.storyboard */,
@@ -262,8 +268,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				83BDDB7528DE804400CBC81E /* MyFitness.xcdatamodeld in Sources */,
-				83BDDB6F28DE804400CBC81E /* ViewController.swift in Sources */,
+				83BDDB6F28DE804400CBC81E /* RootController.swift in Sources */,
 				83BDDB6B28DE804400CBC81E /* AppDelegate.swift in Sources */,
+				83BDDBA328DE8CF800CBC81E /* RegisterViewController.swift in Sources */,
+				83BDDBA128DE8A5F00CBC81E /* LoginViewController.swift in Sources */,
 				83BDDB6D28DE804400CBC81E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -424,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -449,6 +457,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -477,6 +486,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

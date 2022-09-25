@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83BAFDCC28E0F05D00549131 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAFDCB28E0F05D00549131 /* SettingsViewController.swift */; };
 		83BDDB6B28DE804400CBC81E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB6A28DE804400CBC81E /* AppDelegate.swift */; };
 		83BDDB6D28DE804400CBC81E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB6C28DE804400CBC81E /* SceneDelegate.swift */; };
 		83BDDB6F28DE804400CBC81E /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB6E28DE804400CBC81E /* RootController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83BAFDCB28E0F05D00549131 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		83BDDB6728DE804400CBC81E /* MyFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BDDB6A28DE804400CBC81E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83BDDB6C28DE804400CBC81E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		83BDDB6928DE804400CBC81E /* MyFitness */ = {
 			isa = PBXGroup;
 			children = (
+				83BAFDCB28E0F05D00549131 /* SettingsViewController.swift */,
 				83BDDB6A28DE804400CBC81E /* AppDelegate.swift */,
 				83BDDB6C28DE804400CBC81E /* SceneDelegate.swift */,
 				83BDDB6E28DE804400CBC81E /* RootController.swift */,
@@ -269,6 +272,7 @@
 			files = (
 				83BDDB7528DE804400CBC81E /* MyFitness.xcdatamodeld in Sources */,
 				83BDDB6F28DE804400CBC81E /* RootController.swift in Sources */,
+				83BAFDCC28E0F05D00549131 /* SettingsViewController.swift in Sources */,
 				83BDDB6B28DE804400CBC81E /* AppDelegate.swift in Sources */,
 				83BDDBA328DE8CF800CBC81E /* RegisterViewController.swift in Sources */,
 				83BDDBA128DE8A5F00CBC81E /* LoginViewController.swift in Sources */,

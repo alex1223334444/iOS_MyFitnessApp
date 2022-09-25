@@ -8,6 +8,7 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
+    var settingsViewController: SettingsViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,37 @@ class RegisterViewController: UIViewController {
         removeFromParent()
        }
 
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
+    
+    @IBAction func registerButton(_ sender: UIButton) {
+        if let username = username.text
+        {
+            if let password = password.text {
+                print("\(username) \(password)")
+            }
+        }
+        
+            if (settingsViewController == nil) {
+                settingsViewController = (self.storyboard?.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController)
+        }
+        
+        // Switch view controllers.
+        
+            settingsViewController?.view.frame = view.frame
+            switchToViewController(settingsViewController)
+            //present(UIViewController: firstViewController, animated: true, completion: nil)
+    }
+    
+    func switchToViewController(_ toVC: UIViewController?) {
+        if (toVC != nil) {
+            addChild((toVC)!)
+            view.addSubview((toVC?.view)!)
+            toVC?.didMove(toParent: self)
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -29,5 +61,4 @@ class RegisterViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

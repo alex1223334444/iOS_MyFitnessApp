@@ -14,13 +14,6 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    @IBAction func buttonPressGoBack(_ sender: UIButton) {
-        print("goback")
-        willMove(toParent: nil)
-           view.removeFromSuperview()
-        removeFromParent()
-       }
-
     /*
     // MARK: - Navigation
 

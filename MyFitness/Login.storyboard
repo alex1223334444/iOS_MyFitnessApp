@@ -9,28 +9,63 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="LoginViewController" customModule="MyFitness" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKb-eo-oDl">
-                                <rect key="frame" x="186" y="437.5" width="42" height="21"/>
+                                <rect key="frame" x="186" y="94" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yaE-60-kkj" customClass="Textfield" customModule="MyFitness" customModuleProvider="target">
+                                <rect key="frame" x="30" y="265" width="354" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7sl-sI-jIz"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z41-6R-Q58" customClass="Textfield" customModule="MyFitness" customModuleProvider="target">
+                                <rect key="frame" x="30" y="415" width="354" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="q1J-Pn-izf"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCm-Q4-bEz" customClass="Button" customModule="MyFitness" customModuleProvider="target">
+                                <rect key="frame" x="100" y="615" width="214" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bWm-k9-snk"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="WKb-eo-oDl" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="NhG-Mg-WDl"/>
-                            <constraint firstItem="WKb-eo-oDl" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="hy4-rc-m2w"/>
+                            <constraint firstItem="yaE-60-kkj" firstAttribute="top" secondItem="WKb-eo-oDl" secondAttribute="bottom" constant="150" id="1mp-0s-U7S"/>
+                            <constraint firstItem="TCm-Q4-bEz" firstAttribute="top" secondItem="Z41-6R-Q58" secondAttribute="bottom" constant="150" id="7Ar-FA-rXE"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Z41-6R-Q58" secondAttribute="trailing" constant="30" id="Jji-rT-Cse"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="TCm-Q4-bEz" secondAttribute="trailing" constant="100" id="ThE-Lt-qWP"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="yaE-60-kkj" secondAttribute="trailing" constant="30" id="Zb6-eP-pjU"/>
+                            <constraint firstItem="WKb-eo-oDl" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="bRa-hX-GnO"/>
+                            <constraint firstItem="WKb-eo-oDl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="ibk-nv-3Eb"/>
+                            <constraint firstItem="TCm-Q4-bEz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="100" id="kv6-qh-EjF"/>
+                            <constraint firstItem="Z41-6R-Q58" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="n23-cb-9Sx"/>
+                            <constraint firstItem="Z41-6R-Q58" firstAttribute="top" secondItem="yaE-60-kkj" secondAttribute="bottom" constant="100" id="tD3-Wk-hBy"/>
+                            <constraint firstItem="yaE-60-kkj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="zvh-gB-eaG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="TCm-Q4-bEz" id="9lU-zL-rzv"/>
+                        <outlet property="passwordTextfield" destination="Z41-6R-Q58" id="5Zh-KK-L9r"/>
+                        <outlet property="usernameTextfield" destination="yaE-60-kkj" id="D0p-Nv-MSZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

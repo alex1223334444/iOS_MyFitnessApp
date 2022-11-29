@@ -9,7 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController , TextFieldWithLabelDelegate, ButtonDelegate{
     
-    @IBOutlet weak var button: Button!
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var usernameTextfield: Textfield!
     @IBOutlet weak var passwordTextfield: Textfield!
     @IBOutlet weak var registerLink: UIButton!
@@ -22,12 +22,14 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate, Button
         super.viewDidLoad()
         usernameTextfield.configureTextField(with: "Username", secured: false, tag: 0, delegate: self)
         passwordTextfield.configureTextField(with: "Password", secured: true, tag: 1, delegate: self)
-        button.configureButton(title: "Submit", delegate: self)
         self.navigationItem.hidesBackButton = true
-        facebookSignIn.layer.cornerRadius = facebookSignIn.frame.width/2
-        googleSignIn.layer.cornerRadius = googleSignIn.frame.width/2
-        appleSignIn.layer.cornerRadius = appleSignIn.frame.width/2
+        facebookSignIn.layer.cornerRadius = 10
+        googleSignIn.layer.cornerRadius = 10
+        appleSignIn.layer.cornerRadius = 10
         self.hideKeyboardWhenTappedAround()
+        button.layer.cornerRadius = 8
+        button.isEnabled = false
+        self.view.gradientBackground(from: .magenta, to: .orange, direction: .bottomToTop)
     }
     
     
@@ -45,7 +47,10 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate, Button
                 user.password = text
             }
             if user.password != "" && user.username != ""{
-                button.enable(enabled: true)
+                button.isEnabled = true
+            }
+            else {
+                button.isEnabled = false
             }
         }
     }

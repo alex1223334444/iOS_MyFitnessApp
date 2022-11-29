@@ -8,6 +8,30 @@
 import UIKit
 
 class LoginViewController: UIViewController , TextFieldWithLabelDelegate, ButtonDelegate{
+    
+    @IBOutlet weak var button: Button!
+    @IBOutlet weak var usernameTextfield: Textfield!
+    @IBOutlet weak var passwordTextfield: Textfield!
+    @IBOutlet weak var registerLink: UIButton!
+    @IBOutlet weak var facebookSignIn: UIButton!
+    @IBOutlet weak var appleSignIn: UIButton!
+    @IBOutlet weak var googleSignIn: UIButton!
+    private var user : UserModel = UserModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        usernameTextfield.configureTextField(with: "Username", secured: false, tag: 0, delegate: self)
+        passwordTextfield.configureTextField(with: "Password", secured: true, tag: 1, delegate: self)
+        button.configureButton(title: "Submit", delegate: self)
+        self.navigationItem.hidesBackButton = true
+        facebookSignIn.layer.cornerRadius = facebookSignIn.frame.width/2
+        googleSignIn.layer.cornerRadius = googleSignIn.frame.width/2
+        appleSignIn.layer.cornerRadius = appleSignIn.frame.width/2
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    
+    
     func buttonTouchUpInside() {
         print(user)
     }
@@ -25,29 +49,6 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate, Button
             }
         }
     }
-    
-    
-    @IBOutlet weak var button: Button!
-    @IBOutlet weak var usernameTextfield: Textfield!
-    @IBOutlet weak var passwordTextfield: Textfield!
-    private var user : UserModel = UserModel()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        usernameTextfield.configureTextField(with: "Username", secured: false, tag: 0, delegate: self)
-        passwordTextfield.configureTextField(with: "Password", secured: true, tag: 1, delegate: self)
-        button.configureButton(title: "Submit", delegate: self)
-        // Do any additional setup after loading the view.
-    }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 struct UserModel {

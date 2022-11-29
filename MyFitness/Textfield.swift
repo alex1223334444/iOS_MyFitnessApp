@@ -27,13 +27,13 @@ class Textfield: UIView {
         return textField
     }()
     
-    private lazy var placeholderLabel: UILabel = {
+    /*private lazy var placeholderLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .gray
         label.text = "placeholder"
         return label
-    }()
+    }()*/
     
     
     private lazy var bottomBorder: UIView = {
@@ -44,6 +44,8 @@ class Textfield: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor.systemGray4.withAlphaComponent(0.6)
+        self.layer.cornerRadius = 20
         addSubviews()
         addConstraintsToSubviews()
         subscribeToActions()
@@ -51,13 +53,16 @@ class Textfield: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.backgroundColor = UIColor.systemGray4.withAlphaComponent(0.6)
+        self.layer.cornerRadius = 20
         addSubviews()
         addConstraintsToSubviews()
         subscribeToActions()
     }
     
     func configureTextField(with placeholder: String, keyboardType: UIKeyboardType = .default, secured: Bool = false, tag: Int = 0, delegate : TextFieldWithLabelDelegate) {
-        placeholderLabel.text = placeholder
+        //placeholderLabel.text = placeholder
+        textField.placeholder = placeholder
         textField.keyboardType = keyboardType
         textField.isSecureTextEntry = secured
         textField.tag = tag
@@ -77,7 +82,7 @@ class Textfield: UIView {
     
     private func addSubviews() {
         addSubview(textField)
-        addSubview(placeholderLabel)
+        //addSubview(placeholderLabel)
         addSubview(bottomBorder)
     }
     
@@ -96,8 +101,8 @@ class Textfield: UIView {
     private func animatePlaceholderDown() {
         if let textFieldText = textField.text, textFieldText.isEmpty{
             placeholderYConstraint?.constant = 0
-            placeholderLabel.textColor = .gray
-            placeholderLabel.font = .systemFont(ofSize: 14)
+            //placeholderLabel.textColor = .gray
+            //placeholderLabel.font = .systemFont(ofSize: 14)
             bottomBorder.backgroundColor = .gray
         }
     }
@@ -107,18 +112,18 @@ class Textfield: UIView {
     }
     
     @objc private func textFieldDidEndEditing() {
-        placeholderLabel.textColor = .black
+        //placeholderLabel.textColor = .black
         textField.font = .systemFont(ofSize: 14)
         textField.textColor = .black
-        textField.backgroundColor = .white
+        //textField.backgroundColor = .white
         bottomBorder.backgroundColor = .black
         self.layer.masksToBounds = true
         animatePlaceholderLabel(position: .lowered)
     }
     
     @objc private func textFieldDidBeginEditing() {
-        placeholderLabel.textColor = .black
-        placeholderLabel.font = .systemFont(ofSize: 12)
+        //placeholderLabel.textColor = .black
+        //placeholderLabel.font = .systemFont(ofSize: 12)
         self.layer.masksToBounds = true
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 15)
@@ -128,7 +133,7 @@ class Textfield: UIView {
     private func addConstraintsToSubviews() {
         layoutTextField()
         layoutBorder()
-        layoutPlaceholder()
+        //layoutPlaceholder()
     }
     
     private func layoutTextField() {
@@ -148,10 +153,10 @@ class Textfield: UIView {
         bottomBorder.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
     }
     
-    private func layoutPlaceholder() {
+    /*private func layoutPlaceholder() {
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
         placeholderLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25).isActive = true
         placeholderYConstraint = placeholderLabel.centerYAnchor.constraint(equalTo: textField.centerYAnchor)
         placeholderYConstraint?.isActive = true
-    }
+    }*/
 }

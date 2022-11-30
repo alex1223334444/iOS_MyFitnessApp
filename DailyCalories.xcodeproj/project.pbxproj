@@ -11,7 +11,6 @@
 		834BE638293634B70005E5CA /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE637293634B70005E5CA /* GradientExtension.swift */; };
 		834BE63A293649890005E5CA /* TextfieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE639293649890005E5CA /* TextfieldTableViewCell.swift */; };
 		834BE63C29364BCC0005E5CA /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE63B29364BCC0005E5CA /* ButtonTableViewCell.swift */; };
-		834BE63E293665760005E5CA /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834BE63D293665760005E5CA /* Settings.storyboard */; };
 		834BE640293665B50005E5CA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE63F293665B50005E5CA /* SettingsViewController.swift */; };
 		839A23AE29180DD7002F3ED4 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23AD29180DD7002F3ED4 /* Textfield.swift */; };
 		83AC60EE2918143500AA621E /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AC60ED2918143500AA621E /* Button.swift */; };
@@ -29,6 +28,7 @@
 		83BDDBA328DE8CF800CBC81E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDBA228DE8CF700CBC81E /* RegisterViewController.swift */; };
 		83CAFAB729153DDC00C4A4C6 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CAFAB629153DDC00C4A4C6 /* Register.storyboard */; };
 		83CAFAB929153E0C00C4A4C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CAFAB829153E0C00C4A4C6 /* Login.storyboard */; };
+		83CF8C4829381FFA00C14E7E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CF8C4729381FFA00C14E7E /* Settings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,11 +53,10 @@
 		834BE637293634B70005E5CA /* GradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientExtension.swift; sourceTree = "<group>"; };
 		834BE639293649890005E5CA /* TextfieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldTableViewCell.swift; sourceTree = "<group>"; };
 		834BE63B29364BCC0005E5CA /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
-		834BE63D293665760005E5CA /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = MyFitness/Settings.storyboard; sourceTree = SOURCE_ROOT; };
 		834BE63F293665B50005E5CA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		839A23AD29180DD7002F3ED4 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		83AC60ED2918143500AA621E /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		83BDDB6728DE804400CBC81E /* MyFitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83BDDB6728DE804400CBC81E /* DailyCalories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyCalories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BDDB6A28DE804400CBC81E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83BDDB6C28DE804400CBC81E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		83BDDB6E28DE804400CBC81E /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
@@ -66,15 +65,16 @@
 		83BDDB7628DE804500CBC81E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83BDDB7928DE804500CBC81E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83BDDB7B28DE804500CBC81E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83BDDB8028DE804500CBC81E /* MyFitnessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFitnessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83BDDB8028DE804500CBC81E /* DailyCaloriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyCaloriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BDDB8428DE804500CBC81E /* MyFitnessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitnessTests.swift; sourceTree = "<group>"; };
-		83BDDB8A28DE804600CBC81E /* MyFitnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFitnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83BDDB8A28DE804600CBC81E /* DailyCaloriesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyCaloriesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BDDB8E28DE804600CBC81E /* MyFitnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitnessUITests.swift; sourceTree = "<group>"; };
 		83BDDB9028DE804600CBC81E /* MyFitnessUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFitnessUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		83BDDB9F28DE857F00CBC81E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		83BDDBA228DE8CF700CBC81E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		83CAFAB629153DDC00C4A4C6 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		83CAFAB829153E0C00C4A4C6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		83CF8C4729381FFA00C14E7E /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = DailyCalories/Settings.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +105,8 @@
 		834BE63629358A6C0005E5CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				834BE63D293665760005E5CA /* Settings.storyboard */,
 				83BDDB7028DE804400CBC81E /* Main.storyboard */,
+				83CF8C4729381FFA00C14E7E /* Settings.storyboard */,
 				83CAFAB629153DDC00C4A4C6 /* Register.storyboard */,
 				83CAFAB829153E0C00C4A4C6 /* Login.storyboard */,
 			);
@@ -116,9 +116,9 @@
 		83BDDB5E28DE804400CBC81E = {
 			isa = PBXGroup;
 			children = (
-				83BDDB6928DE804400CBC81E /* MyFitness */,
-				83BDDB8328DE804500CBC81E /* MyFitnessTests */,
-				83BDDB8D28DE804600CBC81E /* MyFitnessUITests */,
+				83BDDB6928DE804400CBC81E /* DailyCalories */,
+				83BDDB8328DE804500CBC81E /* DailyCaloriesTests */,
+				83BDDB8D28DE804600CBC81E /* DailyCaloriesUITests */,
 				83BDDB6828DE804400CBC81E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,14 +126,14 @@
 		83BDDB6828DE804400CBC81E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				83BDDB6728DE804400CBC81E /* MyFitness.app */,
-				83BDDB8028DE804500CBC81E /* MyFitnessTests.xctest */,
-				83BDDB8A28DE804600CBC81E /* MyFitnessUITests.xctest */,
+				83BDDB6728DE804400CBC81E /* DailyCalories.app */,
+				83BDDB8028DE804500CBC81E /* DailyCaloriesTests.xctest */,
+				83BDDB8A28DE804600CBC81E /* DailyCaloriesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		83BDDB6928DE804400CBC81E /* MyFitness */ = {
+		83BDDB6928DE804400CBC81E /* DailyCalories */ = {
 			isa = PBXGroup;
 			children = (
 				834BE63629358A6C0005E5CA /* Views */,
@@ -154,32 +154,32 @@
 				83BDDB7B28DE804500CBC81E /* Info.plist */,
 				83BDDB7328DE804400CBC81E /* MyFitness.xcdatamodeld */,
 			);
-			path = MyFitness;
+			path = DailyCalories;
 			sourceTree = "<group>";
 		};
-		83BDDB8328DE804500CBC81E /* MyFitnessTests */ = {
+		83BDDB8328DE804500CBC81E /* DailyCaloriesTests */ = {
 			isa = PBXGroup;
 			children = (
 				83BDDB8428DE804500CBC81E /* MyFitnessTests.swift */,
 			);
-			path = MyFitnessTests;
+			path = DailyCaloriesTests;
 			sourceTree = "<group>";
 		};
-		83BDDB8D28DE804600CBC81E /* MyFitnessUITests */ = {
+		83BDDB8D28DE804600CBC81E /* DailyCaloriesUITests */ = {
 			isa = PBXGroup;
 			children = (
 				83BDDB8E28DE804600CBC81E /* MyFitnessUITests.swift */,
 				83BDDB9028DE804600CBC81E /* MyFitnessUITestsLaunchTests.swift */,
 			);
-			path = MyFitnessUITests;
+			path = DailyCaloriesUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		83BDDB6628DE804400CBC81E /* MyFitness */ = {
+		83BDDB6628DE804400CBC81E /* DailyCalories */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83BDDB9428DE804600CBC81E /* Build configuration list for PBXNativeTarget "MyFitness" */;
+			buildConfigurationList = 83BDDB9428DE804600CBC81E /* Build configuration list for PBXNativeTarget "DailyCalories" */;
 			buildPhases = (
 				83BDDB6328DE804400CBC81E /* Sources */,
 				83BDDB6428DE804400CBC81E /* Frameworks */,
@@ -189,14 +189,14 @@
 			);
 			dependencies = (
 			);
-			name = MyFitness;
+			name = DailyCalories;
 			productName = MyFitness;
-			productReference = 83BDDB6728DE804400CBC81E /* MyFitness.app */;
+			productReference = 83BDDB6728DE804400CBC81E /* DailyCalories.app */;
 			productType = "com.apple.product-type.application";
 		};
-		83BDDB7F28DE804500CBC81E /* MyFitnessTests */ = {
+		83BDDB7F28DE804500CBC81E /* DailyCaloriesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83BDDB9728DE804600CBC81E /* Build configuration list for PBXNativeTarget "MyFitnessTests" */;
+			buildConfigurationList = 83BDDB9728DE804600CBC81E /* Build configuration list for PBXNativeTarget "DailyCaloriesTests" */;
 			buildPhases = (
 				83BDDB7C28DE804500CBC81E /* Sources */,
 				83BDDB7D28DE804500CBC81E /* Frameworks */,
@@ -207,14 +207,14 @@
 			dependencies = (
 				83BDDB8228DE804500CBC81E /* PBXTargetDependency */,
 			);
-			name = MyFitnessTests;
+			name = DailyCaloriesTests;
 			productName = MyFitnessTests;
-			productReference = 83BDDB8028DE804500CBC81E /* MyFitnessTests.xctest */;
+			productReference = 83BDDB8028DE804500CBC81E /* DailyCaloriesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		83BDDB8928DE804600CBC81E /* MyFitnessUITests */ = {
+		83BDDB8928DE804600CBC81E /* DailyCaloriesUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83BDDB9A28DE804600CBC81E /* Build configuration list for PBXNativeTarget "MyFitnessUITests" */;
+			buildConfigurationList = 83BDDB9A28DE804600CBC81E /* Build configuration list for PBXNativeTarget "DailyCaloriesUITests" */;
 			buildPhases = (
 				83BDDB8628DE804600CBC81E /* Sources */,
 				83BDDB8728DE804600CBC81E /* Frameworks */,
@@ -225,9 +225,9 @@
 			dependencies = (
 				83BDDB8C28DE804600CBC81E /* PBXTargetDependency */,
 			);
-			name = MyFitnessUITests;
+			name = DailyCaloriesUITests;
 			productName = MyFitnessUITests;
-			productReference = 83BDDB8A28DE804600CBC81E /* MyFitnessUITests.xctest */;
+			productReference = 83BDDB8A28DE804600CBC81E /* DailyCaloriesUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -253,7 +253,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83BDDB6228DE804400CBC81E /* Build configuration list for PBXProject "MyFitness" */;
+			buildConfigurationList = 83BDDB6228DE804400CBC81E /* Build configuration list for PBXProject "DailyCalories" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -266,9 +266,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				83BDDB6628DE804400CBC81E /* MyFitness */,
-				83BDDB7F28DE804500CBC81E /* MyFitnessTests */,
-				83BDDB8928DE804600CBC81E /* MyFitnessUITests */,
+				83BDDB6628DE804400CBC81E /* DailyCalories */,
+				83BDDB7F28DE804500CBC81E /* DailyCaloriesTests */,
+				83BDDB8928DE804600CBC81E /* DailyCaloriesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -281,7 +281,7 @@
 				83BDDB7A28DE804500CBC81E /* LaunchScreen.storyboard in Resources */,
 				83BDDB7728DE804500CBC81E /* Assets.xcassets in Resources */,
 				83BDDB7228DE804400CBC81E /* Main.storyboard in Resources */,
-				834BE63E293665760005E5CA /* Settings.storyboard in Resources */,
+				83CF8C4829381FFA00C14E7E /* Settings.storyboard in Resources */,
 				83CAFAB929153E0C00C4A4C6 /* Login.storyboard in Resources */,
 				83CAFAB729153DDC00C4A4C6 /* Register.storyboard in Resources */,
 			);
@@ -346,12 +346,12 @@
 /* Begin PBXTargetDependency section */
 		83BDDB8228DE804500CBC81E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 83BDDB6628DE804400CBC81E /* MyFitness */;
+			target = 83BDDB6628DE804400CBC81E /* DailyCalories */;
 			targetProxy = 83BDDB8128DE804500CBC81E /* PBXContainerItemProxy */;
 		};
 		83BDDB8C28DE804600CBC81E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 83BDDB6628DE804400CBC81E /* MyFitness */;
+			target = 83BDDB6628DE804400CBC81E /* DailyCalories */;
 			targetProxy = 83BDDB8B28DE804600CBC81E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -499,7 +499,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MWA5ATM4HR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyFitness/Info.plist;
+				INFOPLIST_FILE = DailyCalories/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -511,7 +511,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alex.MyFitness;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alex.DailyCalories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -528,7 +528,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MWA5ATM4HR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyFitness/Info.plist;
+				INFOPLIST_FILE = DailyCalories/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -540,7 +540,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alex.MyFitness;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alex.DailyCalories;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -564,7 +564,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyFitness.app/MyFitness";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyCalories.app/DailyCalories";
 			};
 			name = Debug;
 		};
@@ -584,7 +584,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyFitness.app/MyFitness";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DailyCalories.app/DailyCalories";
 			};
 			name = Release;
 		};
@@ -627,7 +627,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		83BDDB6228DE804400CBC81E /* Build configuration list for PBXProject "MyFitness" */ = {
+		83BDDB6228DE804400CBC81E /* Build configuration list for PBXProject "DailyCalories" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83BDDB9228DE804600CBC81E /* Debug */,
@@ -636,7 +636,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83BDDB9428DE804600CBC81E /* Build configuration list for PBXNativeTarget "MyFitness" */ = {
+		83BDDB9428DE804600CBC81E /* Build configuration list for PBXNativeTarget "DailyCalories" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83BDDB9528DE804600CBC81E /* Debug */,
@@ -645,7 +645,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83BDDB9728DE804600CBC81E /* Build configuration list for PBXNativeTarget "MyFitnessTests" */ = {
+		83BDDB9728DE804600CBC81E /* Build configuration list for PBXNativeTarget "DailyCaloriesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83BDDB9828DE804600CBC81E /* Debug */,
@@ -654,7 +654,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83BDDB9A28DE804600CBC81E /* Build configuration list for PBXNativeTarget "MyFitnessUITests" */ = {
+		83BDDB9A28DE804600CBC81E /* Build configuration list for PBXNativeTarget "DailyCaloriesUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83BDDB9B28DE804600CBC81E /* Debug */,

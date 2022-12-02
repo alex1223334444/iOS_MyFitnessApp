@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-class LoginViewController: UIViewController , TextFieldWithLabelDelegate, ButtonDelegate{
+class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
     
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var usernameTextfield: Textfield!
@@ -33,11 +34,6 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate, Button
     }
     
     
-    
-    func buttonTouchUpInside() {
-        print(user)
-    }
-    
     func changeText(_ textContent: UITextField?) {
         if let text = textContent?.text, let getTag = textContent?.tag {
             if getTag == 0 {
@@ -52,6 +48,23 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate, Button
             else {
                 button.isEnabled = false
             }
+        }
+    }
+    @IBAction func login(_ sender: Any) {
+        Auth.auth().signIn(withEmail: user.username, password: user.password) { [weak self] user, error in
+            if let user = user {
+                let alert = UIAlertController(title: "User successfully logged in", message: user.description, preferredStyle: .alert)
+                let ok = UIAlertAction(title: "Ok", style: .default)
+                alert.addAction(ok)
+                self?.present(alert, animated: true, completion: nil)
+            }
+            else if let error = error {
+                let alert = UIAlertController(title: "Error on login", message: error.localizedDescription, preferredStyle: .alert)
+                let ok = UIAlertAction(title: "Ok", style: .default)
+                alert.addAction(ok)
+                self?.present(alert, animated: true, completion: nil)
+            }
+          
         }
     }
 }

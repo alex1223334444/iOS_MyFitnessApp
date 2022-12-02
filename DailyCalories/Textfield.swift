@@ -24,6 +24,8 @@ class Textfield: UIView {
         let textField = UITextField()
         textField.keyboardType = .default
         textField.borderStyle = .none
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
         return textField
     }()
     

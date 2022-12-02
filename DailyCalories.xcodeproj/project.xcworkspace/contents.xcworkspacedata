@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/udreaalexandru-iulian-alberto/Projects/MyFitness/DailyCalories.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

@@ -169,6 +169,7 @@
                         <outlet property="passwordTextfield" destination="Z41-6R-Q58" id="5Zh-KK-L9r"/>
                         <outlet property="registerLink" destination="s7h-fe-rdk" id="CdU-Kt-oTn"/>
                         <outlet property="usernameTextfield" destination="yaE-60-kkj" id="D0p-Nv-MSZ"/>
+                        <segue destination="opj-ij-zFh" kind="show" identifier="login" id="zZh-ra-Iri"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -184,6 +185,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ze-f3-6wm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="682" y="197"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="btX-FQ-Kce">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="opj-ij-zFh" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ecr-ai-qYc"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vqz-Gj-gaW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="681" y="283"/>
         </scene>
     </scenes>
     <resources>

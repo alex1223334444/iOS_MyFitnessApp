@@ -74,6 +74,7 @@
                                 </state>
                                 <connections>
                                     <action selector="register:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="GMr-6V-e4c"/>
+                                    <segue destination="wMh-44-ku9" kind="show" id="P4D-Gj-3Ni"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -99,6 +100,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="47.826086956521742" y="71.651785714285708"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="ZwJ-ta-dpA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="wMh-44-ku9" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="SgL-mf-jk1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EaS-ae-QOR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="693" y="260"/>
         </scene>
     </scenes>
     <resources>

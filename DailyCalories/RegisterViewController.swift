@@ -79,22 +79,37 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBAction func register(_ sender: Any) {
-        Auth.auth().createUser(withEmail: registerModel.email, password: registerModel.password) { [weak self] (user, error) in
-            if let error = error {
-                let alert = UIAlertController(title: "Error or registering", message: error.localizedDescription, preferredStyle: .alert)
-                let ok = UIAlertAction(title: "Ok", style: .default)
-                alert.addAction(ok)
-                self?.present(alert, animated: true, completion: nil)
-            }
-            else if let user = user {
-                let alert = UIAlertController(title: "Account was created", message: user.debugDescription, preferredStyle: .alert)
-                let ok = UIAlertAction(title: "Ok", style: .default)
-                alert.addAction(ok)
-                self?.present(alert, animated: true, completion: nil)
-            }
-            
-            
-         }
+
+        Auth.auth().createUser(withEmail: registerModel.email, password: registerModel.password) { [self] (authResult, error) in
+          if let error = error {
+              let alert = UIAlertController(title: "Error or registering", message: error.localizedDescription, preferredStyle: .alert)
+              let ok = UIAlertAction(title: "Ok", style: .default)
+              alert.addAction(ok)
+              self.present(alert, animated: true, completion: nil)
+              
+          } else {
+              if let firebaseUser = authResult?.user{
+                  let uid = firebaseUser.uid
+                  let request : User = User(username: registerModel.email, lastName: registerModel.lastName, uid: uid, phone: registerModel.phone, firstName: registerModel.firstName)
+                  print(request)
+                  createUser(user: request) { result in
+                      switch result {
+                      case .success(_):
+                          print("success")
+                      case .failure(let error):
+                          print(error)
+                      }
+                  }
+              }
+              
+          }
+        }
+        do {
+          try Auth.auth().signOut()
+            print("user signed out")
+        } catch let error {
+          print(error.localizedDescription)
+        }
          }
 }
 

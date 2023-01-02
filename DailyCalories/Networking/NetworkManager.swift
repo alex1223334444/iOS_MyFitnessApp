@@ -54,18 +54,18 @@ func createUser(user: User, completion: @escaping (Result<User, Error>) -> Void)
 }
 
 
-    /*func sendPostRequest(id: String, food: Food, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-    let url = URL(string: "http://localhost:3001/food/\(id)")!
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-    let encoder = JSONEncoder()
-    request.httpBody = try! encoder.encode(food)
-    
-    let task = URLSession.shared.dataTask(with: request, completionHandler: completion)
-    task.resume()
-}*/
+/*func sendPostRequest(id: String, food: Food, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+ let url = URL(string: "http://localhost:3001/food/\(id)")!
+ var request = URLRequest(url: url)
+ request.httpMethod = "POST"
+ request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+ 
+ let encoder = JSONEncoder()
+ request.httpBody = try! encoder.encode(food)
+ 
+ let task = URLSession.shared.dataTask(with: request, completionHandler: completion)
+ task.resume()
+ }*/
 
 
 func addFood(food: Food , completion: @escaping (Result<Food, Error>) -> Void) {
@@ -113,3 +113,39 @@ func addFood(food: Food , completion: @escaping (Result<Food, Error>) -> Void) {
     
     task.resume()
 }
+
+func getFoods(forUserWithId id: String, completion: @escaping ([Food]?, Error?) -> Void) {
+    let url = URL(string: "http://localhost:3001/food/\(id)")!
+    
+    let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        if let error = error {
+            // Pass the error to the completion handler
+            completion(nil, error)
+            return
+        }
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            // Pass an error to the completion handler
+            let error = NSError(domain: "FoodServiceErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid response"])
+            completion(nil, error)
+            return
+        }
+        
+        if let data = data {
+            // Use JSONDecoder to decode the data into an array of Food objects
+            let decoder = JSONDecoder()
+            do {
+                let foods = try decoder.decode([Food].self, from: data)
+                // Pass the decoded array to the completion handler
+                completion(foods, nil)
+            } catch {
+                // Pass the error to the completion handler
+                completion(nil, error)
+            }
+        }
+    }
+    
+    task.resume()
+}
+

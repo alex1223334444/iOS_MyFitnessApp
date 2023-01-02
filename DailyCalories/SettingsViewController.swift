@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController, TextFieldWithLabelDelegate {
     @IBOutlet weak var submitButton: UIButton!
     var food : String?
     var requestedFood : [Food]? = []
+    var userFood : [Food] = []
     private var uid = ""
     @IBAction func submit(_ sender: Any) {
         let query = "1 kg of chicken breast with fries".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -36,7 +37,7 @@ class SettingsViewController: UIViewController, TextFieldWithLabelDelegate {
             let foods = try! JSONDecoder().decode([FoodRequested].self, from: data!)
             //print(foods)
             for i in 0..<foods.count{
-                var myFood = Food(uid: uid, name: foods[i].name, calories: foods[i].calories,serving_size_g: foods[i].serving_size_g, fat_total_g: foods[i].fat_total_g, fat_saturated_g: foods[i].fat_saturated_g, protein_g: foods[i].protein_g, sodium_mg: foods[i].sodium_mg, potassium_mg: foods[i].potassium_mg, cholesterol_mg: foods[i].cholesterol_mg, carbohydrates_total_g: foods[i].carbohydrates_total_g, fiber_g: foods[i].fiber_g, sugar_g: foods[i].sugar_g)
+                let myFood = Food(uid: uid, name: foods[i].name, calories: foods[i].calories,serving_size_g: foods[i].serving_size_g, fat_total_g: foods[i].fat_total_g, fat_saturated_g: foods[i].fat_saturated_g, protein_g: foods[i].protein_g, sodium_mg: foods[i].sodium_mg, potassium_mg: foods[i].potassium_mg, cholesterol_mg: foods[i].cholesterol_mg, carbohydrates_total_g: foods[i].carbohydrates_total_g, fiber_g: foods[i].fiber_g, sugar_g: foods[i].sugar_g)
                 print(myFood)
                 requestedFood?.append(myFood)
                 addFood(food: myFood, completion: { result in
@@ -73,9 +74,23 @@ class SettingsViewController: UIViewController, TextFieldWithLabelDelegate {
             let id = user.uid
             uid = id
             print(id)
+            getFoods(forUserWithId: uid) { (foods, error) in
+                if let error = error {
+                    // Handle the error
+                    print(error)
+                    return
+                }
+
+                if let foods = foods {
+                    self.userFood = foods
+                    print(self.userFood)
+                }
+            }
         } else {
             //
         }
+        
+        
     }
     /*
      // MARK: - Navigation

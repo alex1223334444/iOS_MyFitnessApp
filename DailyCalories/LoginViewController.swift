@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import CoreData
 
 class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
     
@@ -18,6 +19,8 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
     @IBOutlet weak var appleSignIn: UIButton!
     @IBOutlet weak var googleSignIn: UIButton!
     private var user : UserModel = UserModel()
+    var mailArray = [String]()
+    var passwordArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,23 +54,67 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
         }
     }
     @IBAction func login(_ sender: Any) {
-        Auth.auth().signIn(withEmail: user.username, password: user.password) { [weak self] user, error in
-            if let user = user {
-                let alert = UIAlertController(title: "User successfully logged in", message: user.description, preferredStyle: .alert)
-                let ok = UIAlertAction(title: "Ok", style: .default) {_ in
-                    self?.performSegue(withIdentifier: "login", sender: nil)
+        /*
+         Auth.auth().signIn(withEmail: user.username, password: user.password) { [weak self] user, error in
+         if let user = user {
+         let alert = UIAlertController(title: "User successfully logged in", message: user.description, preferredStyle: .alert)
+         let ok = UIAlertAction(title: "Ok", style: .default) {_ in
+         self?.performSegue(withIdentifier: "login", sender: nil)
+         }
+         alert.addAction(ok)
+         self?.present(alert, animated: true, completion: nil)
+         }
+         else if let error = error {
+         let alert = UIAlertController(title: "Error on login", message: error.localizedDescription, preferredStyle: .alert)
+         let ok = UIAlertAction(title: "Ok", style: .default)
+         alert.addAction(ok)
+         self?.present(alert, animated: true, completion: nil)
+         }
+         
+         }
+         */
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appdelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do{
+            let results = try context.fetch(fetchRequest)
+            
+            for result in results as! [NSManagedObject]{
+                if let mail = result.value(forKey: "email") as? String{
+                    self.mailArray.append(mail)
                 }
-                alert.addAction(ok)
-                self?.present(alert, animated: true, completion: nil)
+                if let password = result.value(forKey: "password") as? String{
+                    self.passwordArray.append(password)
+                }
+                
             }
-            else if let error = error {
-                let alert = UIAlertController(title: "Error on login", message: error.localizedDescription, preferredStyle: .alert)
-                let ok = UIAlertAction(title: "Ok", style: .default)
-                alert.addAction(ok)
-                self?.present(alert, animated: true, completion: nil)
-            }
-          
         }
+        catch{
+            print("error")
+        }
+        
+        if (mailArray.contains(user.username)){
+            let mailIndex = mailArray.firstIndex(where: {$0 == user.username})
+            
+            if passwordArray[mailIndex!] == user.password{
+                self.performSegue(withIdentifier: "login", sender: nil)
+            }
+        }
+        else{
+            // create the alert
+            let alert = UIAlertController(title: "Not Found", message: "No account found for this e-mail address", preferredStyle: .alert)
+            // add an action (button)
+            //alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+            }
+            alert.addAction(okAction)
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
 }
 

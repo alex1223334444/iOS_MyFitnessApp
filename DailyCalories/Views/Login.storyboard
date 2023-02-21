@@ -186,10 +186,10 @@
             </objects>
             <point key="canvasLocation" x="682" y="197"/>
         </scene>
-        <!--Settings-->
+        <!--TabBar-->
         <scene sceneID="btX-FQ-Kce">
             <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="opj-ij-zFh" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="TabBar" id="opj-ij-zFh" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ecr-ai-qYc"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vqz-Gj-gaW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

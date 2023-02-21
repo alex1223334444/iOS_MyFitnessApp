@@ -56,7 +56,7 @@ struct FoodRequested: Codable {
     
 }
 
-struct Food : Codable {
+/*struct Food : Codable {
     //var foods : FoodRequested
     var uid : String?
     var name: String?
@@ -77,4 +77,4 @@ struct Food : Codable {
         
         
     }*/
-}
+}*/

@@ -4,7 +4,7 @@
 //
 //  Created by Udrea Alexandru-Iulian-Alberto on 29.12.2022.
 //
-
+/*
 import Foundation
 
 func createUser(user: User, completion: @escaping (Result<User, Error>) -> Void) {
@@ -148,4 +148,4 @@ func getFoods(forUserWithId id: String, completion: @escaping ([Food]?, Error?) 
     
     task.resume()
 }
-
+*/

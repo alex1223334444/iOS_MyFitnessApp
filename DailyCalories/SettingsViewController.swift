@@ -17,23 +17,23 @@ class SettingsViewController: UIViewController, TextFieldWithLabelDelegate {
     }
     
     
-    @IBOutlet weak var textfield: Textfield!
+    @IBOutlet weak var textfield: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     var food : String?
-    var requestedFood : [Food]? = []
-    var userFood : [Food] = []
+    //var requestedFood : [Food]? = []
+    //var userFood : [Food] = []
     private var uid = ""
     @IBAction func submit(_ sender: Any) {
         let query = "1 kg of chicken breast with fries".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let url = URL(string: "https://api.api-ninjas.com/v1/nutrition?query="+query!)!
         var request = URLRequest(url: url)
         request.setValue("jWhNwKEikKQQYZPwOq6gkA==EcFrD0XB6Fe8uZ2A", forHTTPHeaderField: "X-Api-Key")
-        /*let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
          guard let data = data else { return }
          print(String(data: data, encoding: .utf8)!)
          }
-         task.resume()*/
-        URLSession.shared.dataTask(with: request) { [self] data, response, error in
+         task.resume()
+        /*URLSession.shared.dataTask(with: request) { [self] data, response, error in
             let foods = try! JSONDecoder().decode([FoodRequested].self, from: data!)
             //print(foods)
             for i in 0..<foods.count{
@@ -52,24 +52,24 @@ class SettingsViewController: UIViewController, TextFieldWithLabelDelegate {
             
             print(self.requestedFood as Any)
         }.resume()
-        
+        */
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.gradientBackground(from: .magenta,to: .orange, direction: .bottomToTop)
+        /*self.view.gradientBackground(from: .magenta,to: .orange, direction: .bottomToTop)
         self.submitButton.translatesAutoresizingMaskIntoConstraints = false
         self.submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         self.submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         self.submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32).isActive = true
-        self.submitButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.submitButton.heightAnchor.constraint(equalToConstant: 40).isActive = true*/
         // Do any additional setup after loading the view.
     }
     
     
     
-    override func viewWillAppear(_ animated: Bool) {
+   /* override func viewWillAppear(_ animated: Bool) {
         if let user = Auth.auth().currentUser {
             let id = user.uid
             uid = id
@@ -92,14 +92,6 @@ class SettingsViewController: UIViewController, TextFieldWithLabelDelegate {
         
         
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    */
     
 }

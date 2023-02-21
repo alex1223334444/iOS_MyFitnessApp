@@ -5,7 +5,7 @@
 //  Created by Udrea Alexandru-Iulian-Alberto on 29.12.2022.
 //
 
-import UIKit
+/*import UIKit
 
 struct User: Codable {
   var username: String?
@@ -14,3 +14,4 @@ struct User: Codable {
   var phone: String?
   var firstName: String?
 }
+*/

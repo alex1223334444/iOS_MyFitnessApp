@@ -11,12 +11,17 @@
 		831DA02D295E4508007CDD66 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831DA02C295E4508007CDD66 /* UserModel.swift */; };
 		831DA02F295E453D007CDD66 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831DA02E295E453D007CDD66 /* NetworkManager.swift */; };
 		831DA031295E4FA5007CDD66 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831DA030295E4FA5007CDD66 /* FoodModel.swift */; };
+		8326E5972999762200196C71 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8326E5962999762200196C71 /* Profile.storyboard */; };
+		8326E5992999773B00196C71 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8326E5982999773B00196C71 /* TabBarViewController.swift */; };
 		834BE6352935894A0005E5CA /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE6342935894A0005E5CA /* UIViewControllerExtension.swift */; };
 		834BE638293634B70005E5CA /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE637293634B70005E5CA /* GradientExtension.swift */; };
 		834BE63A293649890005E5CA /* TextfieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE639293649890005E5CA /* TextfieldTableViewCell.swift */; };
 		834BE63C29364BCC0005E5CA /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE63B29364BCC0005E5CA /* ButtonTableViewCell.swift */; };
 		834BE640293665B50005E5CA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE63F293665B50005E5CA /* SettingsViewController.swift */; };
+		83920CA929A446090029E7A2 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83920CA829A446090029E7A2 /* Settings.storyboard */; };
+		83920CAB29A447510029E7A2 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83920CAA29A447510029E7A2 /* TabBar.storyboard */; };
 		839A23AE29180DD7002F3ED4 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23AD29180DD7002F3ED4 /* Textfield.swift */; };
+		83A07A3229A420D200EAB121 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A07A3129A420D200EAB121 /* ProfileViewController.swift */; };
 		83AC60EE2918143500AA621E /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AC60ED2918143500AA621E /* Button.swift */; };
 		83BDDB6B28DE804400CBC81E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB6A28DE804400CBC81E /* AppDelegate.swift */; };
 		83BDDB6D28DE804400CBC81E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDB6C28DE804400CBC81E /* SceneDelegate.swift */; };
@@ -32,7 +37,6 @@
 		83BDDBA328DE8CF800CBC81E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDDBA228DE8CF700CBC81E /* RegisterViewController.swift */; };
 		83CAFAB729153DDC00C4A4C6 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CAFAB629153DDC00C4A4C6 /* Register.storyboard */; };
 		83CAFAB929153E0C00C4A4C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CAFAB829153E0C00C4A4C6 /* Login.storyboard */; };
-		83CF8C4829381FFA00C14E7E /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CF8C4729381FFA00C14E7E /* Settings.storyboard */; };
 		83CF8C4A293820FE00C14E7E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83CF8C49293820FD00C14E7E /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -57,12 +61,17 @@
 		831DA02C295E4508007CDD66 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		831DA02E295E453D007CDD66 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		831DA030295E4FA5007CDD66 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
+		8326E5962999762200196C71 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		8326E5982999773B00196C71 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		834BE6342935894A0005E5CA /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		834BE637293634B70005E5CA /* GradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientExtension.swift; sourceTree = "<group>"; };
 		834BE639293649890005E5CA /* TextfieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldTableViewCell.swift; sourceTree = "<group>"; };
 		834BE63B29364BCC0005E5CA /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		834BE63F293665B50005E5CA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		83920CA829A446090029E7A2 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		83920CAA29A447510029E7A2 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		839A23AD29180DD7002F3ED4 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
+		83A07A3129A420D200EAB121 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		83AC60ED2918143500AA621E /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		83BDDB6728DE804400CBC81E /* DailyCalories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyCalories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BDDB6A28DE804400CBC81E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +91,6 @@
 		83BDDBA228DE8CF700CBC81E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		83CAFAB629153DDC00C4A4C6 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		83CAFAB829153E0C00C4A4C6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		83CF8C4729381FFA00C14E7E /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = DailyCalories/Settings.storyboard; sourceTree = SOURCE_ROOT; };
 		83CF8C49293820FD00C14E7E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,8 +134,10 @@
 			isa = PBXGroup;
 			children = (
 				83BDDB7028DE804400CBC81E /* Main.storyboard */,
-				83CF8C4729381FFA00C14E7E /* Settings.storyboard */,
 				83CAFAB629153DDC00C4A4C6 /* Register.storyboard */,
+				8326E5962999762200196C71 /* Profile.storyboard */,
+				83920CAA29A447510029E7A2 /* TabBar.storyboard */,
+				83920CA829A446090029E7A2 /* Settings.storyboard */,
 				83CAFAB829153E0C00C4A4C6 /* Login.storyboard */,
 			);
 			path = Views;
@@ -160,6 +170,8 @@
 				831DA02B295E44E8007CDD66 /* Networking */,
 				834BE63629358A6C0005E5CA /* Views */,
 				83BDDB6A28DE804400CBC81E /* AppDelegate.swift */,
+				83A07A3129A420D200EAB121 /* ProfileViewController.swift */,
+				8326E5982999773B00196C71 /* TabBarViewController.swift */,
 				834BE6342935894A0005E5CA /* UIViewControllerExtension.swift */,
 				834BE637293634B70005E5CA /* GradientExtension.swift */,
 				834BE63F293665B50005E5CA /* SettingsViewController.swift */,
@@ -315,10 +327,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				83BDDB7A28DE804500CBC81E /* LaunchScreen.storyboard in Resources */,
+				83920CAB29A447510029E7A2 /* TabBar.storyboard in Resources */,
 				83BDDB7728DE804500CBC81E /* Assets.xcassets in Resources */,
 				83BDDB7228DE804400CBC81E /* Main.storyboard in Resources */,
-				83CF8C4829381FFA00C14E7E /* Settings.storyboard in Resources */,
+				83920CA929A446090029E7A2 /* Settings.storyboard in Resources */,
 				83CAFAB929153E0C00C4A4C6 /* Login.storyboard in Resources */,
+				8326E5972999762200196C71 /* Profile.storyboard in Resources */,
 				83CAFAB729153DDC00C4A4C6 /* Register.storyboard in Resources */,
 				83CF8C4A293820FE00C14E7E /* GoogleService-Info.plist in Resources */,
 			);
@@ -351,9 +365,11 @@
 				831DA031295E4FA5007CDD66 /* FoodModel.swift in Sources */,
 				834BE63C29364BCC0005E5CA /* ButtonTableViewCell.swift in Sources */,
 				83BDDB7528DE804400CBC81E /* MyFitness.xcdatamodeld in Sources */,
+				83A07A3229A420D200EAB121 /* ProfileViewController.swift in Sources */,
 				834BE6352935894A0005E5CA /* UIViewControllerExtension.swift in Sources */,
 				83BDDB6F28DE804400CBC81E /* RootController.swift in Sources */,
 				83AC60EE2918143500AA621E /* Button.swift in Sources */,
+				8326E5992999773B00196C71 /* TabBarViewController.swift in Sources */,
 				831DA02D295E4508007CDD66 /* UserModel.swift in Sources */,
 				83BDDB6B28DE804400CBC81E /* AppDelegate.swift in Sources */,
 				83BDDBA328DE8CF800CBC81E /* RegisterViewController.swift in Sources */,

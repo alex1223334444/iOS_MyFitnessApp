@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import CoreData
+
 
 class RegisterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TextFieldWithLabelDelegate{
     
@@ -14,6 +16,11 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var button: UIButton!
     var placeholders = ["First name", "Last name", "E-mail", "Phone number", "Password", "Password confirmation"]
     var registerModel : RegisterModel = RegisterModel()
+    var people: [NSManagedObject] = []
+    var mailArray = [String]()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
@@ -79,38 +86,68 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBAction func register(_ sender: Any) {
-
-        Auth.auth().createUser(withEmail: registerModel.email, password: registerModel.password) { [self] (authResult, error) in
-          if let error = error {
-              let alert = UIAlertController(title: "Error or registering", message: error.localizedDescription, preferredStyle: .alert)
-              let ok = UIAlertAction(title: "Ok", style: .default)
-              alert.addAction(ok)
-              self.present(alert, animated: true, completion: nil)
-              
-          } else {
-              if let firebaseUser = authResult?.user{
-                  let uid = firebaseUser.uid
-                  let request : User = User(username: registerModel.email, lastName: registerModel.lastName, uid: uid, phone: registerModel.phone, firstName: registerModel.firstName)
-                  print(request)
-                  createUser(user: request) { result in
-                      switch result {
-                      case .success(_):
-                          print("success")
-                      case .failure(let error):
-                          print(error)
-                      }
-                  }
-              }
-              
-          }
-        }
-        do {
-          try Auth.auth().signOut()
-            print("user signed out")
-        } catch let error {
-          print(error.localizedDescription)
-        }
+        
+        /*Auth.auth().createUser(withEmail: registerModel.email, password: registerModel.password) { [self] (authResult, error) in
+         if let error = error {
+         let alert = UIAlertController(title: "Error or registering", message: error.localizedDescription, preferredStyle: .alert)
+         let ok = UIAlertAction(title: "Ok", style: .default)
+         alert.addAction(ok)
+         self.present(alert, animated: true, completion: nil)
+         
+         } else {
+         if let firebaseUser = authResult?.user{
+         let uid = firebaseUser.uid
+         let request : User = User(username: registerModel.email, lastName: registerModel.lastName, uid: uid, phone: registerModel.phone, firstName: registerModel.firstName)
+         print(request)
+         createUser(user: request) { result in
+         switch result {
+         case .success(_):
+         print("success")
+         case .failure(let error):
+         print(error)
          }
+         }
+         }*/
+        /*do {
+         try Auth.auth().signOut()
+         print("user signed out")
+         } catch let error {
+         print(error.localizedDescription)
+         }*/
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+          return
+        }
+        
+        // 1
+        let managedContext =
+          appDelegate.persistentContainer.viewContext
+        
+        // 2
+        let entity =
+          NSEntityDescription.entity(forEntityName: "User",
+                                     in: managedContext)!
+        
+        let person = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        
+        // 3
+        person.setValue(registerModel.firstName, forKeyPath: "firstName")
+        person.setValue(registerModel.lastName, forKeyPath: "lastName")
+        person.setValue(registerModel.email, forKeyPath: "email")
+        person.setValue(registerModel.phone, forKeyPath: "phone")
+        person.setValue(registerModel.password, forKeyPath: "password")
+
+        
+        // 4
+        do {
+          try managedContext.save()
+          people.append(person)
+        } catch let error as NSError {
+          print("Could not save. \(error), \(error.userInfo)")
+        }
+        }
+        
 }
 
 struct RegisterModel {

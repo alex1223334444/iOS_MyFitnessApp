@@ -24,6 +24,7 @@
 		834BE640293665B50005E5CA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE63F293665B50005E5CA /* SettingsViewController.swift */; };
 		834D539729B50B1000AE8ACC /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834D539629B50B1000AE8ACC /* FoodItem.swift */; };
 		834D539929B521DC00AE8ACC /* FoodItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834D539829B521DC00AE8ACC /* FoodItemTableViewCell.swift */; };
+		834D539B29B52D5700AE8ACC /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834D539A29B52D5700AE8ACC /* extensions.swift */; };
 		83920CA929A446090029E7A2 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83920CA829A446090029E7A2 /* Settings.storyboard */; };
 		83920CAB29A447510029E7A2 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83920CAA29A447510029E7A2 /* TabBar.storyboard */; };
 		839A23AE29180DD7002F3ED4 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23AD29180DD7002F3ED4 /* Textfield.swift */; };
@@ -80,6 +81,7 @@
 		834BE63F293665B50005E5CA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		834D539629B50B1000AE8ACC /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		834D539829B521DC00AE8ACC /* FoodItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemTableViewCell.swift; sourceTree = "<group>"; };
+		834D539A29B52D5700AE8ACC /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		83920CA829A446090029E7A2 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		83920CAA29A447510029E7A2 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		839A23AD29180DD7002F3ED4 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				83BDDB6E28DE804400CBC81E /* RootController.swift */,
 				83BDDB9F28DE857F00CBC81E /* LoginViewController.swift */,
 				83BDDBA228DE8CF700CBC81E /* RegisterViewController.swift */,
+				834D539A29B52D5700AE8ACC /* extensions.swift */,
 				83BDDB7628DE804500CBC81E /* Assets.xcassets */,
 				83BDDB7828DE804500CBC81E /* LaunchScreen.storyboard */,
 				83CF8C49293820FD00C14E7E /* GoogleService-Info.plist */,
@@ -399,6 +402,7 @@
 				83BDDBA328DE8CF800CBC81E /* RegisterViewController.swift in Sources */,
 				834BE640293665B50005E5CA /* SettingsViewController.swift in Sources */,
 				831DA02F295E453D007CDD66 /* NetworkManager.swift in Sources */,
+				834D539B29B52D5700AE8ACC /* extensions.swift in Sources */,
 				83BDDBA128DE8A5F00CBC81E /* LoginViewController.swift in Sources */,
 				83BDDB6D28DE804400CBC81E /* SceneDelegate.swift in Sources */,
 			);

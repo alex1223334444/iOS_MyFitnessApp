@@ -15,7 +15,10 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.addHeader()
 
+    }
     /*
     // MARK: - Navigation
 

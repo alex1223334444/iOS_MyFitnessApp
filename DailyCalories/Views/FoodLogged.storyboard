@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Food logged-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="FoodLoggedViewController" customModule="DailyCalories" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="L3f-Ru-56Q">
+                                <rect key="frame" x="0.0" y="159" width="393" height="610"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="food" id="EZu-eS-bXb" customClass="FoodItemTableViewCell" customModule="DailyCalories" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EZu-eS-bXb" id="gEV-ag-9mP">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhA-NF-zN5" customClass="FoodItem" customModule="DailyCalories" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666666666666664"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="vhA-NF-zN5" secondAttribute="trailing" id="8Yi-8T-ES7"/>
+                                                <constraint firstItem="vhA-NF-zN5" firstAttribute="leading" secondItem="gEV-ag-9mP" secondAttribute="leading" id="VMl-it-pq2"/>
+                                                <constraint firstAttribute="bottom" secondItem="vhA-NF-zN5" secondAttribute="bottom" id="Y22-E9-FiH"/>
+                                                <constraint firstItem="vhA-NF-zN5" firstAttribute="top" secondItem="gEV-ag-9mP" secondAttribute="top" id="rRm-xl-r1Q"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="foodItem" destination="vhA-NF-zN5" id="uML-Fd-gY8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="DKh-Xu-Gpd"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="Bd2-U8-wcn"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="L3f-Ru-56Q" secondAttribute="trailing" id="8ov-Li-J2N"/>
+                            <constraint firstItem="L3f-Ru-56Q" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="100" id="ESY-6K-xo8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="L3f-Ru-56Q" secondAttribute="bottom" id="KFd-oE-U6F"/>
+                            <constraint firstItem="L3f-Ru-56Q" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="e4d-kf-ozf"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Food logged" id="nEs-Mu-fpD"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="L3f-Ru-56Q" id="86q-10-i3t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="67" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

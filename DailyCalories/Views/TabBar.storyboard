@@ -21,19 +21,32 @@
         <scene sceneID="RbN-ZJ-9bj">
             <objects>
                 <tabBarController id="Feu-dt-UeU" customClass="TabBarViewController" customModule="DailyCalories" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uVN-rY-nAM">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" itemPositioning="fill" id="uVN-rY-nAM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="EdT-ol-ih2" kind="relationship" relationship="viewControllers" id="jS9-hE-bhY"/>
-                        <segue destination="cpP-vh-K0R" kind="relationship" relationship="viewControllers" id="atP-Fn-kVQ"/>
+                        <segue destination="Ff8-rj-4b7" kind="relationship" relationship="viewControllers" id="3Xo-5f-H8s"/>
+                        <segue destination="Aeo-c0-Wmq" kind="relationship" relationship="viewControllers" id="og7-KT-cOI"/>
+                        <segue destination="cpP-vh-K0R" kind="relationship" relationship="viewControllers" id="qjW-ty-M4A"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IZD-Bd-Xkk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-85" y="-21"/>
+            <point key="canvasLocation" x="-74" y="-20"/>
+        </scene>
+        <!--FoodLogged-->
+        <scene sceneID="12G-I2-2Mt">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FoodLogged" id="Aeo-c0-Wmq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="t9X-Xe-Y1z"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="guE-od-Flj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="851" y="63"/>
         </scene>
         <!--Profile-->
         <scene sceneID="SdL-jO-iha">
@@ -44,6 +57,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7jq-lf-48G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="874" y="144"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="V4A-X6-4Z2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="Ff8-rj-4b7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="b4o-Yi-LGS"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tcV-Q1-qHt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="661" y="219"/>
         </scene>
     </scenes>
 </document>

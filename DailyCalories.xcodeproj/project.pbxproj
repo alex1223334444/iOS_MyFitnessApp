@@ -13,11 +13,17 @@
 		831DA031295E4FA5007CDD66 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831DA030295E4FA5007CDD66 /* FoodModel.swift */; };
 		8326E5972999762200196C71 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8326E5962999762200196C71 /* Profile.storyboard */; };
 		8326E5992999773B00196C71 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8326E5982999773B00196C71 /* TabBarViewController.swift */; };
+		8349F7F129AD29EB00F449BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8349F7F029AD29EB00F449BF /* HomeViewController.swift */; };
+		8349F7F329AD29F900F449BF /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8349F7F229AD29F900F449BF /* Home.storyboard */; };
+		8349F7F529AD2B2000F449BF /* FoodLogged.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8349F7F429AD2B2000F449BF /* FoodLogged.storyboard */; };
+		8349F7F729AD2B3500F449BF /* FoodLoggedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8349F7F629AD2B3500F449BF /* FoodLoggedViewController.swift */; };
 		834BE6352935894A0005E5CA /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE6342935894A0005E5CA /* UIViewControllerExtension.swift */; };
 		834BE638293634B70005E5CA /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE637293634B70005E5CA /* GradientExtension.swift */; };
 		834BE63A293649890005E5CA /* TextfieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE639293649890005E5CA /* TextfieldTableViewCell.swift */; };
 		834BE63C29364BCC0005E5CA /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE63B29364BCC0005E5CA /* ButtonTableViewCell.swift */; };
 		834BE640293665B50005E5CA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834BE63F293665B50005E5CA /* SettingsViewController.swift */; };
+		834D539729B50B1000AE8ACC /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834D539629B50B1000AE8ACC /* FoodItem.swift */; };
+		834D539929B521DC00AE8ACC /* FoodItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834D539829B521DC00AE8ACC /* FoodItemTableViewCell.swift */; };
 		83920CA929A446090029E7A2 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83920CA829A446090029E7A2 /* Settings.storyboard */; };
 		83920CAB29A447510029E7A2 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83920CAA29A447510029E7A2 /* TabBar.storyboard */; };
 		839A23AE29180DD7002F3ED4 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23AD29180DD7002F3ED4 /* Textfield.swift */; };
@@ -63,11 +69,17 @@
 		831DA030295E4FA5007CDD66 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
 		8326E5962999762200196C71 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		8326E5982999773B00196C71 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		8349F7F029AD29EB00F449BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8349F7F229AD29F900F449BF /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		8349F7F429AD2B2000F449BF /* FoodLogged.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FoodLogged.storyboard; sourceTree = "<group>"; };
+		8349F7F629AD2B3500F449BF /* FoodLoggedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLoggedViewController.swift; sourceTree = "<group>"; };
 		834BE6342935894A0005E5CA /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		834BE637293634B70005E5CA /* GradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientExtension.swift; sourceTree = "<group>"; };
 		834BE639293649890005E5CA /* TextfieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldTableViewCell.swift; sourceTree = "<group>"; };
 		834BE63B29364BCC0005E5CA /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		834BE63F293665B50005E5CA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		834D539629B50B1000AE8ACC /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		834D539829B521DC00AE8ACC /* FoodItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemTableViewCell.swift; sourceTree = "<group>"; };
 		83920CA829A446090029E7A2 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		83920CAA29A447510029E7A2 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		839A23AD29180DD7002F3ED4 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
@@ -137,8 +149,10 @@
 				83CAFAB629153DDC00C4A4C6 /* Register.storyboard */,
 				8326E5962999762200196C71 /* Profile.storyboard */,
 				83920CAA29A447510029E7A2 /* TabBar.storyboard */,
+				8349F7F229AD29F900F449BF /* Home.storyboard */,
 				83920CA829A446090029E7A2 /* Settings.storyboard */,
 				83CAFAB829153E0C00C4A4C6 /* Login.storyboard */,
+				8349F7F429AD2B2000F449BF /* FoodLogged.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,13 +185,17 @@
 				834BE63629358A6C0005E5CA /* Views */,
 				83BDDB6A28DE804400CBC81E /* AppDelegate.swift */,
 				83A07A3129A420D200EAB121 /* ProfileViewController.swift */,
+				8349F7F029AD29EB00F449BF /* HomeViewController.swift */,
+				8349F7F629AD2B3500F449BF /* FoodLoggedViewController.swift */,
 				8326E5982999773B00196C71 /* TabBarViewController.swift */,
 				834BE6342935894A0005E5CA /* UIViewControllerExtension.swift */,
 				834BE637293634B70005E5CA /* GradientExtension.swift */,
 				834BE63F293665B50005E5CA /* SettingsViewController.swift */,
 				83BDDB6C28DE804400CBC81E /* SceneDelegate.swift */,
 				839A23AD29180DD7002F3ED4 /* Textfield.swift */,
+				834D539629B50B1000AE8ACC /* FoodItem.swift */,
 				834BE639293649890005E5CA /* TextfieldTableViewCell.swift */,
+				834D539829B521DC00AE8ACC /* FoodItemTableViewCell.swift */,
 				83AC60ED2918143500AA621E /* Button.swift */,
 				834BE63B29364BCC0005E5CA /* ButtonTableViewCell.swift */,
 				83BDDB6E28DE804400CBC81E /* RootController.swift */,
@@ -326,7 +344,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8349F7F529AD2B2000F449BF /* FoodLogged.storyboard in Resources */,
 				83BDDB7A28DE804500CBC81E /* LaunchScreen.storyboard in Resources */,
+				8349F7F329AD29F900F449BF /* Home.storyboard in Resources */,
 				83920CAB29A447510029E7A2 /* TabBar.storyboard in Resources */,
 				83BDDB7728DE804500CBC81E /* Assets.xcassets in Resources */,
 				83BDDB7228DE804400CBC81E /* Main.storyboard in Resources */,
@@ -361,9 +381,13 @@
 			files = (
 				834BE63A293649890005E5CA /* TextfieldTableViewCell.swift in Sources */,
 				839A23AE29180DD7002F3ED4 /* Textfield.swift in Sources */,
+				834D539929B521DC00AE8ACC /* FoodItemTableViewCell.swift in Sources */,
+				8349F7F129AD29EB00F449BF /* HomeViewController.swift in Sources */,
 				834BE638293634B70005E5CA /* GradientExtension.swift in Sources */,
 				831DA031295E4FA5007CDD66 /* FoodModel.swift in Sources */,
 				834BE63C29364BCC0005E5CA /* ButtonTableViewCell.swift in Sources */,
+				8349F7F729AD2B3500F449BF /* FoodLoggedViewController.swift in Sources */,
+				834D539729B50B1000AE8ACC /* FoodItem.swift in Sources */,
 				83BDDB7528DE804400CBC81E /* MyFitness.xcdatamodeld in Sources */,
 				83A07A3229A420D200EAB121 /* ProfileViewController.swift in Sources */,
 				834BE6352935894A0005E5CA /* UIViewControllerExtension.swift in Sources */,

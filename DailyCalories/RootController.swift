@@ -13,7 +13,7 @@ class RootController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.layer.cornerRadius = 20
+        loginButton.layer.cornerRadius = 25
         registerButton.layer.cornerRadius = 20
         self.view.alpha = 1
         let query = "1 kg of chicken breast with fries".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

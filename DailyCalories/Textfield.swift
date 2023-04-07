@@ -29,13 +29,12 @@ class Textfield: UIView {
         return textField
     }()
     
-    /*private lazy var placeholderLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
-        label.textColor = .gray
-        label.text = "placeholder"
-        return label
-    }()*/
+    private lazy var leftImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFit
+            imageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            return imageView
+        }()
     
     
     private lazy var bottomBorder: UIView = {
@@ -62,8 +61,11 @@ class Textfield: UIView {
         subscribeToActions()
     }
     
-    func configureTextField(with placeholder: String, keyboardType: UIKeyboardType = .default, secured: Bool = false, tag: Int = 0, delegate : TextFieldWithLabelDelegate) {
+    func configureTextField(with placeholder: String, keyboardType: UIKeyboardType = .default, secured: Bool = false, tag: Int = 0, delegate : TextFieldWithLabelDelegate, image: String?) {
         //placeholderLabel.text = placeholder
+        if let imageName = image {
+                leftImageView.image = UIImage(named: imageName)
+            }
         textField.placeholder = placeholder
         textField.keyboardType = keyboardType
         textField.isSecureTextEntry = secured
@@ -86,6 +88,7 @@ class Textfield: UIView {
         addSubview(textField)
         //addSubview(placeholderLabel)
         addSubview(bottomBorder)
+        addSubview(leftImageView)
     }
     
     private func animatePlaceholderLabel(position: PlaceholderPosition) {
@@ -113,6 +116,8 @@ class Textfield: UIView {
         self.placeholderYConstraint?.constant = -16
     }
     
+    
+    
     @objc private func textFieldDidEndEditing() {
         //placeholderLabel.textColor = .black
         textField.font = .systemFont(ofSize: 14)
@@ -122,6 +127,8 @@ class Textfield: UIView {
         self.layer.masksToBounds = true
         animatePlaceholderLabel(position: .lowered)
     }
+    
+    
     
     @objc private func textFieldDidBeginEditing() {
         //placeholderLabel.textColor = .black
@@ -135,12 +142,21 @@ class Textfield: UIView {
     private func addConstraintsToSubviews() {
         layoutTextField()
         layoutBorder()
+        layoutLeftImageView()
         //layoutPlaceholder()
     }
     
+    private func layoutLeftImageView() {
+        leftImageView.translatesAutoresizingMaskIntoConstraints = false
+        leftImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        leftImageView.centerYAnchor.constraint(equalTo: textField.centerYAnchor).isActive = true
+        leftImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        leftImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
+    }
+
     private func layoutTextField() {
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        textField.leadingAnchor.constraint(equalTo: leftImageView.trailingAnchor, constant: 10).isActive = true
         textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         textField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         textField.heightAnchor.constraint(equalToConstant: 40).isActive = true
@@ -149,7 +165,7 @@ class Textfield: UIView {
     
     private func layoutBorder() {
         bottomBorder.translatesAutoresizingMaskIntoConstraints = false
-        bottomBorder.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        bottomBorder.leadingAnchor.constraint(equalTo: leftImageView.leadingAnchor, constant: 40).isActive = true
         bottomBorder.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         bottomBorder.heightAnchor.constraint(equalToConstant: 1).isActive = true
         bottomBorder.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true

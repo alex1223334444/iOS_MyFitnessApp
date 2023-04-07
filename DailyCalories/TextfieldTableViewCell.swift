@@ -10,8 +10,8 @@ import UIKit
 class TextfieldTableViewCell: UITableViewCell {
 
     @IBOutlet weak var textfield: Textfield!
-    func configureTextFieldCell(_ placeholder: String, tag: Int = 0 ,secure: Bool,delegate: TextFieldWithLabelDelegate){
-        textfield.configureTextField(with: placeholder, secured: secure, tag: tag, delegate: delegate)
+    func configureTextFieldCell(_ placeholder: String, tag: Int = 0 ,secure: Bool,delegate: TextFieldWithLabelDelegate, image: String?){
+        textfield.configureTextField(with: placeholder, secured: secure, tag: tag, delegate: delegate, image: image)
       }
 
     

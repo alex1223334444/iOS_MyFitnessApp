@@ -18,14 +18,15 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
     @IBOutlet weak var facebookSignIn: UIButton!
     @IBOutlet weak var appleSignIn: UIButton!
     @IBOutlet weak var googleSignIn: UIButton!
+    @IBOutlet weak var logo: UIImageView!
     private var user : UserModel = UserModel()
     var mailArray = [String]()
     var passwordArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameTextfield.configureTextField(with: "Username", secured: false, tag: 0, delegate: self)
-        passwordTextfield.configureTextField(with: "Password", secured: true, tag: 1, delegate: self)
+        usernameTextfield.configureTextField(with: "Username", secured: false, tag: 0, delegate: self, image: "apple")
+        passwordTextfield.configureTextField(with: "Password", secured: true, tag: 1, delegate: self, image: "apple")
         self.navigationItem.hidesBackButton = true
         facebookSignIn.layer.cornerRadius = 10
         googleSignIn.layer.cornerRadius = 10
@@ -33,7 +34,8 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
         self.hideKeyboardWhenTappedAround()
         button.layer.cornerRadius = 8
         button.isEnabled = false
-        self.view.gradientBackground(from: .magenta, to: .orange, direction: .bottomToTop)
+        logo.layer.cornerRadius = min(logo.frame.width, logo.frame.height) / 2.0
+
     }
     
     

@@ -15,6 +15,7 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var button: UIButton!
     var placeholders = ["First name", "Last name", "E-mail", "Phone number", "Password", "Password confirmation"]
+    var icons = ["apple", "apple", "apple", "apple", "apple", "apple", "apple"]
     var registerModel : RegisterModel = RegisterModel()
     var people: [NSManagedObject] = []
     var mailArray = [String]()
@@ -25,7 +26,6 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.view.gradientBackground(from: .magenta,to: .orange, direction: .bottomToTop)
         button.layer.cornerRadius = 8
         self.hideKeyboardWhenTappedAround()
         
@@ -43,7 +43,7 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "textfield", for: indexPath) as? TextfieldTableViewCell else {
             return UITableViewCell()
         }
-        cell.configureTextFieldCell(placeholders[indexPath.section], tag: indexPath.section, secure: false, delegate : self)
+        cell.configureTextFieldCell(placeholders[indexPath.section], tag: indexPath.section, secure: false, delegate : self, image: icons[indexPath.section])
         cell.showsReorderControl = true
         return cell
     }

@@ -14,6 +14,7 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var logo: UIImageView!
     var placeholders = ["First name", "Last name", "E-mail", "Phone number", "Password", "Password confirmation"]
     var icons = ["apple", "apple", "apple", "apple", "apple", "apple", "apple"]
     var registerModel : RegisterModel = RegisterModel()
@@ -28,7 +29,8 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.delegate = self
         button.layer.cornerRadius = 8
         self.hideKeyboardWhenTappedAround()
-        
+        logo.layer.cornerRadius = min(logo.frame.width, logo.frame.height) / 2.0
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

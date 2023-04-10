@@ -18,16 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create your account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1s-xq-Pkn">
-                                <rect key="frame" x="125.5" y="58" width="163" height="30"/>
+                                <rect key="frame" x="125.5" y="180" width="163" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="zTH-vA-NHy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="y3O-w8-9Yc">
-                                <rect key="frame" x="0.0" y="118" width="414" height="594"/>
+                                <rect key="frame" x="0.0" y="235" width="414" height="547"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="textfield" rowHeight="50" id="80c-9s-0ak" customClass="TextfieldTableViewCell" customModule="DailyCalories" customModuleProvider="target">
@@ -62,7 +62,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voe-nV-EAw">
-                                <rect key="frame" x="157" y="762" width="100" height="40"/>
+                                <rect key="frame" x="157" y="802" width="100" height="40"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="6tm-fa-5nm"/>
@@ -76,23 +76,34 @@
                                     <action selector="register:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="GMr-6V-e4c"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FOq-jH-whD">
+                                <rect key="frame" x="157" y="50" width="100" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="bT5-Lm-cl5"/>
+                                    <constraint firstAttribute="height" constant="100" id="khf-R4-012"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="y3O-w8-9Yc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="1Rr-q7-W8J"/>
-                            <constraint firstItem="y3O-w8-9Yc" firstAttribute="top" secondItem="U1s-xq-Pkn" secondAttribute="bottom" constant="30" id="9J3-aY-b4P"/>
+                            <constraint firstItem="y3O-w8-9Yc" firstAttribute="top" secondItem="U1s-xq-Pkn" secondAttribute="bottom" constant="25" id="9J3-aY-b4P"/>
+                            <constraint firstItem="FOq-jH-whD" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Cla-lJ-1cz"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="y3O-w8-9Yc" secondAttribute="trailing" id="IK0-6K-iA0"/>
-                            <constraint firstItem="U1s-xq-Pkn" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="O97-Z2-Wev"/>
                             <constraint firstItem="voe-nV-EAw" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="SAB-wh-26f"/>
-                            <constraint firstItem="voe-nV-EAw" firstAttribute="top" secondItem="y3O-w8-9Yc" secondAttribute="bottom" constant="50" id="Y2Z-mY-VPA"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="voe-nV-EAw" secondAttribute="bottom" constant="20" id="mca-p4-Tig"/>
+                            <constraint firstItem="U1s-xq-Pkn" firstAttribute="top" secondItem="FOq-jH-whD" secondAttribute="bottom" constant="30" id="vOY-bE-HfN"/>
+                            <constraint firstItem="FOq-jH-whD" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="50" id="vhj-pc-e55"/>
                             <constraint firstItem="U1s-xq-Pkn" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="wk4-vb-KG8"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="y3O-w8-9Yc" secondAttribute="bottom" constant="150" id="yvH-qi-U2W"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="y3O-w8-9Yc" secondAttribute="bottom" constant="80" id="yvH-qi-U2W"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="button" destination="voe-nV-EAw" id="s2F-JF-flu"/>
+                        <outlet property="logo" destination="FOq-jH-whD" id="vu6-1y-An0"/>
                         <outlet property="tableView" destination="y3O-w8-9Yc" id="ZdL-t1-g2n"/>
                         <segue destination="dzV-Vg-B0a" kind="show" identifier="login" id="1OX-op-9IX"/>
                     </connections>

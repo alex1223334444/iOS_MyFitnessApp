@@ -27,14 +27,11 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addHeader(string: "Profile")
 
-        // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.addHeader(string: "History")
 
-    }
     
 
     /*

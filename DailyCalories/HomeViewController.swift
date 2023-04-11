@@ -9,15 +9,17 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var addFoodButton: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.addHeader(string: "Home")
+        
+        
+        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.addHeader(string: "Home")
-
+    @IBAction func addFood(_ sender: Any) {
+        print("da")
     }
     /*
     // MARK: - Navigation

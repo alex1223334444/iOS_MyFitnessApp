@@ -12,7 +12,14 @@ import UIKit
 extension UIViewController {
 
     func addHeader(string: String){
-        let header: UIView = UIView(frame: CGRect(x: 0, y: view.safeAreaInsets.top - 40, width: view.frame.width, height: 100))
+        var header: UIView
+        if UIScreen.main.bounds.height < 800 {
+            header = UIView(frame: CGRect(x: 0, y: view.safeAreaInsets.top  + 30, width: view.frame.width, height: 100))
+            
+        }
+        else {
+            header = UIView(frame: CGRect(x: 0, y: view.safeAreaInsets.top  + 60, width: view.frame.width, height: 100))
+        }
         header.backgroundColor = .black
         let label: UILabel = UILabel()
         label.text = string

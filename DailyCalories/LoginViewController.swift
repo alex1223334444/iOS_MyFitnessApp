@@ -34,7 +34,7 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
         self.hideKeyboardWhenTappedAround()
         button.layer.cornerRadius = 8
         button.isEnabled = false
-        logo.layer.cornerRadius = min(logo.frame.width, logo.frame.height) / 2.0
+        logo.layer.cornerRadius = 15
 
     }
     

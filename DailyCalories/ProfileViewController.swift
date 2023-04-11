@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.addHeader()
+        self.addHeader(string: "Profile")
 
     }
     /*

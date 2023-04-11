@@ -29,7 +29,7 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.delegate = self
         button.layer.cornerRadius = 8
         self.hideKeyboardWhenTappedAround()
-        logo.layer.cornerRadius = min(logo.frame.width, logo.frame.height) / 2.0
+        logo.layer.cornerRadius = 20
 
     }
     

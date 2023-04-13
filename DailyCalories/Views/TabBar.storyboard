@@ -7,16 +7,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Settings-->
-        <scene sceneID="h1f-3S-7yI">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="EdT-ol-ih2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="hWa-LX-rwD"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AYJ-x2-vOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="114" y="-590"/>
-        </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="RbN-ZJ-9bj">
             <objects>

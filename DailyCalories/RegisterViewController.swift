@@ -145,9 +145,21 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         do {
           try managedContext.save()
           people.append(person)
+            let alert = UIAlertController(title: "Succes", message: "Your account was successfully created!", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
         } catch let error as NSError {
           print("Could not save. \(error), \(error.userInfo)")
+            let alert = UIAlertController(title: "Error", message: "There was as error on creation of your account. Please try again.", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "Try again", style: .default) 
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
         }
+        
+        
         }
         
 }

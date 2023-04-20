@@ -60,7 +60,7 @@
                             <constraint firstItem="L3f-Ru-56Q" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="e4d-kf-ozf"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Food logged" id="nEs-Mu-fpD"/>
+                    <tabBarItem key="tabBarItem" title="Food logged" image="calendar.circle" catalog="system" selectedImage="calendar.circle.fill" id="nEs-Mu-fpD"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="L3f-Ru-56Q" id="86q-10-i3t"/>
@@ -72,6 +72,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar.circle" catalog="system" width="128" height="123"/>
+        <image name="calendar.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

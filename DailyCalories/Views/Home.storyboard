@@ -99,6 +99,16 @@
                                     <action selector="addFood:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="RVZ-ea-O2p"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dM-cP-RO6">
+                                <rect key="frame" x="328" y="149" width="50" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system">
+                                    <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="showAdditionalInfo:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VsP-VX-dgc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -107,6 +117,8 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="01d-sd-5nQ" secondAttribute="trailing" constant="15" id="9Pp-aQ-rSG"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="01d-sd-5nQ" secondAttribute="bottom" constant="15" id="9lE-uf-r5i"/>
                             <constraint firstItem="9Sb-Hn-QQR" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="80" id="ASe-Xy-ReM"/>
+                            <constraint firstItem="na7-NC-QiL" firstAttribute="top" secondItem="2dM-cP-RO6" secondAttribute="bottom" constant="15" id="D69-Gc-gtI"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2dM-cP-RO6" secondAttribute="trailing" constant="15" id="Fdd-Uu-VKy"/>
                             <constraint firstItem="Yqc-cC-dmo" firstAttribute="top" secondItem="na7-NC-QiL" secondAttribute="bottom" constant="15" id="H9A-j2-W7k"/>
                             <constraint firstItem="HlB-jE-XuD" firstAttribute="top" secondItem="na7-NC-QiL" secondAttribute="bottom" constant="15" id="ILF-fp-qVd"/>
                             <constraint firstItem="7Ml-hK-3uF" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="IuO-0a-VDE"/>
@@ -124,8 +136,13 @@
                             <constraint firstItem="ll5-ld-C6E" firstAttribute="top" secondItem="na7-NC-QiL" secondAttribute="bottom" constant="15" id="zPK-Oa-H7L"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="93a-Lh-w0g"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house.fill" id="93a-Lh-w0g">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="infoButton" destination="2dM-cP-RO6" id="j7X-Cu-Naf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -133,6 +150,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

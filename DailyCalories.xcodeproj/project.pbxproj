@@ -13,6 +13,8 @@
 		831DA031295E4FA5007CDD66 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831DA030295E4FA5007CDD66 /* FoodModel.swift */; };
 		8326E5972999762200196C71 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8326E5962999762200196C71 /* Profile.storyboard */; };
 		8326E5992999773B00196C71 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8326E5982999773B00196C71 /* TabBarViewController.swift */; };
+		832F70D629EFB483003A46B0 /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832F70D529EFB483003A46B0 /* AddFoodViewController.swift */; };
+		833ED1CF29F004C40007B830 /* WeightPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833ED1CE29F004C40007B830 /* WeightPicker.swift */; };
 		8349F7F129AD29EB00F449BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8349F7F029AD29EB00F449BF /* HomeViewController.swift */; };
 		8349F7F329AD29F900F449BF /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8349F7F229AD29F900F449BF /* Home.storyboard */; };
 		8349F7F529AD2B2000F449BF /* FoodLogged.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8349F7F429AD2B2000F449BF /* FoodLogged.storyboard */; };
@@ -70,6 +72,8 @@
 		831DA030295E4FA5007CDD66 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
 		8326E5962999762200196C71 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		8326E5982999773B00196C71 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		832F70D529EFB483003A46B0 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
+		833ED1CE29F004C40007B830 /* WeightPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightPicker.swift; sourceTree = "<group>"; };
 		8349F7F029AD29EB00F449BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8349F7F229AD29F900F449BF /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		8349F7F429AD2B2000F449BF /* FoodLogged.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FoodLogged.storyboard; sourceTree = "<group>"; };
@@ -187,7 +191,9 @@
 				834BE63629358A6C0005E5CA /* Views */,
 				83BDDB6A28DE804400CBC81E /* AppDelegate.swift */,
 				83A07A3129A420D200EAB121 /* ProfileViewController.swift */,
+				833ED1CE29F004C40007B830 /* WeightPicker.swift */,
 				8349F7F029AD29EB00F449BF /* HomeViewController.swift */,
+				832F70D529EFB483003A46B0 /* AddFoodViewController.swift */,
 				8349F7F629AD2B3500F449BF /* FoodLoggedViewController.swift */,
 				8326E5982999773B00196C71 /* TabBarViewController.swift */,
 				834BE6342935894A0005E5CA /* UIViewControllerExtension.swift */,
@@ -398,12 +404,14 @@
 				83AC60EE2918143500AA621E /* Button.swift in Sources */,
 				8326E5992999773B00196C71 /* TabBarViewController.swift in Sources */,
 				831DA02D295E4508007CDD66 /* UserModel.swift in Sources */,
+				833ED1CF29F004C40007B830 /* WeightPicker.swift in Sources */,
 				83BDDB6B28DE804400CBC81E /* AppDelegate.swift in Sources */,
 				83BDDBA328DE8CF800CBC81E /* RegisterViewController.swift in Sources */,
 				834BE640293665B50005E5CA /* SettingsViewController.swift in Sources */,
 				831DA02F295E453D007CDD66 /* NetworkManager.swift in Sources */,
 				834D539B29B52D5700AE8ACC /* extensions.swift in Sources */,
 				83BDDBA128DE8A5F00CBC81E /* LoginViewController.swift in Sources */,
+				832F70D629EFB483003A46B0 /* AddFoodViewController.swift in Sources */,
 				83BDDB6D28DE804400CBC81E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,18 +7,18 @@
 import Foundation
 
 struct FoodRequested: Codable {
-    var name: String?
-    var calories: Double?
-    var serving_size_g: Double?
-    var fat_total_g: Double?
-    var fat_saturated_g: Double?
-    var protein_g: Double?
-    var sodium_mg: Double?
-    var potassium_mg: Double?
-    var cholesterol_mg: Double?
-    var carbohydrates_total_g: Double?
-    var fiber_g: Double?
-    var sugar_g: Double?
+    var name: String
+    var calories: Double
+    var serving_size_g: Double
+    var fat_total_g: Double
+    var fat_saturated_g: Double
+    var protein_g: Double
+    var sodium_mg: Double
+    var potassium_mg: Double
+    var cholesterol_mg: Double
+    var carbohydrates_total_g: Double
+    var fiber_g: Double
+    var sugar_g: Double
     
     /*private enum CodingKeys: String, CodingKey {
         case name
@@ -53,7 +53,20 @@ struct FoodRequested: Codable {
         sugar_g = try container.decode(Double.self, forKey: .sugar_b)
 
     }*/
-    
+    init(name: String, calories: Double, serving_size_g: Double, fat_total_g: Double, fat_saturated_g: Double, protein_g: Double, sodium_mg: Double, potassium_mg: Double, cholesterol_mg: Double, carbohydrates_total_g: Double, fiber_g: Double, sugar_g: Double) {
+            self.name = name
+            self.calories = calories
+            self.serving_size_g = serving_size_g
+            self.fat_total_g = fat_total_g
+            self.fat_saturated_g = fat_saturated_g
+            self.protein_g = protein_g
+            self.sodium_mg = sodium_mg
+            self.potassium_mg = potassium_mg
+            self.cholesterol_mg = cholesterol_mg
+            self.carbohydrates_total_g = carbohydrates_total_g
+            self.fiber_g = fiber_g
+            self.sugar_g = sugar_g
+        }
 }
 
 /*struct Food : Codable {

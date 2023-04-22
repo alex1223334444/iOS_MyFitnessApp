@@ -9,12 +9,22 @@ import UIKit
 
 class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     func changeText(_ textContent: UITextField?) {
-        //
+        if textContent?.tag == 1 {
+            food = textContent?.text ?? ""
+            print(food)
+        }
+        else {
+            quantity = Int(textContent?.text ?? "") ?? 0
+            print(quantity)
+        }
     }
     
     var nameLabels = [UILabel]()
     var valueLabels = [UILabel]()
-    
+    var food = ""
+    var quantity = 0
+    var weightPicker = WeightPicker()
+
     fileprivate func constraintsFoodTextfield(_ foodText: Textfield) {
         NSLayoutConstraint.activate([
             foodText.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50),
@@ -157,9 +167,10 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        self.hideKeyboardWhenTappedAround()
         // Create UI elements
         let foodText = Textfield()
-        foodText.configureTextField(with: "Name the food", delegate: self, image: nil)
+        foodText.configureTextField(with: "Name the food", tag: 1, delegate: self, image: nil)
         foodText.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(foodText)
         
@@ -169,11 +180,10 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         self.view.addSubview(barScan)
         
         let quantityText = Textfield()
-        quantityText.configureTextField(with: "How much?", delegate: self, image: nil)
+        quantityText.configureTextField(with: "How much?", tag: 2, delegate: self, image: nil)
         quantityText.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(quantityText)
         
-        let weightPicker = WeightPicker()
         weightPicker.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(weightPicker)
         
@@ -208,10 +218,47 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         // Handle button tap event
         
         // Update value labels with random values for testing purposes
-        self.valueLabels[0].text = "\(Int.random(in: 100...500))"
-        self.valueLabels[1].text = "\(Int.random(in: 10...50)) g"
-        self.valueLabels[2].text = "\(Int.random(in: 10...100)) g"
-        self.valueLabels[3].text = "\(Int.random(in: 5...30)) g"
+        var text = "\(quantity) \(weightPicker.selectedUnit) of \(food)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = URL(string: "https://api.api-ninjas.com/v1/nutrition?query="+text!)!
+        var request = URLRequest(url: url)
+        request.setValue("jWhNwKEikKQQYZPwOq6gkA==EcFrD0XB6Fe8uZ2A", forHTTPHeaderField: "X-Api-Key")
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+         guard let data = data else { return }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]],
+                    let firstItem = json.first {
+                    
+                    // Use the first item in the array
+                    let name = firstItem["name"] as? String ?? ""
+                    let calories = firstItem["calories"] as? Double ?? 0.0
+                    let servingSize = firstItem["serving_size_g"] as? Double ?? 0.0
+                    let fatTotal = firstItem["fat_total_g"] as? Double ?? 0.0
+                    let fatSaturated = firstItem["fat_saturated_g"] as? Double ?? 0.0
+                    let protein = firstItem["protein_g"] as? Double ?? 0.0
+                    let sodium = firstItem["sodium_mg"] as? Int ?? 0
+                    let potassium = firstItem["potassium_mg"] as? Int ?? 0
+                    let cholesterol = firstItem["cholesterol_mg"] as? Int ?? 0
+                    let carbsTotal = firstItem["carbohydrates_total_g"] as? Double ?? 0.0
+                    let fiber = firstItem["fiber_g"] as? Double ?? 0.0
+                    let sugar = firstItem["sugar_g"] as? Double ?? 0.0
+                    
+                    // Create an object using the parsed data
+                    let foodItem = FoodRequested(name: name, calories: calories, serving_size_g: servingSize, fat_total_g: fatTotal, fat_saturated_g: fatSaturated, protein_g: protein, sodium_mg: Double(sodium), potassium_mg: Double(potassium), cholesterol_mg: Double(cholesterol), carbohydrates_total_g: carbsTotal, fiber_g: fiber, sugar_g: sugar)
+                    DispatchQueue.main.async {
+                        self.valueLabels[0].text = "\(String(describing: foodItem.calories) )"
+                        self.valueLabels[1].text = "\(String(describing: foodItem.protein_g)) g"
+                        self.valueLabels[2].text = "\(String(describing: foodItem.carbohydrates_total_g)) g"
+                        self.valueLabels[3].text = "\(String(describing: foodItem.fat_total_g)) g"
+                    }
+                    // Use the foodItem object as needed
+                    print(foodItem)
+                }
+            } catch {
+                print("Error parsing JSON data: \(error.localizedDescription)")
+            }
+         }
+         task.resume()
+        
     }
 }
        

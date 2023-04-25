@@ -8,10 +8,34 @@
 import UIKit
 
 class FoodItemTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var foodItem: FoodItem!
-    func configureFoodCell(_ placeholder: String, tag: Int = 0 ){
+    private var foodItem: FoodItem!
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupFoodItem()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupFoodItem()
+    }
+
+    private func setupFoodItem() {
+        foodItem = FoodItem()
+        foodItem.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(foodItem)
+
+        // Set up constraints for the foodItem view
+        NSLayoutConstraint.activate([
+            foodItem.topAnchor.constraint(equalTo: contentView.topAnchor),
+            foodItem.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            foodItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            foodItem.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
+    }
+
+    func configureFoodCell(_ placeholder: String, tag: Int = 0) {
         foodItem.configureFoodItem(with: placeholder, tag: tag)
-      }
-    
+    }
 }
+

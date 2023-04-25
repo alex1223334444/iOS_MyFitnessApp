@@ -218,7 +218,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         // Handle button tap event
         
         // Update value labels with random values for testing purposes
-        var text = "\(quantity) \(weightPicker.selectedUnit) of \(food)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let text = "\(quantity) \(weightPicker.selectedUnit) of \(food)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let url = URL(string: "https://api.api-ninjas.com/v1/nutrition?query="+text!)!
         var request = URLRequest(url: url)
         request.setValue("jWhNwKEikKQQYZPwOq6gkA==EcFrD0XB6Fe8uZ2A", forHTTPHeaderField: "X-Api-Key")

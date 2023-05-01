@@ -30,10 +30,23 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="twF-Yh-F7K"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="JLo-dU-qEX" kind="show" identifier="logout" id="5JM-5y-Qhn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="86" y="4"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="aJ5-oH-ARX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="JLo-dU-qEX" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3h9-F9-gOo"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GZG-pf-RO5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="949" y="184"/>
         </scene>
     </scenes>
     <resources>

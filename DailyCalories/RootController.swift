@@ -16,16 +16,22 @@ class RootController: UIViewController {
         loginButton.layer.cornerRadius = 25
         registerButton.layer.cornerRadius = 20
         self.view.alpha = 1
-        
-        // Do any additional setup after loading the view.
+        if let storedUsername = UserDefaults.standard.string(forKey: "username"),
+           let storedPassword = UserDefaults.standard.string(forKey: "password") {
+            // User is already logged in, redirect to the main page
+            redirectToMainPage()
+            // Do any additional setup after loading the view.
+        }
     }
-
-   
+        
+        
+        private func redirectToMainPage() {
+            performSegue(withIdentifier: "skipLogin", sender: nil)
+        }
+        
+        
+        
+        
+        
+    }
     
-    
-    
-    
-    
-    
-}
-

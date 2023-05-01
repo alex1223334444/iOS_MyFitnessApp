@@ -101,6 +101,9 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
             let mailIndex = mailArray.firstIndex(where: {$0 == user.username})
             
             if passwordArray[mailIndex!] == user.password{
+                UserDefaults.standard.set(user.username, forKey: "username")
+                UserDefaults.standard.set(user.password, forKey: "password")
+
                 self.performSegue(withIdentifier: "login", sender: nil)
             }
         }

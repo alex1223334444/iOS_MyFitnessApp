@@ -22,12 +22,19 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     private var tableView: UITableView!
     private var foods: [String] = ["food1", "food2", "food3", "food4", "food5", "food6", "food7"]
     private var date =  Date()
+    var caloriesLabel = UILabel()
+    var progressBar = UIProgressView(progressViewStyle: .default)
+    var nutrients = ["Proteins", "Carbs", "Fats"]
+    var nutrientValues = ["20g", "30g", "15g"]
+    var nutrientLabels: [UILabel] = []
+    var valueLabels: [UILabel] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addHeader(string: "Profile")
         setupDatePicker()
-
+        
         // Initialize and configure the table view
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,21 +48,19 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.scrollsToTop = false
         tableView.backgroundColor = .systemGray6
         view.addSubview(tableView)
-
-        // Set table header and footer background colors to transparent
-        /*tableView.tableHeaderView?.backgroundColor = UIColor.clear
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0.01))
-        tableView.tableFooterView?.backgroundColor = UIColor.clear*/
-
+        
         // Set up constraints for the table view
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 400),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 450),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
         
         addPieChart()
+        addProgressBar()
+        addLabels()
+        
     }
     
     
@@ -69,20 +74,20 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         view.addSubview(label)
         // Set the desired mode for the date picker
         datePicker.datePickerMode = .date
-
+        
         // Optional: set the date picker's locale to support different languages and regions
         datePicker.locale = Locale(identifier: "en_US")
-
+        
         // Set the date picker's frame, position it as needed
         datePicker.frame = CGRect(x: 20, y: 100, width: view.frame.width - 40, height: 200)
-
+        
         // Optional: configure additional properties, such as minimum and maximum dates
         datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -10, to: Date())
         datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 10, to: Date())
-
+        
         // Add the date picker to the view controller's view
         view.addSubview(datePicker)
-
+        
         // Optional: handle the date picker's value changes by adding a target to the valueChanged event
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
     }
@@ -108,7 +113,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
             (value: carboPercent, color: UIColor.green, label: "\(Int(carboPercent*100))% carbs")
         ]
         
-        chartView.frame = CGRect(x: view.frame.width - 200, y: 280, width: 160, height: 160) // new size and position
+        chartView.frame = CGRect(x: view.frame.width - 200, y: 300, width: 160, height: 160) // new size and position
         view.addSubview(chartView)
         
         centerPoint.x = chartView.bounds.midX
@@ -142,4 +147,64 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    fileprivate func addProgressBar() {
+        caloriesLabel.text = "Calories: 1000/2000"
+        caloriesLabel.textAlignment = .center
+        caloriesLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Create the progress view (progress bar)
+        progressBar.setProgress(0.5, animated: false) // Set the initial progress (0 to 1)
+        progressBar.trackTintColor = .lightGray
+        progressBar.progressTintColor = .systemGreen
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Add label and progress bar to the main view
+        view.addSubview(caloriesLabel)
+        view.addSubview(progressBar)
+        
+        // Set constraints for the label
+        NSLayoutConstraint.activate([
+            caloriesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            caloriesLabel.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 250)
+        ])
+        
+        // Set constraints for the progress bar
+        NSLayoutConstraint.activate([
+            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            progressBar.topAnchor.constraint(equalTo: caloriesLabel.bottomAnchor, constant: 10),
+            progressBar.heightAnchor.constraint(equalToConstant: 10) // Set the height of the progress bar
+        ])
+    }
+    
+    fileprivate func addLabels() {
+        for (index, nutrient) in nutrients.enumerated() {
+            let nutrientLabel = UILabel()
+            nutrientLabel.text = nutrient
+            nutrientLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            let valueLabel = UILabel()
+            valueLabel.text = nutrientValues[index]
+            valueLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            nutrientLabels.append(nutrientLabel)
+            valueLabels.append(valueLabel)
+            
+            view.addSubview(nutrientLabel)
+            view.addSubview(valueLabel)
+        }
+        
+        
+        // Set constraints for nutrient labels and value labels
+        for i in 0..<nutrientLabels.count {
+            let topAnchor = i == 0 ? progressBar.bottomAnchor : nutrientLabels[i - 1].bottomAnchor
+            
+            NSLayoutConstraint.activate([
+                nutrientLabels[i].topAnchor.constraint(equalTo: topAnchor, constant: 40),
+                nutrientLabels[i].leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                valueLabels[i].leadingAnchor.constraint(equalTo: nutrientLabels[i].trailingAnchor, constant: 5),
+                valueLabels[i].centerYAnchor.constraint(equalTo: nutrientLabels[i].centerYAnchor)
+            ])
+        }
+    }
 }

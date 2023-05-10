@@ -19,6 +19,25 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.showsReorderControl = true
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Get the selected cell
+        guard let cell = tableView.cellForRow(at: indexPath) as? FoodItemTableViewCell else { return }
+        
+        // Perform the action for the selected cell
+        // For example, display more information about the food item
+        let selectedFoodItem = cell
+        print("Selected food item: \(selectedFoodItem)")
+        let foodDetailVC = FoodDetailViewController()
+        foodDetailVC.modalPresentationStyle = .custom
+        foodDetailVC.name = foods[indexPath.row]
+        let customTransitionDelegate = HalfScreenTransitionDelegate()
+        
+        foodDetailVC.transitioningDelegate = customTransitionDelegate
+
+        present(foodDetailVC, animated: true, completion: nil)
+    }
+    
     private var tableView: UITableView!
     private var foods: [String] = ["food1", "food2", "food3", "food4", "food5", "food6", "food7"]
     private var date =  Date()
@@ -206,5 +225,30 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
                 valueLabels[i].centerYAnchor.constraint(equalTo: nutrientLabels[i].centerYAnchor)
             ])
         }
+    }
+}
+
+
+class HalfScreenPresentationController: UIPresentationController {
+    override var frameOfPresentedViewInContainerView: CGRect {
+        guard let containerView = containerView else { return .zero }
+        let height = containerView.bounds.height / 2
+        return CGRect(x: 0, y: containerView.bounds.height - height, width: containerView.bounds.width, height: height)
+    }
+
+    override func presentationTransitionWillBegin() {
+        guard let containerView = containerView else { return }
+        containerView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+    }
+
+    override func dismissalTransitionWillBegin() {
+        guard let containerView = containerView else { return }
+        containerView.backgroundColor = .clear
+    }
+}
+
+class HalfScreenTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

@@ -14,6 +14,7 @@
 		8326E5972999762200196C71 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8326E5962999762200196C71 /* Profile.storyboard */; };
 		8326E5992999773B00196C71 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8326E5982999773B00196C71 /* TabBarViewController.swift */; };
 		832F70D629EFB483003A46B0 /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832F70D529EFB483003A46B0 /* AddFoodViewController.swift */; };
+		833AA0FE2A0C2A0500E97F30 /* FoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833AA0FD2A0C2A0500E97F30 /* FoodDetailViewController.swift */; };
 		833ED1CF29F004C40007B830 /* WeightPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833ED1CE29F004C40007B830 /* WeightPicker.swift */; };
 		8349F7F129AD29EB00F449BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8349F7F029AD29EB00F449BF /* HomeViewController.swift */; };
 		8349F7F329AD29F900F449BF /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8349F7F229AD29F900F449BF /* Home.storyboard */; };
@@ -73,6 +74,7 @@
 		8326E5962999762200196C71 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		8326E5982999773B00196C71 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		832F70D529EFB483003A46B0 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
+		833AA0FD2A0C2A0500E97F30 /* FoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailViewController.swift; sourceTree = "<group>"; };
 		833ED1CE29F004C40007B830 /* WeightPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightPicker.swift; sourceTree = "<group>"; };
 		8349F7F029AD29EB00F449BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8349F7F229AD29F900F449BF /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				833ED1CE29F004C40007B830 /* WeightPicker.swift */,
 				8349F7F029AD29EB00F449BF /* HomeViewController.swift */,
 				832F70D529EFB483003A46B0 /* AddFoodViewController.swift */,
+				833AA0FD2A0C2A0500E97F30 /* FoodDetailViewController.swift */,
 				8349F7F629AD2B3500F449BF /* FoodLoggedViewController.swift */,
 				8326E5982999773B00196C71 /* TabBarViewController.swift */,
 				834BE6342935894A0005E5CA /* UIViewControllerExtension.swift */,
@@ -389,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				834BE63A293649890005E5CA /* TextfieldTableViewCell.swift in Sources */,
+				833AA0FE2A0C2A0500E97F30 /* FoodDetailViewController.swift in Sources */,
 				839A23AE29180DD7002F3ED4 /* Textfield.swift in Sources */,
 				834D539929B521DC00AE8ACC /* FoodItemTableViewCell.swift in Sources */,
 				8349F7F129AD29EB00F449BF /* HomeViewController.swift in Sources */,

@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
         self.addHeader(string: "Profile")
         
         
-        var logoutButton = UIButton()
+        let logoutButton = UIButton()
         self.view.addSubview(logoutButton)
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

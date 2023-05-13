@@ -24,7 +24,19 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     var food = ""
     var quantity = 0
     var weightPicker = WeightPicker()
-
+    var name = ""
+    var calories = 0.0
+    var servingSize = 0.0
+    var fatTotal = 0.0
+    var fatSaturated = 0.0
+    var protein = 0.0
+    var sodium = 0.0
+    var potassium = 0.0
+    var cholesterol = 0.0
+    var carbsTotal = 0.0
+    var fiber = 0.0
+    var sugar = 0.0
+    
     fileprivate func constraintsFoodTextfield(_ foodText: Textfield) {
         NSLayoutConstraint.activate([
             foodText.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50),
@@ -63,7 +75,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         ])
     }
     
-     func createLabelsInView(_ view: UIView) -> ([UILabel], [UILabel]) {
+    func createLabelsInView(_ view: UIView) -> ([UILabel], [UILabel]) {
         // Create name labels
         let kcal = UILabel()
         kcal.text = "Calories:"
@@ -200,12 +212,22 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         constraintsQuantityTextfield(quantityText)
         constraintsWeightPicker(weightPicker)
         
+        let buttonSave = UIButton(type: .roundedRect)
+        buttonSave.setTitle("Save food", for: .normal)
+        buttonSave.backgroundColor = .systemGreen.withAlphaComponent(0.7)
+        buttonSave.addTarget(self, action: #selector(checkFood(_:)), for: .touchUpInside)
+        buttonSave.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(buttonSave)
+        
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             button.widthAnchor.constraint(equalToConstant: 100),
-            button.heightAnchor.constraint(equalToConstant: 40)])
-        
+            button.heightAnchor.constraint(equalToConstant: 40),
+            buttonSave.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            buttonSave.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
+            buttonSave.widthAnchor.constraint(equalToConstant: 100),
+            buttonSave.heightAnchor.constraint(equalToConstant: 40)])
         // Create and add labels to view
         let (nameLabels, valueLabels) = createLabelsInView(self.view)
         
@@ -223,10 +245,10 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         var request = URLRequest(url: url)
         request.setValue("jWhNwKEikKQQYZPwOq6gkA==EcFrD0XB6Fe8uZ2A", forHTTPHeaderField: "X-Api-Key")
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-         guard let data = data else { return }
+            guard let data = data else { return }
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]],
-                    let firstItem = json.first {
+                   let firstItem = json.first {
                     
                     // Use the first item in the array
                     let name = firstItem["name"] as? String ?? ""
@@ -249,15 +271,42 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
                         self.valueLabels[1].text = "\(String(describing: foodItem.protein_g)) g"
                         self.valueLabels[2].text = "\(String(describing: foodItem.carbohydrates_total_g)) g"
                         self.valueLabels[3].text = "\(String(describing: foodItem.fat_total_g)) g"
+                        self.calories = foodItem.calories
+                        self.servingSize = foodItem.serving_size_g
+                        self.fatTotal = foodItem.fat_total_g
+                        self.fatSaturated = foodItem.fat_saturated_g
+                        self.protein = foodItem.protein_g
+                        self.sodium = foodItem.sodium_mg
+                        self.potassium = foodItem.potassium_mg
+                        self.cholesterol = foodItem.cholesterol_mg
+                        self.carbsTotal = foodItem.carbohydrates_total_g
+                        self.fiber = foodItem.fiber_g
+                        self.sugar = foodItem.sugar_g
                     }
                     // Use the foodItem object as needed
-                    print(foodItem)
                 }
             } catch {
                 print("Error parsing JSON data: \(error.localizedDescription)")
             }
-         }
-         task.resume()
+        }
+        task.resume()
+        
+    }
+    
+    @objc func saveFood(_ sender: UIButton) {
+        var food = Food()
+        food.calories = self.calories
+        food.sugar = self.sugar
+        food.fiber = self.fiber
+        food.potassium = self.potassium
+        food.sodium = self.sodium
+        food.protein = self.protein
+        food.servingSize = self.servingSize
+        food.carbohydrates = self.carbsTotal
+        food.fat = self.fatTotal
+        food.saturatedFat = self.fatSaturated
+        
+        print(food)
         
     }
 }

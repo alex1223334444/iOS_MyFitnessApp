@@ -30,7 +30,7 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         button.layer.cornerRadius = 8
         self.hideKeyboardWhenTappedAround()
         logo.layer.cornerRadius = 20
-
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,79 +89,70 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBAction func register(_ sender: Any) {
         
-        /*Auth.auth().createUser(withEmail: registerModel.email, password: registerModel.password) { [self] (authResult, error) in
-         if let error = error {
-         let alert = UIAlertController(title: "Error or registering", message: error.localizedDescription, preferredStyle: .alert)
-         let ok = UIAlertAction(title: "Ok", style: .default)
-         alert.addAction(ok)
-         self.present(alert, animated: true, completion: nil)
-         
-         } else {
-         if let firebaseUser = authResult?.user{
-         let uid = firebaseUser.uid
-         let request : User = User(username: registerModel.email, lastName: registerModel.lastName, uid: uid, phone: registerModel.phone, firstName: registerModel.firstName)
-         print(request)
-         createUser(user: request) { result in
-         switch result {
-         case .success(_):
-         print("success")
-         case .failure(let error):
-         print(error)
-         }
-         }
-         }*/
-        /*do {
-         try Auth.auth().signOut()
-         print("user signed out")
-         } catch let error {
-         print(error.localizedDescription)
-         }*/
-        guard let appDelegate =
-          UIApplication.shared.delegate as? AppDelegate else {
-          return
-        }
-        
-        // 1
-        let managedContext =
-          appDelegate.persistentContainer.viewContext
-        
-        // 2
-        let entity =
-          NSEntityDescription.entity(forEntityName: "User",
-                                     in: managedContext)!
-        
-        let person = NSManagedObject(entity: entity,
-                                     insertInto: managedContext)
-        
-        // 3
-        person.setValue(registerModel.firstName, forKeyPath: "firstName")
-        person.setValue(registerModel.lastName, forKeyPath: "lastName")
-        person.setValue(registerModel.email, forKeyPath: "email")
-        person.setValue(registerModel.phone, forKeyPath: "phone")
-        person.setValue(registerModel.password, forKeyPath: "password")
+        Auth.auth().createUser(withEmail: registerModel.email, password: registerModel.password) { [self] (authResult, error) in
+            if let error = error {
+                let alert = UIAlertController(title: "Error or registering", message: error.localizedDescription, preferredStyle: .alert)
+                let ok = UIAlertAction(title: "Ok", style: .default)
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+                
+            } else {
+                if let firebaseUser = authResult?.user{
+                    let uid = firebaseUser.uid
+                    guard let appDelegate =
+                            UIApplication.shared.delegate as? AppDelegate else {
+                        return
+                    }
+                    
+                    // 1
+                    let managedContext =
+                    appDelegate.persistentContainer.viewContext
+                    
+                    // 2
+                    let entity =
+                    NSEntityDescription.entity(forEntityName: "User",
+                                               in: managedContext)!
+                    
+                    let person = NSManagedObject(entity: entity,
+                                                 insertInto: managedContext)
+                    
+                    // 3
+                    person.setValue(registerModel.firstName, forKeyPath: "firstName")
+                    person.setValue(registerModel.lastName, forKeyPath: "lastName")
+                    person.setValue(registerModel.email, forKeyPath: "email")
+                    person.setValue(registerModel.phone, forKeyPath: "phone")
+                    person.setValue(UUID(uuidString: uid), forKeyPath: "uid")
 
-        
-        // 4
-        do {
-          try managedContext.save()
-          people.append(person)
-            let alert = UIAlertController(title: "Succes", message: "Your account was successfully created!", preferredStyle: UIAlertController.Style.alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-                self.navigationController?.popViewController(animated: true)
+                    
+                    
+                    // 4
+                    do {
+                        try managedContext.save()
+                        people.append(person)
+                        let alert = UIAlertController(title: "Succes", message: "Your account was successfully created!", preferredStyle: UIAlertController.Style.alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    } catch let error as NSError {
+                        print("Could not save. \(error), \(error.userInfo)")
+                        let alert = UIAlertController(title: "Error", message: "There was as error on creation of your account. Please try again.", preferredStyle: UIAlertController.Style.alert)
+                        let okAction = UIAlertAction(title: "Try again", style: .default)
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    
+                }
             }
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-            let alert = UIAlertController(title: "Error", message: "There was as error on creation of your account. Please try again.", preferredStyle: UIAlertController.Style.alert)
-            let okAction = UIAlertAction(title: "Try again", style: .default) 
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
+            do {
+                try Auth.auth().signOut()
+                print("user signed out")
+            } catch let error {
+                print(error.localizedDescription)
+            }
         }
-        
-        
-        }
-        
+    }
 }
 
 struct RegisterModel {

@@ -56,11 +56,13 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
         }
     }
     @IBAction func login(_ sender: Any) {
-        /*
-         Auth.auth().signIn(withEmail: user.username, password: user.password) { [weak self] user, error in
-         if let user = user {
-         let alert = UIAlertController(title: "User successfully logged in", message: user.description, preferredStyle: .alert)
+        
+         Auth.auth().signIn(withEmail: user.username, password: user.password) { [weak self] result, error in
+         if let result = result {
+             let alert = UIAlertController(title: "User successfully logged in", message: result.description, preferredStyle: .alert)
          let ok = UIAlertAction(title: "Ok", style: .default) {_ in
+         UserDefaults.standard.set(self?.user.username, forKey: "username")
+         UserDefaults.standard.set(result.user.uid, forKey: "uid")
          self?.performSegue(withIdentifier: "login", sender: nil)
          }
          alert.addAction(ok)
@@ -74,8 +76,8 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
          }
          
          }
-         */
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+         
+        /*let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         fetchRequest.returnsObjectsAsFaults = false
@@ -118,7 +120,7 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
             alert.addAction(okAction)
             // show the alert
             self.present(alert, animated: true, completion: nil)
-        }
+        }*/
         
     }
 }

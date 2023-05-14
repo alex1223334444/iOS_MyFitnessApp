@@ -17,7 +17,7 @@ class RootController: UIViewController {
         registerButton.layer.cornerRadius = 20
         self.view.alpha = 1
         if let storedUsername = UserDefaults.standard.string(forKey: "username"),
-           let storedPassword = UserDefaults.standard.string(forKey: "password") {
+           let storedPassword = UserDefaults.standard.string(forKey: "uid") {
             // User is already logged in, redirect to the main page
             redirectToMainPage()
             // Do any additional setup after loading the view.

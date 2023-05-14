@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController {
     
     @objc private func logout() {
         UserDefaults.standard.removeObject(forKey: "username")
-        UserDefaults.standard.removeObject(forKey: "password")
+        UserDefaults.standard.removeObject(forKey: "uid")
         self.performSegue(withIdentifier: "logout", sender: nil)
     }
     

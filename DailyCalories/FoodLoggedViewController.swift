@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foods.count
@@ -15,7 +16,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "food", for: indexPath) as? FoodItemTableViewCell else {
             return UITableViewCell()
         }
-        cell.configureFoodCell(foods[indexPath.row], tag: indexPath.row)
+        cell.configureFoodCell(String(foods[indexPath.row].calories), tag: indexPath.row)
         cell.showsReorderControl = true
         return cell
     }
@@ -30,7 +31,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         print("Selected food item: \(selectedFoodItem)")
         let foodDetailVC = FoodDetailViewController()
         foodDetailVC.modalPresentationStyle = .custom
-        foodDetailVC.name = foods[indexPath.row]
+        foodDetailVC.name = String(foods[indexPath.row].calories)
         let customTransitionDelegate = HalfScreenTransitionDelegate()
         
         foodDetailVC.transitioningDelegate = customTransitionDelegate
@@ -39,7 +40,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private var tableView: UITableView!
-    private var foods: [String] = ["food1", "food2", "food3", "food4", "food5", "food6", "food7"]
+    private var foods: [Food] = []
     private var date =  Date()
     var caloriesLabel = UILabel()
     var progressBar = UIProgressView(progressViewStyle: .default)
@@ -47,7 +48,8 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     var nutrientValues = ["20g", "30g", "15g"]
     var nutrientLabels: [UILabel] = []
     var valueLabels: [UILabel] = []
-    
+    var managedObjectContext: NSManagedObjectContext!
+    var email = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +81,22 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         addPieChart()
         addProgressBar()
         addLabels()
-        
+        if let email = UserDefaults.standard.string(forKey: "username") {
+            self.email = email
+        } else {
+            print("email not found")
+        }
+        managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        let user = fetchUser()
+        if let foods = user?.foods {
+                for food in foods {
+                    if let foodObject = food as? Food {
+                        print(foodObject.user?.email)
+                        print(foodObject.calories)
+                        self.foods.append(foodObject)
+                    }
+                }
+            }
     }
     
     
@@ -224,6 +241,26 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
                 valueLabels[i].leadingAnchor.constraint(equalTo: nutrientLabels[i].trailingAnchor, constant: 5),
                 valueLabels[i].centerYAnchor.constraint(equalTo: nutrientLabels[i].centerYAnchor)
             ])
+        }
+    }
+    
+    func fetchUser() -> User? {
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+
+        // Create a predicate to match the UUID
+        let uuidPredicate = NSPredicate(format: "email == %@", self.email)
+        fetchRequest.predicate = uuidPredicate
+        
+        do {
+            let users = try managedObjectContext.fetch(fetchRequest)
+            print("users:")
+            for user in users {
+                print(user.email)
+            }
+            return users.first
+        } catch {
+            print("Error fetching user: \(error)")
+            return nil
         }
     }
 }

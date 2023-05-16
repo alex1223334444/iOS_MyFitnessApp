@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreData
+import Firebase
 
 class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     func changeText(_ textContent: UITextField?) {
@@ -36,6 +38,8 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     var carbsTotal = 0.0
     var fiber = 0.0
     var sugar = 0.0
+    var managedObjectContext: NSManagedObjectContext!
+    var email = String()
     
     fileprivate func constraintsFoodTextfield(_ foodText: Textfield) {
         NSLayoutConstraint.activate([
@@ -179,6 +183,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         self.hideKeyboardWhenTappedAround()
         // Create UI elements
         let foodText = Textfield()
@@ -215,7 +220,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         let buttonSave = UIButton(type: .roundedRect)
         buttonSave.setTitle("Save food", for: .normal)
         buttonSave.backgroundColor = .systemGreen.withAlphaComponent(0.7)
-        buttonSave.addTarget(self, action: #selector(checkFood(_:)), for: .touchUpInside)
+        buttonSave.addTarget(self, action: #selector(saveFood(_:)), for: .touchUpInside)
         buttonSave.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(buttonSave)
         
@@ -234,6 +239,22 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         // Store labels as properties of the view controller
         self.nameLabels = nameLabels
         self.valueLabels = valueLabels
+        
+        if let email = UserDefaults.standard.string(forKey: "username") {
+            self.email = email
+        } else {
+            print("email not found")
+        }
+        
+        let user = fetchUser()
+        if let foods = user?.foods {
+                for food in foods {
+                    if let foodObject = food as? Food {
+                        print(foodObject.user?.email)
+                        print(foodObject.calories)
+                    }
+                }
+            }
     }
     
     @objc func checkFood(_ sender: UIButton) {
@@ -294,7 +315,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     }
     
     @objc func saveFood(_ sender: UIButton) {
-        var food = Food()
+        let food = Food(context: managedObjectContext)
         food.calories = self.calories
         food.sugar = self.sugar
         food.fiber = self.fiber
@@ -308,7 +329,38 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         
         print(food)
         
+        let user = fetchUser()
+        user?.addToFoods(food)
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("error at adding food")
+        }
+        
+    }
+    
+    
+    func fetchUser() -> User? {
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+
+        // Create a predicate to match the UUID
+        let uuidPredicate = NSPredicate(format: "email == %@", self.email)
+        fetchRequest.predicate = uuidPredicate
+        
+        do {
+            let users = try managedObjectContext.fetch(fetchRequest)
+            print("users:")
+            for user in users {
+                print(user.email)
+            }
+            return users.first
+        } catch {
+            print("Error fetching user: \(error)")
+            return nil
+        }
     }
 }
+
+
        
 

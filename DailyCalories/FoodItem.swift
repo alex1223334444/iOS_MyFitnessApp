@@ -8,11 +8,27 @@ class FoodItem: UIView {
     private var placeholderYConstraint: NSLayoutConstraint?
     
     
-    private lazy var placeholderLabel: UILabel = {
+    private lazy var name: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .gray
-        label.text = "placeholder"
+        label.text = "recipe"
+        return label
+    }()
+    
+    private lazy var calories: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .gray
+        label.text = "0"
+        return label
+    }()
+    
+    private lazy var label: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .gray
+        label.text = "calories"
         return label
     }()
     
@@ -32,9 +48,10 @@ class FoodItem: UIView {
         subscribeToActions()
     }
     
-    func configureFoodItem(with placeholder: String, keyboardType: UIKeyboardType = .default, tag: Int = 0) {
+    func configureFoodItem(with recipeName: String, caloriesNr: Int, keyboardType: UIKeyboardType = .default, tag: Int = 0) {
         //placeholderLabel.text = placeholder
-        placeholderLabel.text = placeholder
+        name.text = recipeName
+        calories.text = String(caloriesNr)
         self.tag = tag
     }
     
@@ -52,18 +69,36 @@ class FoodItem: UIView {
     }
     
     private func addSubviews() {
-        addSubview(placeholderLabel)
+        addSubview(name)
+        addSubview(calories)
+        addSubview(label)
     }
     
     
     private func addConstraintsToSubviews() {
-        layoutPlaceholder()
+        layoutName()
+        layoutCalories()
+        layoutCaloriesLabel()
     }
     
-    private func layoutPlaceholder() {
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        placeholderLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25).isActive = true
-        placeholderYConstraint = placeholderLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+    private func layoutName() {
+        name.translatesAutoresizingMaskIntoConstraints = false
+        name.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25).isActive = true
+        placeholderYConstraint = name.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        placeholderYConstraint?.isActive = true
+    }
+    
+    private func layoutCalories() {
+        calories.translatesAutoresizingMaskIntoConstraints = false
+        calories.leadingAnchor.constraint(equalTo: name.leadingAnchor, constant: 50).isActive = true
+        placeholderYConstraint = calories.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        placeholderYConstraint?.isActive = true
+    }
+    
+    private func layoutCaloriesLabel() {
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.leadingAnchor.constraint(equalTo: calories.leadingAnchor, constant: 25).isActive = true
+        placeholderYConstraint = label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         placeholderYConstraint?.isActive = true
     }
 }

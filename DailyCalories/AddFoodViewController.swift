@@ -316,6 +316,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     
     @objc func saveFood(_ sender: UIButton) {
         let food = Food(context: managedObjectContext)
+        food.name = self.food
         food.calories = self.calories
         food.sugar = self.sugar
         food.fiber = self.fiber

@@ -16,7 +16,9 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "food", for: indexPath) as? FoodItemTableViewCell else {
             return UITableViewCell()
         }
-        cell.configureFoodCell(String(foods[indexPath.row].calories), tag: indexPath.row)
+        if let name = foods[indexPath.row].name {
+            cell.configureFoodCell(name, calories: Int(foods[indexPath.row].calories), tag: indexPath.row)
+        }
         cell.showsReorderControl = true
         return cell
     }
@@ -69,6 +71,8 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.scrollsToTop = false
         tableView.backgroundColor = .systemGray6
         view.addSubview(tableView)
+        tableView.reloadData()
+
         
         // Set up constraints for the table view
         NSLayoutConstraint.activate([
@@ -100,6 +104,10 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
     
     private func setupDatePicker() {
         // Initialize the date picker

@@ -34,8 +34,8 @@ class FoodItemTableViewCell: UITableViewCell {
         ])
     }
 
-    func configureFoodCell(_ placeholder: String, tag: Int = 0) {
-        foodItem.configureFoodItem(with: placeholder, tag: tag)
+    func configureFoodCell(_ name: String, calories: Int, tag: Int = 0) {
+        foodItem.configureFoodItem(with: name, caloriesNr: calories, tag: tag)
     }
 }
 

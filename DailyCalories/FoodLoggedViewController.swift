@@ -106,7 +106,20 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        let user = fetchUser()
+        self.foods = []
+        if let foods = user?.foods {
+                for food in foods {
+                    if let foodObject = food as? Food {
+                        print(foodObject.user?.email)
+                        print(foodObject.calories)
+                        self.foods.append(foodObject)
+                    }
+                }
+            }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     private func setupDatePicker() {

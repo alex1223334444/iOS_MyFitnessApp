@@ -43,7 +43,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private var tableView: UITableView!
     private var foods: [Food] = []
-    private var date =  Date()
     var caloriesLabel = UILabel()
     var progressBar = UIProgressView(progressViewStyle: .default)
     var nutrients = ["Proteins", "Carbs", "Fats"]
@@ -53,6 +52,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     var managedObjectContext: NSManagedObjectContext!
     var email = String()
     var selectedDate = Date()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addHeader(string: "Profile")
@@ -119,10 +119,10 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    fileprivate func reloadData() {
         let user = fetchUser()
         self.foods = []
-
+        
         let calendar = Calendar.current
         let currentComponents = calendar.dateComponents([.year, .month, .day], from: selectedDate)
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
@@ -133,19 +133,23 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
                     let foodDateComponents = calendar.dateComponents([.year, .month, .day], from: foodObject.time)
                     
                     if currentComponents.year == foodDateComponents.year &&
-                       currentComponents.month == foodDateComponents.month &&
-                       currentComponents.day == foodDateComponents.day {
+                        currentComponents.month == foodDateComponents.month &&
+                        currentComponents.day == foodDateComponents.day {
                         //print(foodObject.name)
                         print(foodObject.time)
                         self.foods.append(foodObject)
                     }
-                
+                    
                 }
             }
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        reloadData()
     }
     
     private func setupDatePicker() {
@@ -176,9 +180,9 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        let selectedDate = sender.date
-        self.date = selectedDate
-        print("Selected date: \(self.date)")
+        selectedDate = sender.date
+        print("Selected date: \(self.selectedDate)")
+        reloadData()
     }
     
     fileprivate func addPieChart() {

@@ -327,6 +327,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         food.carbohydrates = self.carbsTotal
         food.fat = self.fatTotal
         food.saturatedFat = self.fatSaturated
+        food.time = Date.now
         
         print(food)
         

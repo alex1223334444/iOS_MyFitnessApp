@@ -28,6 +28,8 @@ extension Food {
     @NSManaged public var sodium: Double
     @NSManaged public var sugar: Double
     @NSManaged public var user: User?
+    @NSManaged public var time: Date
+
 
 }
 

@@ -77,6 +77,7 @@
 		831DA030295E4FA5007CDD66 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
 		8326E5962999762200196C71 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		8326E5982999773B00196C71 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		832C25162A17FDB500BC538D /* add date.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "add date.xcdatamodel"; sourceTree = "<group>"; };
 		832F70D529EFB483003A46B0 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
 		833AA0FD2A0C2A0500E97F30 /* FoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailViewController.swift; sourceTree = "<group>"; };
 		833CA3D82A114F3D00391749 /* changed uid type.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "changed uid type.xcdatamodel"; sourceTree = "<group>"; };
@@ -805,10 +806,11 @@
 		83BDDB7328DE804400CBC81E /* MyFitness.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				832C25162A17FDB500BC538D /* add date.xcdatamodel */,
 				833CA3D82A114F3D00391749 /* changed uid type.xcdatamodel */,
 				83BDDB7428DE804400CBC81E /* MyFitness.xcdatamodel */,
 			);
-			currentVersion = 83BDDB7428DE804400CBC81E /* MyFitness.xcdatamodel */;
+			currentVersion = 832C25162A17FDB500BC538D /* add date.xcdatamodel */;
 			path = MyFitness.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

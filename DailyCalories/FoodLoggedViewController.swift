@@ -52,7 +52,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     var valueLabels: [UILabel] = []
     var managedObjectContext: NSManagedObjectContext!
     var email = String()
-    
+    var selectedDate = Date()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addHeader(string: "Profile")
@@ -90,17 +90,31 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             print("email not found")
         }
+        
+        selectedDate = Date()
+
+        let calendar = Calendar.current
+        let currentComponents = calendar.dateComponents([.year, .month, .day], from: selectedDate)
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-        let user = fetchUser()
+                let user = fetchUser()
+        
         if let foods = user?.foods {
-                for food in foods {
-                    if let foodObject = food as? Food {
-                        print(foodObject.user?.email)
-                        print(foodObject.calories)
+            for food in foods {
+                if let foodObject = food as? Food {
+                    let foodDateComponents = calendar.dateComponents([.year, .month, .day], from: foodObject.time)
+                    
+                    if currentComponents.year == foodDateComponents.year &&
+                       currentComponents.month == foodDateComponents.month &&
+                       currentComponents.day == foodDateComponents.day {
+                        //print(foodObject.name)
+                        print(foodObject.time)
                         self.foods.append(foodObject)
                     }
+                
                 }
             }
+        }
+
     }
     
     
@@ -108,15 +122,27 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         let user = fetchUser()
         self.foods = []
+
+        let calendar = Calendar.current
+        let currentComponents = calendar.dateComponents([.year, .month, .day], from: selectedDate)
+        managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        
         if let foods = user?.foods {
-                for food in foods {
-                    if let foodObject = food as? Food {
-                        print(foodObject.user?.email)
-                        print(foodObject.calories)
+            for food in foods {
+                if let foodObject = food as? Food {
+                    let foodDateComponents = calendar.dateComponents([.year, .month, .day], from: foodObject.time)
+                    
+                    if currentComponents.year == foodDateComponents.year &&
+                       currentComponents.month == foodDateComponents.month &&
+                       currentComponents.day == foodDateComponents.day {
+                        //print(foodObject.name)
+                        print(foodObject.time)
                         self.foods.append(foodObject)
                     }
+                
                 }
             }
+        }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

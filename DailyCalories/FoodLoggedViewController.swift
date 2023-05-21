@@ -230,19 +230,38 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         var centerPoint = CGPoint(x: 0, y: 0)
         let radius = CGFloat(100) // smaller radius
         let proteinsPercent = Double(nutrientsValues[0] * 4 / calories)
-        let fatsPercent = Double(nutrientsValues[1] * 9 / calories)
-        let carboPercent = Double(nutrientsValues[2] * 4 / calories)
+        let fatsPercent = Double(nutrientsValues[2] * 9 / calories)
+        let carboPercent = Double(nutrientsValues[1] * 4 / calories)
         
-        let sliceData: [(value: Double, color: UIColor, label: String)] = [
-            (value: proteinsPercent, color: UIColor.red, label: "\(Int(proteinsPercent * 100))% protein"),
-            (value: fatsPercent, color: UIColor.blue, label: "\(Int(fatsPercent * 100))% fats"),
-            (value: carboPercent, color: UIColor.green, label: "\(Int(carboPercent * 100))% carbs")
-        ]
+        let totalPercentage = nutrientsValues.reduce(0, +) / calories // Calculate the total percentage of all nutrients
+            
+            let sliceData: [(value: Double, color: UIColor, label: String)] = nutrientsValues.enumerated().map { (index, value) in
+                let percentage = Double(value / calories) // Calculate the percentage for the current nutrient
+                
+                let roundedPercentage = (percentage / totalPercentage) * 100 // Round the percentage relative to the total percentage
+                
+                var label: String
+                switch index {
+                case 0:
+                    label = String(format: "%.2f", roundedPercentage)
+                    label.append("% P")
+                case 1:
+                    label = String(format: "%.2f", roundedPercentage)
+                    label.append("% F")
+                case 2:
+                    label = String(format: "%.2f", roundedPercentage)
+                    label.append("% C")
+                default:
+                    label = ""
+                }
+                
+                return (value: roundedPercentage / 100, color: randomColor(), label: label) // Divide by 100 to convert to a decimal value
+            }
         
-        chartView.frame = CGRect(x: view.frame.width - 200, y: 300, width: 160, height: 160) // new size and position
+        chartView.frame = CGRect(x: view.frame.width - 200, y: 300, width: 160, height: 160)
         
         centerPoint.x = chartView.bounds.midX
-        centerPoint.y = chartView.bounds.midY + 20 // move chart higher
+        centerPoint.y = chartView.bounds.midY + 20
         
         var startAngle = -Double.pi / 2 // Start at the top
         for slice in sliceData {
@@ -274,7 +293,13 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         // Add the new chart view to the main view
         view.addSubview(chartView)
     }
-
+    
+    func randomColor() -> UIColor {
+        let red = CGFloat.random(in: 0...1)
+        let green = CGFloat.random(in: 0...1)
+        let blue = CGFloat.random(in: 0...1)
+        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    }
     
     fileprivate func addProgressBar() {
         caloriesLabel.text = "Calories: 1000/2000"

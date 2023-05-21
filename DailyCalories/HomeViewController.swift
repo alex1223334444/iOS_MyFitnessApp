@@ -13,6 +13,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var addFoodButton: UIImageView!
 
     @IBOutlet weak var infoButton: UIButton!
+    private var calories = 0.0
+    private var nutrientValuesString = ["", "", ""]
+    private var nutrientsValues = [0.0, 0.0, 0.0]
+    private var foods: [Food] = []
+    private var managedObjectContext: NSManagedObjectContext!
+    private var email = String()
+    private var chartView : UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,53 +33,51 @@ class HomeViewController: UIViewController {
          print(String(data: data, encoding: .utf8)!)
          }
          task.resume()*/
-        let chartView = UIView()
-
-        var centerPoint = CGPoint(x: 0, y: 0)
-        let radius = CGFloat(120)
-        var proteinsPercent = Double(180*4/1800.0)
-        var fatsPercent = Double(80*9/1800.0)
-        var carboPercent = Double(90*4/1800.0)
-
-        let sliceData: [(value: Double, color: UIColor, label: String)] = [
-            (value: proteinsPercent, color: UIColor.red, label: "\(Int(proteinsPercent*100))% protein"),
-            (value: fatsPercent, color: UIColor.blue, label: "\(Int(fatsPercent*100))% fats"),
-            (value: carboPercent, color: UIColor.green, label: "\(Int(carboPercent*100))% carbs")
-        ]
-
-        chartView.frame = CGRect(x: 0, y: 0, width: 2 * radius, height: 2 * radius)
-        chartView.center = view.center
-        view.addSubview(chartView)
-
-        centerPoint.x = chartView.bounds.midX
-        centerPoint.y = chartView.bounds.midY + 100
-
-        var startAngle = -Double.pi / 2 // Start at the top
-        for slice in sliceData {
-            let endAngle = startAngle + slice.value * 2 * Double.pi
-            let path = UIBezierPath()
-            path.move(to: centerPoint)
-            path.addArc(withCenter: centerPoint, radius: radius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: true)
-            path.close()
-            
-            let sliceLayer = CAShapeLayer()
-            sliceLayer.path = path.cgPath
-            sliceLayer.fillColor = slice.color.cgColor
-            chartView.layer.addSublayer(sliceLayer)
-            
-            let label = UILabel()
-                let angle = startAngle + slice.value * Double.pi
-            let labelRadius = radius * 0.6
-                let labelX = centerPoint.x + labelRadius * CGFloat(cos(angle))
-                let labelY = centerPoint.y + labelRadius * CGFloat(sin(angle))
-                label.frame = CGRect(x: 0, y: 0, width: 120, height: 20)
-                label.center = CGPoint(x: labelX, y: labelY)
-                label.textAlignment = .center
-                label.text = slice.label
-                chartView.addSubview(label)
-            
-            startAngle = endAngle
+        if let email = UserDefaults.standard.string(forKey: "username") {
+            self.email = email
+        } else {
+            print("email not found")
         }
+        managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        var todayDate = Date.now
+        let user = fetchUser()
+        self.foods = []
+        
+        let calendar = Calendar.current
+        let currentComponents = calendar.dateComponents([.year, .month, .day], from: todayDate)
+        var proteins = 0.0
+        var carbs = 0.0
+        var fats = 0.0
+        var calories = 0.0
+        
+        if let foods = user?.foods {
+            for food in foods {
+                if let foodObject = food as? Food {
+                    let foodDateComponents = calendar.dateComponents([.year, .month, .day], from: foodObject.time)
+                    
+                    if currentComponents.year == foodDateComponents.year &&
+                        currentComponents.month == foodDateComponents.month &&
+                        currentComponents.day == foodDateComponents.day {
+                        
+                        self.foods.append(foodObject)
+                        proteins += foodObject.protein
+                        calories += foodObject.calories
+                        carbs += foodObject.carbohydrates
+                        fats += foodObject.fat
+                    }
+                }
+            }
+        }
+        
+        self.calories = calories // Update the calories value
+        
+        nutrientValuesString[0] = "\(proteins)g"
+        nutrientValuesString[1] = "\(carbs)g"
+        nutrientValuesString[2] = "\(fats)g"
+        nutrientsValues[0] = proteins
+        nutrientsValues[1] = carbs
+        nutrientsValues[2] = fats
+        addPieChart()
         
     }
     
@@ -188,6 +193,149 @@ class HomeViewController: UIViewController {
          
      }
      
+    
+    func fetchUser() -> User? {
+        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+
+        // Create a predicate to match the UUID
+        let uuidPredicate = NSPredicate(format: "email == %@", self.email)
+        fetchRequest.predicate = uuidPredicate
+        
+        do {
+            let users = try managedObjectContext.fetch(fetchRequest)
+            print("users:")
+            for user in users {
+                print(user.email)
+            }
+            return users.first
+        } catch {
+            print("Error fetching user: \(error)")
+            return nil
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        foods = []
+        if let email = UserDefaults.standard.string(forKey: "username") {
+            self.email = email
+        } else {
+            print("email not found")
+        }
+        var todayDate = Date.now
+
+        let calendar = Calendar.current
+        let currentComponents = calendar.dateComponents([.year, .month, .day], from: todayDate)
+        managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+                let user = fetchUser()
+        
+        if let foods = user?.foods {
+            for food in foods {
+                if let foodObject = food as? Food {
+                    let foodDateComponents = calendar.dateComponents([.year, .month, .day], from: foodObject.time)
+                    
+                    if currentComponents.year == foodDateComponents.year &&
+                       currentComponents.month == foodDateComponents.month &&
+                       currentComponents.day == foodDateComponents.day {
+                        print(foodObject.name)
+                        //print(foodObject.time)
+                        self.foods.append(foodObject)
+                        
+                    }
+                
+                }
+            }
+        }
+        
+    }
+    
+    fileprivate func addPieChart() {
+        // Remove existing chart view if calories is 0
+        if calories == 0 {
+            chartView?.removeFromSuperview()
+            chartView = nil
+            return
+        }
+        
+        // Create a new chart view
+        chartView = UIView()
+        
+        guard let chartView = chartView else {
+            return
+        }
+        
+        var centerPoint = CGPoint(x: 0, y: 0)
+        let radius = CGFloat(100) // smaller radius
+        let proteinsPercent = Double(nutrientsValues[0] * 4 / calories)
+        let fatsPercent = Double(nutrientsValues[2] * 9 / calories)
+        let carboPercent = Double(nutrientsValues[1] * 4 / calories)
+        
+        let totalPercentage = nutrientsValues.reduce(0, +) / calories // Calculate the total percentage of all nutrients
+            
+            let sliceData: [(value: Double, color: UIColor, label: String)] = nutrientsValues.enumerated().map { (index, value) in
+                let percentage = Double(value / calories) // Calculate the percentage for the current nutrient
+                
+                let roundedPercentage = (percentage / totalPercentage) * 100 // Round the percentage relative to the total percentage
+                
+                var label: String
+                switch index {
+                case 0:
+                    label = String(format: "%.2f", roundedPercentage)
+                    label.append("% P")
+                case 1:
+                    label = String(format: "%.2f", roundedPercentage)
+                    label.append("% F")
+                case 2:
+                    label = String(format: "%.2f", roundedPercentage)
+                    label.append("% C")
+                default:
+                    label = ""
+                }
+                
+                return (value: roundedPercentage / 100, color: randomColor(), label: label) // Divide by 100 to convert to a decimal value
+            }
+        
+        chartView.frame = CGRect(x: view.frame.width - 200, y: 300, width: 160, height: 160)
+        
+        centerPoint.x = chartView.bounds.midX
+        centerPoint.y = chartView.bounds.midY + 20
+        
+        var startAngle = -Double.pi / 2 // Start at the top
+        for slice in sliceData {
+            let endAngle = startAngle + slice.value * 2 * Double.pi
+            let path = UIBezierPath()
+            path.move(to: centerPoint)
+            path.addArc(withCenter: centerPoint, radius: radius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: true)
+            path.close()
+            
+            let sliceLayer = CAShapeLayer()
+            sliceLayer.path = path.cgPath
+            sliceLayer.fillColor = slice.color.cgColor
+            chartView.layer.addSublayer(sliceLayer)
+            
+            let label = UILabel()
+            let angle = startAngle + slice.value * Double.pi
+            let labelRadius = radius * 0.6
+            let labelX = centerPoint.x + labelRadius * CGFloat(cos(angle))
+            let labelY = centerPoint.y + labelRadius * CGFloat(sin(angle))
+            label.frame = CGRect(x: 0, y: 0, width: 120, height: 20)
+            label.center = CGPoint(x: labelX, y: labelY)
+            label.textAlignment = .center
+            label.text = slice.label
+            chartView.addSubview(label)
+            
+            startAngle = endAngle
+        }
+        
+        // Add the new chart view to the main view
+        view.addSubview(chartView)
+    }
+    
+    func randomColor() -> UIColor {
+        let red = CGFloat.random(in: 0...1)
+        let green = CGFloat.random(in: 0...1)
+        let blue = CGFloat.random(in: 0...1)
+        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    }
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.

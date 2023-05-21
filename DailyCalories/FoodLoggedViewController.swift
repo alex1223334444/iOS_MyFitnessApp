@@ -46,12 +46,16 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     var caloriesLabel = UILabel()
     var progressBar = UIProgressView(progressViewStyle: .default)
     var nutrients = ["Proteins", "Carbs", "Fats"]
-    var nutrientValues = ["20g", "30g", "15g"]
+    var nutrientValuesString = ["", "", ""]
+    var nutrientsValues = [0.0, 0.0, 0.0]
+    var calories = 0.0
     var nutrientLabels: [UILabel] = []
     var valueLabels: [UILabel] = []
     var managedObjectContext: NSManagedObjectContext!
     var email = String()
     var selectedDate = Date()
+    fileprivate var chartView: UIView?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,8 +85,9 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
-        
-        addPieChart()
+        if calories != 0 {
+            addPieChart()
+        }
         addProgressBar()
         addLabels()
         if let email = UserDefaults.standard.string(forKey: "username") {
@@ -109,6 +114,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
                         //print(foodObject.name)
                         print(foodObject.time)
                         self.foods.append(foodObject)
+                        
                     }
                 
                 }
@@ -126,6 +132,10 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         let calendar = Calendar.current
         let currentComponents = calendar.dateComponents([.year, .month, .day], from: selectedDate)
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        var proteins = 0.0
+        var carbs = 0.0
+        var fats = 0.0
+        var calories = 0.0
         
         if let foods = user?.foods {
             for food in foods {
@@ -135,18 +145,34 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
                     if currentComponents.year == foodDateComponents.year &&
                         currentComponents.month == foodDateComponents.month &&
                         currentComponents.day == foodDateComponents.day {
-                        //print(foodObject.name)
-                        print(foodObject.time)
+                        
                         self.foods.append(foodObject)
+                        proteins += foodObject.protein
+                        calories += foodObject.calories
+                        carbs += foodObject.carbohydrates
+                        fats += foodObject.fat
                     }
-                    
                 }
             }
         }
+        
+        self.calories = calories // Update the calories value
+        
+        nutrientValuesString[0] = "\(proteins)g"
+        nutrientValuesString[1] = "\(carbs)g"
+        nutrientValuesString[2] = "\(fats)g"
+        nutrientsValues[0] = proteins
+        nutrientsValues[1] = carbs
+        nutrientsValues[2] = fats
+        
+        addPieChart() // Add or update the pie chart
+        addLabels()
+        caloriesLabel.text = "\(calories)/2000"
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         reloadData()
@@ -185,23 +211,35 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         reloadData()
     }
     
+
     fileprivate func addPieChart() {
-        let chartView = UIView()
+        // Remove existing chart view if calories is 0
+        if calories == 0 {
+            chartView?.removeFromSuperview()
+            chartView = nil
+            return
+        }
+        
+        // Create a new chart view
+        chartView = UIView()
+        
+        guard let chartView = chartView else {
+            return
+        }
         
         var centerPoint = CGPoint(x: 0, y: 0)
         let radius = CGFloat(100) // smaller radius
-        let proteinsPercent = Double(180*4/1800.0)
-        let fatsPercent = Double(80*9/1800.0)
-        let carboPercent = Double(90*4/1800.0)
+        let proteinsPercent = Double(nutrientsValues[0] * 4 / calories)
+        let fatsPercent = Double(nutrientsValues[1] * 9 / calories)
+        let carboPercent = Double(nutrientsValues[2] * 4 / calories)
         
         let sliceData: [(value: Double, color: UIColor, label: String)] = [
-            (value: proteinsPercent, color: UIColor.red, label: "\(Int(proteinsPercent*100))% protein"),
-            (value: fatsPercent, color: UIColor.blue, label: "\(Int(fatsPercent*100))% fats"),
-            (value: carboPercent, color: UIColor.green, label: "\(Int(carboPercent*100))% carbs")
+            (value: proteinsPercent, color: UIColor.red, label: "\(Int(proteinsPercent * 100))% protein"),
+            (value: fatsPercent, color: UIColor.blue, label: "\(Int(fatsPercent * 100))% fats"),
+            (value: carboPercent, color: UIColor.green, label: "\(Int(carboPercent * 100))% carbs")
         ]
         
         chartView.frame = CGRect(x: view.frame.width - 200, y: 300, width: 160, height: 160) // new size and position
-        view.addSubview(chartView)
         
         centerPoint.x = chartView.bounds.midX
         centerPoint.y = chartView.bounds.midY + 20 // move chart higher
@@ -232,7 +270,11 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
             
             startAngle = endAngle
         }
+        
+        // Add the new chart view to the main view
+        view.addSubview(chartView)
     }
+
     
     fileprivate func addProgressBar() {
         caloriesLabel.text = "Calories: 1000/2000"
@@ -265,13 +307,25 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     fileprivate func addLabels() {
+        // Remove existing nutrient labels and value labels from the superview
+        for nutrientLabel in nutrientLabels {
+            nutrientLabel.removeFromSuperview()
+        }
+        for valueLabel in valueLabels {
+            valueLabel.removeFromSuperview()
+        }
+        
+        // Clear the nutrientLabels and valueLabels arrays
+        nutrientLabels.removeAll()
+        valueLabels.removeAll()
+        
         for (index, nutrient) in nutrients.enumerated() {
             let nutrientLabel = UILabel()
             nutrientLabel.text = nutrient
             nutrientLabel.translatesAutoresizingMaskIntoConstraints = false
             
             let valueLabel = UILabel()
-            valueLabel.text = nutrientValues[index]
+            valueLabel.text = nutrientValuesString[index]
             valueLabel.translatesAutoresizingMaskIntoConstraints = false
             
             nutrientLabels.append(nutrientLabel)
@@ -280,7 +334,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
             view.addSubview(nutrientLabel)
             view.addSubview(valueLabel)
         }
-        
         
         // Set constraints for nutrient labels and value labels
         for i in 0..<nutrientLabels.count {

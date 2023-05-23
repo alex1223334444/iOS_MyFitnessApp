@@ -165,15 +165,20 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         nutrientsValues[1] = carbs
         nutrientsValues[2] = fats
         
-        addPieChart() // Add or update the pie chart
         addLabels()
         caloriesLabel.text = "\(calories)/2000"
+        
+        if foods.isEmpty {
+                chartView?.isHidden = true
+            } else {
+                if chartView == nil {
+                    addPieChart()
+                }
+                chartView?.isHidden = false
+            }
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
-        }
-        if foods.count == 0{
-            chartView?.removeFromSuperview()
-            chartView = nil
         }
     }
 
@@ -213,6 +218,10 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         selectedDate = sender.date
         print("Selected date: \(self.selectedDate)")
         reloadData()
+        if calories == 0 {
+            chartView?.removeFromSuperview()
+            chartView = nil
+        }
     }
     
 
@@ -392,6 +401,14 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
             return nil
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Remove the view from its superview
+        chartView?.removeFromSuperview()
+    }
+
 }
 
 

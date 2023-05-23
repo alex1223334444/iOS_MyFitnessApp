@@ -226,7 +226,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            button.topAnchor.constraint(equalTo: view.topAnchor, constant: 300),
             button.widthAnchor.constraint(equalToConstant: 100),
             button.heightAnchor.constraint(equalToConstant: 40),
             buttonSave.centerXAnchor.constraint(equalTo: view.centerXAnchor),

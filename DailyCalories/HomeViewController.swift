@@ -89,7 +89,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func addFood(_ sender: Any) {
         let nextVC = AddFoodViewController()
-        navigationController?.present(nextVC, animated: true)
+        navigationController?.pushViewController(nextVC, animated: true)
     }
     
      @IBAction func showAdditionalInfo(_ sender: Any) {

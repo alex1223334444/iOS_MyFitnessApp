@@ -382,10 +382,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         
         do {
             let users = try managedObjectContext.fetch(fetchRequest)
-            print("users:")
-            for user in users {
-                print(user.email)
-            }
             return users.first
         } catch {
             print("Error fetching user: \(error)")

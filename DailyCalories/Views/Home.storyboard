@@ -141,6 +141,7 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addButton" destination="01d-sd-5nQ" id="CDA-H1-1gu"/>
                         <outlet property="caloriesLabel" destination="9Sb-Hn-QQR" id="5wJ-w8-mTm"/>
                         <outlet property="carbsLabel" destination="7Ml-hK-3uF" id="pDA-50-PVN"/>
                         <outlet property="fatsLabel" destination="lYZ-gS-KKw" id="bRW-jy-Und"/>

@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     private var email = String()
     private var chartView : UIView?
     
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var fatsLabel: UILabel!
@@ -44,7 +45,7 @@ class HomeViewController: UIViewController {
             print("email not found")
         }
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-        var todayDate = Date.now
+        let todayDate = Date.now
         let user = fetchUser()
         self.foods = []
         
@@ -208,10 +209,6 @@ class HomeViewController: UIViewController {
         
         do {
             let users = try managedObjectContext.fetch(fetchRequest)
-            print("users:")
-            for user in users {
-                print(user.email)
-            }
             return users.first
         } catch {
             print("Error fetching user: \(error)")
@@ -226,8 +223,11 @@ class HomeViewController: UIViewController {
         } else {
             print("email not found")
         }
-        var todayDate = Date.now
-
+        let todayDate = Date.now
+        var proteins = 0.0
+        var carbs = 0.0
+        var fats = 0.0
+        var calories = 0.0
         let calendar = Calendar.current
         let currentComponents = calendar.dateComponents([.year, .month, .day], from: todayDate)
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
@@ -241,15 +241,26 @@ class HomeViewController: UIViewController {
                     if currentComponents.year == foodDateComponents.year &&
                        currentComponents.month == foodDateComponents.month &&
                        currentComponents.day == foodDateComponents.day {
-                        print(foodObject.name)
-                        //print(foodObject.time)
                         self.foods.append(foodObject)
+                        proteins += foodObject.protein
+                        calories += foodObject.calories
+                        carbs += foodObject.carbohydrates
+                        fats += foodObject.fat
                         
                     }
                 
                 }
             }
         }
+        
+        self.calories = calories // Update the calories value
+        
+        nutrientValuesString[0] = "\(proteins)g"
+        nutrientValuesString[1] = "\(carbs)g"
+        nutrientValuesString[2] = "\(fats)g"
+        nutrientsValues[0] = proteins
+        nutrientsValues[1] = carbs
+        nutrientsValues[2] = fats
         reloadData()
         
     }
@@ -340,11 +351,11 @@ class HomeViewController: UIViewController {
         
         // Add the new chart view to the main view
         view.addSubview(chartView)
+        view.bringSubviewToFront(addButton)
     }
     
     func reloadData() {
         addPieChart()
-        //protein 0 fats 2 carbs 1
         caloriesLabel.text = "Total of calories consumed: \(calories)/2000"
         proteinLabel.text = "\(nutrientsValues[0])g"
         carbsLabel.text = "\(nutrientsValues[1])g"
@@ -358,10 +369,7 @@ class HomeViewController: UIViewController {
         let blue = CGFloat.random(in: 0...1)
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }*/
+    
     
 
 }

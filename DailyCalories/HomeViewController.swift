@@ -21,6 +21,11 @@ class HomeViewController: UIViewController {
     private var email = String()
     private var chartView : UIView?
     
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var caloriesLabel: UILabel!
+    @IBOutlet weak var fatsLabel: UILabel!
+    @IBOutlet weak var carbsLabel: UILabel!
+    @IBOutlet weak var proteinLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addHeader(string: "Home")
@@ -245,6 +250,7 @@ class HomeViewController: UIViewController {
                 }
             }
         }
+        reloadData()
         
     }
     
@@ -294,10 +300,16 @@ class HomeViewController: UIViewController {
                 return (value: roundedPercentage / 100, color: randomColor(), label: label) // Divide by 100 to convert to a decimal value
             }
         
-        chartView.frame = CGRect(x: view.frame.width - 200, y: 300, width: 160, height: 160)
-        
-        centerPoint.x = chartView.bounds.midX
-        centerPoint.y = chartView.bounds.midY + 20
+        let chartSize: CGFloat = 400
+        let chartOriginX = (view.frame.width - chartSize) / 2 + 200
+        let chartOriginY = (view.frame.height - chartSize) / 2 + 300
+        chartView.frame = CGRect(x: chartOriginX, y: chartOriginY, width: chartSize, height: chartSize)
+
+        print("x:\(chartOriginX)")
+        print("y:\(chartOriginY)")
+
+        chartView.frame = CGRect(x: chartOriginX, y: chartOriginY, width: chartSize, height: chartSize)
+
         
         var startAngle = -Double.pi / 2 // Start at the top
         for slice in sliceData {
@@ -328,6 +340,16 @@ class HomeViewController: UIViewController {
         
         // Add the new chart view to the main view
         view.addSubview(chartView)
+    }
+    
+    func reloadData() {
+        addPieChart()
+        //protein 0 fats 2 carbs 1
+        caloriesLabel.text = "Total of calories consumed: \(calories)/2000"
+        proteinLabel.text = "\(nutrientsValues[0])g"
+        carbsLabel.text = "\(nutrientsValues[1])g"
+        fatsLabel.text = "\(nutrientsValues[2])g"
+        progressBar.progress = Float(calories/2000)
     }
     
     func randomColor() -> UIColor {

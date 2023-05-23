@@ -171,6 +171,10 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        if foods.count == 0{
+            chartView?.removeFromSuperview()
+            chartView = nil
+        }
     }
 
     

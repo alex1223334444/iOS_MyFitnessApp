@@ -90,14 +90,14 @@ class FoodItem: UIView {
     
     private func layoutCalories() {
         calories.translatesAutoresizingMaskIntoConstraints = false
-        calories.leadingAnchor.constraint(equalTo: name.leadingAnchor, constant: 50).isActive = true
+        calories.leadingAnchor.constraint(equalTo: label.leadingAnchor, constant: -35).isActive = true
         placeholderYConstraint = calories.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         placeholderYConstraint?.isActive = true
     }
     
     private func layoutCaloriesLabel() {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.leadingAnchor.constraint(equalTo: calories.leadingAnchor, constant: 25).isActive = true
+        label.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: -60).isActive = true
         placeholderYConstraint = label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         placeholderYConstraint?.isActive = true
     }

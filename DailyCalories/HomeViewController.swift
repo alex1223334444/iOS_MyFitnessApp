@@ -14,8 +14,8 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var infoButton: UIButton!
     private var calories = 0.0
-    private var nutrientValuesString = ["", "", ""]
-    private var nutrientsValues = [0.0, 0.0, 0.0]
+    private var nutrientValuesString = ["", "", "", "", "", "", "", "", ""]
+    private var nutrientsValues = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     private var foods: [Food] = []
     private var managedObjectContext: NSManagedObjectContext!
     private var email = String()
@@ -30,15 +30,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addHeader(string: "Home")
-        /*let query = "100g chicken shawarma".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let url = URL(string: "https://api.api-ninjas.com/v1/nutrition?query="+query!)!
-        var request = URLRequest(url: url)
-        request.setValue("jWhNwKEikKQQYZPwOq6gkA==EcFrD0XB6Fe8uZ2A", forHTTPHeaderField: "X-Api-Key")
-        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-         guard let data = data else { return }
-         print(String(data: data, encoding: .utf8)!)
-         }
-         task.resume()*/
         if let email = UserDefaults.standard.string(forKey: "username") {
             self.email = email
         } else {
@@ -55,6 +46,12 @@ class HomeViewController: UIViewController {
         var carbs = 0.0
         var fats = 0.0
         var calories = 0.0
+        var saturatedFats = 0.0
+        var fibers = 0.0
+        var sugar = 0.0
+        var sodium = 0.0
+        var potassium = 0.0
+        
         
         if let foods = user?.foods {
             for food in foods {
@@ -70,6 +67,12 @@ class HomeViewController: UIViewController {
                         calories += foodObject.calories
                         carbs += foodObject.carbohydrates
                         fats += foodObject.fat
+                        saturatedFats += foodObject.saturatedFat
+                        fibers += foodObject.fiber
+                        sugar += foodObject.sugar
+                        sodium += foodObject.sodium
+                        potassium += foodObject.potassium
+                        
                     }
                 }
             }
@@ -80,9 +83,19 @@ class HomeViewController: UIViewController {
         nutrientValuesString[0] = "\(String(format: "%.2f", proteins))g"
         nutrientValuesString[1] = "\(String(format: "%.2f", carbs))g"
         nutrientValuesString[2] = "\(String(format: "%.2f", fats))g"
+        nutrientValuesString[3] = "\(String(format: "%.2f", saturatedFats))g"
+        nutrientValuesString[4] = "\(String(format: "%.2f", fibers))g"
+        nutrientValuesString[5] = "\(String(format: "%.2f", sugar))g"
+        nutrientValuesString[6] = "\(String(format: "%.2f", sodium))mg"
+        nutrientValuesString[7] = "\(String(format: "%.2f", potassium))mg"
         nutrientsValues[0] = proteins
         nutrientsValues[1] = carbs
         nutrientsValues[2] = fats
+        nutrientsValues[3] = saturatedFats
+        nutrientsValues[4] = fibers
+        nutrientsValues[5] = sugar
+        nutrientsValues[6] = sodium
+        nutrientsValues[7] = potassium
         addPieChart()
         
     }
@@ -96,75 +109,60 @@ class HomeViewController: UIViewController {
          let alertController = UIAlertController(title: "Macronutrient Details", message: nil, preferredStyle: .alert)
 
          let caloriesLabel = UILabel()
-         let calories = 2000
+         let calories = self.calories
          caloriesLabel.text = "Calories: \(calories) kcal"
          caloriesLabel.textColor = .black
          alertController.view.addSubview(caloriesLabel)
-         caloriesLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
+         caloriesLabel.translatesAutoresizingMaskIntoConstraints = false
 
          let proteinLabel = UILabel()
-         proteinLabel.text = "Protein: 23.7 g"
+         proteinLabel.text = "Protein: \(nutrientValuesString[0])"
          proteinLabel.textColor = .black
          alertController.view.addSubview(proteinLabel)
-         proteinLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
+         proteinLabel.translatesAutoresizingMaskIntoConstraints = false
 
          let carbohydratesLabel = UILabel()
-         let carbohydrates = 0.0
-         carbohydratesLabel.text = "Carbohydrates: \(carbohydrates) g"
+         carbohydratesLabel.text = "Carbohydrates: \(nutrientValuesString[1])"
          carbohydratesLabel.textColor = .black
          alertController.view.addSubview(carbohydratesLabel)
-         carbohydratesLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
+         carbohydratesLabel.translatesAutoresizingMaskIntoConstraints = false
 
          let fatLabel = UILabel()
-         let fat = 12.9
-         fatLabel.text = "Fat: \(fat) g"
+         fatLabel.text = "Fat: \(nutrientValuesString[2])"
          fatLabel.textColor = .black
          alertController.view.addSubview(fatLabel)
-         fatLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
+         fatLabel.translatesAutoresizingMaskIntoConstraints = false
 
          let saturatedFatLabel = UILabel()
-         let saturatedFat = 3.7
-         saturatedFatLabel.text = "Saturated Fat: \(saturatedFat) g"
+         saturatedFatLabel.text = "Saturated Fat: \(nutrientValuesString[3])"
          saturatedFatLabel.textColor = .black
          alertController.view.addSubview(saturatedFatLabel)
-         saturatedFatLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
+         saturatedFatLabel.translatesAutoresizingMaskIntoConstraints = false
 
          let fiberLabel = UILabel()
-         let fiber = 0.0
-         fiberLabel.text = "Fiber: \(fiber) g"
+         fiberLabel.text = "Fiber: \(nutrientValuesString[4])"
          fiberLabel.textColor = .black
          alertController.view.addSubview(fiberLabel)
-         fiberLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
+         fiberLabel.translatesAutoresizingMaskIntoConstraints = false
 
          let sugarLabel = UILabel()
-         let sugar = 0.0
-         sugarLabel.text = "Sugar: \(sugar) g"
+         sugarLabel.text = "Sugar: \(nutrientValuesString[5])"
          sugarLabel.textColor = .black
          alertController.view.addSubview(sugarLabel)
-         sugarLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
+         sugarLabel.translatesAutoresizingMaskIntoConstraints = false
 
          let sodiumLabel = UILabel()
-         let sodium = 72
-         sodiumLabel.text = "Sodium: \(sodium) mg"
+         sodiumLabel.text = "Sodium: \(nutrientValuesString[6])"
          sodiumLabel.textColor = .black
          alertController.view.addSubview(sodiumLabel)
-         sodiumLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
+         sodiumLabel.translatesAutoresizingMaskIntoConstraints = false
 
          let potassiumLabel = UILabel()
-         let potassium = 179
-         potassiumLabel.text = "Potassium: \(potassium) mg"
+         potassiumLabel.text = "Potassium: \(nutrientValuesString[7])"
          potassiumLabel.textColor = .black
          alertController.view.addSubview(potassiumLabel)
-         potassiumLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
-
-         let cholesterolLabel = UILabel()
-         let cholesterol = 92
-         cholesterolLabel.text = "Cholesterol: \(cholesterol) mg"
-         cholesterolLabel.textColor = .black
-         alertController.view.addSubview(cholesterolLabel)
-         cholesterolLabel.translatesAutoresizingMaskIntoConstraints = false // enable constraints
-
-         // add constraints to position the labels
+         potassiumLabel.translatesAutoresizingMaskIntoConstraints = false
+         
          NSLayoutConstraint.activate([
              caloriesLabel.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 50),
              caloriesLabel.leadingAnchor.constraint(equalTo: alertController.view.leadingAnchor, constant: 20),
@@ -183,9 +181,8 @@ class HomeViewController: UIViewController {
              sodiumLabel.topAnchor.constraint(equalTo: sugarLabel.bottomAnchor, constant: 10),
              sodiumLabel.leadingAnchor.constraint(equalTo: alertController.view.leadingAnchor, constant: 20),
              potassiumLabel.topAnchor.constraint(equalTo: sodiumLabel.bottomAnchor, constant: 10),
-             potassiumLabel.leadingAnchor.constraint(equalTo: alertController.view.leadingAnchor, constant: 20),
-             cholesterolLabel.topAnchor.constraint(equalTo: potassiumLabel.bottomAnchor, constant: 10),
-             cholesterolLabel.leadingAnchor.constraint(equalTo: alertController.view.leadingAnchor, constant: 20),
+             potassiumLabel.leadingAnchor.constraint(equalTo: alertController.view.leadingAnchor, constant: 20)
+             
              ])
 
              let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -228,6 +225,11 @@ class HomeViewController: UIViewController {
         var carbs = 0.0
         var fats = 0.0
         var calories = 0.0
+        var saturatedFats = 0.0
+        var fibers = 0.0
+        var sugar = 0.0
+        var sodium = 0.0
+        var potassium = 0.0
         let calendar = Calendar.current
         let currentComponents = calendar.dateComponents([.year, .month, .day], from: todayDate)
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
@@ -246,6 +248,11 @@ class HomeViewController: UIViewController {
                         calories += foodObject.calories
                         carbs += foodObject.carbohydrates
                         fats += foodObject.fat
+                        saturatedFats += foodObject.saturatedFat
+                        fibers += foodObject.fiber
+                        sugar += foodObject.sugar
+                        sodium += foodObject.sodium
+                        potassium += foodObject.potassium
                         
                     }
                 
@@ -258,9 +265,19 @@ class HomeViewController: UIViewController {
         nutrientValuesString[0] = "\(String(format: "%.2f", proteins))g"
         nutrientValuesString[1] = "\(String(format: "%.2f", carbs))g"
         nutrientValuesString[2] = "\(String(format: "%.2f", fats))g"
+        nutrientValuesString[3] = "\(String(format: "%.2f", saturatedFats))g"
+        nutrientValuesString[4] = "\(String(format: "%.2f", fibers))g"
+        nutrientValuesString[5] = "\(String(format: "%.2f", sugar))g"
+        nutrientValuesString[6] = "\(String(format: "%.2f", sodium))mg"
+        nutrientValuesString[7] = "\(String(format: "%.2f", potassium))mg"
         nutrientsValues[0] = proteins
         nutrientsValues[1] = carbs
         nutrientsValues[2] = fats
+        nutrientsValues[3] = saturatedFats
+        nutrientsValues[4] = fibers
+        nutrientsValues[5] = sugar
+        nutrientsValues[6] = sodium
+        nutrientsValues[7] = potassium
         reloadData()
         
     }
@@ -280,15 +297,16 @@ class HomeViewController: UIViewController {
             return
         }
         
-        var centerPoint = CGPoint(x: 0, y: 0)
+        let centerPoint = CGPoint(x: 0, y: 0)
         let radius = CGFloat(100) // smaller radius
-        let proteinsPercent = Double(nutrientsValues[0] * 4 / calories)
-        let fatsPercent = Double(nutrientsValues[2] * 9 / calories)
-        let carboPercent = Double(nutrientsValues[1] * 4 / calories)
+        var percents : [Double] = [0.0, 0.0, 0.0]
+        percents[0] = Double(nutrientsValues[0] * 4 / calories)
+        percents[1] = Double(nutrientsValues[1] * 4 / calories)
+        percents[2] = Double(nutrientsValues[2] * 9 / calories)
         
-        let totalPercentage = nutrientsValues.reduce(0, +) / calories // Calculate the total percentage of all nutrients
+        let totalPercentage = percents.reduce(0, +) / calories // Calculate the total percentage of all nutrients
             
-            let sliceData: [(value: Double, color: UIColor, label: String)] = nutrientsValues.enumerated().map { (index, value) in
+            let sliceData: [(value: Double, color: UIColor, label: String)] = percents.enumerated().map { (index, value) in
                 let percentage = Double(value / calories) // Calculate the percentage for the current nutrient
                 
                 let roundedPercentage = (percentage / totalPercentage) * 100 // Round the percentage relative to the total percentage
@@ -300,10 +318,10 @@ class HomeViewController: UIViewController {
                     label.append("% P")
                 case 1:
                     label = String(format: "%.2f", roundedPercentage)
-                    label.append("% F")
+                    label.append("% C")
                 case 2:
                     label = String(format: "%.2f", roundedPercentage)
-                    label.append("% C")
+                    label.append("% F")
                 default:
                     label = ""
                 }

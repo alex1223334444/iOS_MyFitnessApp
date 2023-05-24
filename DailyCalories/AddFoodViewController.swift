@@ -247,14 +247,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         }
         
         let user = fetchUser()
-        if let foods = user?.foods {
-                for food in foods {
-                    if let foodObject = food as? Food {
-                        print(foodObject.user?.email)
-                        print(foodObject.calories)
-                    }
-                }
-            }
+        
     }
     
     @objc func checkFood(_ sender: UIButton) {
@@ -351,10 +344,6 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         
         do {
             let users = try managedObjectContext.fetch(fetchRequest)
-            print("users:")
-            for user in users {
-                print(user.email)
-            }
             return users.first
         } catch {
             print("Error fetching user: \(error)")

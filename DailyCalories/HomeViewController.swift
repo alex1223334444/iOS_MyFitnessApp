@@ -77,9 +77,9 @@ class HomeViewController: UIViewController {
         
         self.calories = calories // Update the calories value
         
-        nutrientValuesString[0] = "\(proteins)g"
-        nutrientValuesString[1] = "\(carbs)g"
-        nutrientValuesString[2] = "\(fats)g"
+        nutrientValuesString[0] = "\(String(format: "%.2f", proteins))g"
+        nutrientValuesString[1] = "\(String(format: "%.2f", carbs))g"
+        nutrientValuesString[2] = "\(String(format: "%.2f", fats))g"
         nutrientsValues[0] = proteins
         nutrientsValues[1] = carbs
         nutrientsValues[2] = fats
@@ -255,9 +255,9 @@ class HomeViewController: UIViewController {
         
         self.calories = calories // Update the calories value
         
-        nutrientValuesString[0] = "\(proteins)g"
-        nutrientValuesString[1] = "\(carbs)g"
-        nutrientValuesString[2] = "\(fats)g"
+        nutrientValuesString[0] = "\(String(format: "%.2f", proteins))g"
+        nutrientValuesString[1] = "\(String(format: "%.2f", carbs))g"
+        nutrientValuesString[2] = "\(String(format: "%.2f", fats))g"
         nutrientsValues[0] = proteins
         nutrientsValues[1] = carbs
         nutrientsValues[2] = fats
@@ -357,9 +357,9 @@ class HomeViewController: UIViewController {
     func reloadData() {
         addPieChart()
         caloriesLabel.text = "Total of calories consumed: \(calories)/2000"
-        proteinLabel.text = "\(nutrientsValues[0])g"
-        carbsLabel.text = "\(nutrientsValues[1])g"
-        fatsLabel.text = "\(nutrientsValues[2])g"
+        proteinLabel.text = nutrientValuesString[0]
+        carbsLabel.text = nutrientValuesString[1]
+        fatsLabel.text = nutrientValuesString[2]
         progressBar.progress = Float(calories/2000)
     }
     

@@ -158,9 +158,9 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.calories = calories // Update the calories value
         
-        nutrientValuesString[0] = "\(proteins)g"
-        nutrientValuesString[1] = "\(carbs)g"
-        nutrientValuesString[2] = "\(fats)g"
+        nutrientValuesString[0] = "\(String(format: "%.2f", proteins))g"
+        nutrientValuesString[1] = "\(String(format: "%.2f", carbs))g"
+        nutrientValuesString[2] = "\(String(format: "%.2f", fats))g"
         nutrientsValues[0] = proteins
         nutrientsValues[1] = carbs
         nutrientsValues[2] = fats

@@ -13,7 +13,7 @@ class FoodDetailViewController: UIViewController {
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let caloriesLabel = UILabel()
-    var name: String = ""
+    var food: Food = Food()
     private var panGesture: UIPanGestureRecognizer!
     private var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
     
@@ -29,7 +29,7 @@ class FoodDetailViewController: UIViewController {
         handleView.layer.cornerRadius = 2
         titleLabel.text = ""
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        descriptionLabel.text = name
+        descriptionLabel.text = ""
         descriptionLabel.font = UIFont.systemFont(ofSize: 16)
         caloriesLabel.text = "Calories:  0)"
         caloriesLabel.font = UIFont.systemFont(ofSize: 16)
@@ -76,7 +76,9 @@ class FoodDetailViewController: UIViewController {
         // Set up the pan gesture recognizer
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         contentView.addGestureRecognizer(panGesture)
+        print(food)
     }
+    
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
 

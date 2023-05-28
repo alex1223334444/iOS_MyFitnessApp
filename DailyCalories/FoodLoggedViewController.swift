@@ -33,7 +33,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         print("Selected food item: \(selectedFoodItem)")
         let foodDetailVC = FoodDetailViewController()
         foodDetailVC.modalPresentationStyle = .custom
-        foodDetailVC.name = String(foods[indexPath.row].calories)
+        foodDetailVC.food = foods[indexPath.row]
         let customTransitionDelegate = HalfScreenTransitionDelegate()
         
         foodDetailVC.transitioningDelegate = customTransitionDelegate
@@ -217,21 +217,14 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         selectedDate = sender.date
         print("Selected date: \(self.selectedDate)")
+        chartView?.removeFromSuperview()
+        chartView = nil
         reloadData()
-        if calories == 0 {
-            chartView?.removeFromSuperview()
-            chartView = nil
-        }
     }
     
 
     fileprivate func addPieChart() {
-        // Remove existing chart view if calories is 0
-        if calories == 0 {
-            chartView?.removeFromSuperview()
-            chartView = nil
-            return
-        }
+        
         
         // Create a new chart view
         chartView = UIView()
@@ -405,8 +398,8 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // Remove the view from its superview
         chartView?.removeFromSuperview()
+        chartView = nil
     }
 
 }

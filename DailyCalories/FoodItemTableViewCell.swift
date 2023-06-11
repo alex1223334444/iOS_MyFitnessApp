@@ -7,8 +7,14 @@
 
 import UIKit
 
+
+protocol FoodItemTableViewCellDelegate: AnyObject {
+    func deleteButtonTapped(for cell: FoodItemTableViewCell)
+}
+
 class FoodItemTableViewCell: UITableViewCell {
     private var foodItem: FoodItem!
+    weak var delegate: FoodItemTableViewCellDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,8 +38,28 @@ class FoodItemTableViewCell: UITableViewCell {
             foodItem.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             foodItem.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+        
+        contentView.addSubview(deleteButton)
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        deleteButton.topAnchor.constraint(equalTo: foodItem.bottomAnchor, constant: -40).isActive = true
+        deleteButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
 
+    
+    private let deleteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Delete", for: .normal)
+        button.setImage(UIImage(systemName: "x.square")?.withTintColor(.systemRed), for: .normal)
+        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        button.setTitleColor(.systemRed, for: .normal)
+        return button
+    }()
+
+
+        @objc private func deleteButtonTapped() {
+            delegate?.deleteButtonTapped(for: self)
+        }
+    
     func configureFoodCell(_ name: String, calories: Int, tag: Int = 0) {
         foodItem.configureFoodItem(with: name, caloriesNr: calories, tag: tag)
     }

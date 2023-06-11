@@ -51,8 +51,6 @@ class HomeViewController: UIViewController {
         var sugar = 0.0
         var sodium = 0.0
         var potassium = 0.0
-        
-        
         if let foods = user?.foods {
             for food in foods {
                 if let foodObject = food as? Food {
@@ -72,13 +70,12 @@ class HomeViewController: UIViewController {
                         sugar += foodObject.sugar
                         sodium += foodObject.sodium
                         potassium += foodObject.potassium
-                        
                     }
                 }
             }
         }
         
-        self.calories = calories // Update the calories value
+        self.calories = calories
         
         nutrientValuesString[0] = "\(String(format: "%.2f", proteins))g"
         nutrientValuesString[1] = "\(String(format: "%.2f", carbs))g"

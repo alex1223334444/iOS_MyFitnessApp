@@ -49,7 +49,6 @@ class FoodItem: UIView {
     }
     
     func configureFoodItem(with recipeName: String, caloriesNr: Int, keyboardType: UIKeyboardType = .default, tag: Int = 0) {
-        //placeholderLabel.text = placeholder
         name.text = recipeName
         calories.text = String(caloriesNr)
         self.tag = tag
@@ -65,7 +64,6 @@ class FoodItem: UIView {
     }
     
     private func subscribeToActions() {
-        
     }
     
     private func addSubviews() {

@@ -251,9 +251,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     }
     
     @objc func checkFood(_ sender: UIButton) {
-        // Handle button tap event
         
-        // Update value labels with random values for testing purposes
         let text = "\(quantity) \(weightPicker.selectedUnit) of \(food)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let url = URL(string: "https://api.api-ninjas.com/v1/nutrition?query="+text!)!
         var request = URLRequest(url: url)
@@ -297,7 +295,6 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
                         self.fiber = foodItem.fiber_g
                         self.sugar = foodItem.sugar_g
                     }
-                    // Use the foodItem object as needed
                 }
             } catch {
                 print("Error parsing JSON data: \(error.localizedDescription)")
@@ -339,8 +336,8 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
 
         // Create a predicate to match the UUID
-        let uuidPredicate = NSPredicate(format: "email == %@", self.email)
-        fetchRequest.predicate = uuidPredicate
+        let mailPredicate = NSPredicate(format: "email == %@", self.email)
+        fetchRequest.predicate = mailPredicate
         
         do {
             let users = try managedObjectContext.fetch(fetchRequest)

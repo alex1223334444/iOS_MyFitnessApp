@@ -30,6 +30,7 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         button.layer.cornerRadius = 8
         self.hideKeyboardWhenTappedAround()
         logo.layer.cornerRadius = 20
+        self.button.backgroundColor = .gray
         
     }
     
@@ -83,7 +84,10 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         if registerModel.firstName != "" && registerModel.lastName != "" && registerModel.email != "" && registerModel.phone != "" && registerModel.password != "" && registerModel.passwordConfirmation != ""
         {
             self.button.isEnabled = true
-            print(registerModel)
+            self.button.backgroundColor = .systemBlue
+        }
+        else {
+            self.button.backgroundColor = .gray
         }
     }
     
@@ -91,7 +95,7 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         
         Auth.auth().createUser(withEmail: registerModel.email, password: registerModel.password) { [self] (authResult, error) in
             if let error = error {
-                let alert = UIAlertController(title: "Error or registering", message: error.localizedDescription, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error on registering", message: error.localizedDescription, preferredStyle: .alert)
                 let ok = UIAlertAction(title: "Ok", style: .default)
                 alert.addAction(ok)
                 self.present(alert, animated: true, completion: nil)
@@ -103,29 +107,20 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
                             UIApplication.shared.delegate as? AppDelegate else {
                         return
                     }
-                    
-                    // 1
                     let managedContext =
                     appDelegate.persistentContainer.viewContext
-                    
-                    // 2
                     let entity =
                     NSEntityDescription.entity(forEntityName: "User",
                                                in: managedContext)!
-                    
                     let person = NSManagedObject(entity: entity,
                                                  insertInto: managedContext)
                     
-                    // 3
                     person.setValue(registerModel.firstName, forKeyPath: "firstName")
                     person.setValue(registerModel.lastName, forKeyPath: "lastName")
                     person.setValue(registerModel.email, forKeyPath: "email")
                     person.setValue(registerModel.phone, forKeyPath: "phone")
                     person.setValue(UUID(uuidString: uid), forKeyPath: "uid")
 
-                    
-                    
-                    // 4
                     do {
                         try managedContext.save()
                         people.append(person)

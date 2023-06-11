@@ -35,6 +35,7 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
         button.layer.cornerRadius = 8
         button.isEnabled = false
         logo.layer.cornerRadius = 15
+        self.button.backgroundColor = .gray
 
     }
     
@@ -49,9 +50,11 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
             }
             if user.password != "" && user.username != ""{
                 button.isEnabled = true
+                button.backgroundColor = .systemBlue
             }
             else {
                 button.isEnabled = false
+                button.backgroundColor = .gray
             }
         }
     }

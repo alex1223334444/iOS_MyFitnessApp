@@ -16,28 +16,26 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "food", for: indexPath) as? FoodItemTableViewCell else {
             return UITableViewCell()
         }
+        
+        cell.delegate = self
+        
         if let name = foods[indexPath.row].name {
             cell.configureFoodCell(name, calories: Int(foods[indexPath.row].calories), tag: indexPath.row)
         }
+        
         cell.showsReorderControl = true
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Get the selected cell
         guard let cell = tableView.cellForRow(at: indexPath) as? FoodItemTableViewCell else { return }
         
-        // Perform the action for the selected cell
-        // For example, display more information about the food item
         let selectedFoodItem = cell
-        print("Selected food item: \(selectedFoodItem)")
         let foodDetailVC = FoodDetailViewController()
         foodDetailVC.modalPresentationStyle = .custom
         foodDetailVC.food = foods[indexPath.row]
         let customTransitionDelegate = HalfScreenTransitionDelegate()
-        
         foodDetailVC.transitioningDelegate = customTransitionDelegate
-
         present(foodDetailVC, animated: true, completion: nil)
     }
     
@@ -70,7 +68,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.register(FoodItemTableViewCell.self, forCellReuseIdentifier: "food")
         self.tableView.tableHeaderView = nil;
         self.tableView.tableFooterView = nil;
-        tableView.rowHeight = 80
+        tableView.rowHeight = 100
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.scrollsToTop = false
         tableView.backgroundColor = .systemGray6
@@ -216,7 +214,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         selectedDate = sender.date
-        print("Selected date: \(self.selectedDate)")
         chartView?.removeFromSuperview()
         chartView = nil
         reloadData()
@@ -253,10 +250,10 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
                     label.append("% P")
                 case 1:
                     label = String(format: "%.2f", roundedPercentage)
-                    label.append("% F")
+                    label.append("% C")
                 case 2:
                     label = String(format: "%.2f", roundedPercentage)
-                    label.append("% C")
+                    label.append("% F")
                 default:
                     label = ""
                 }
@@ -426,5 +423,32 @@ class HalfScreenPresentationController: UIPresentationController {
 class HalfScreenTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
+
+extension FoodLoggedViewController: FoodItemTableViewCellDelegate {
+    func deleteButtonTapped(for cell: FoodItemTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        
+        // Delete the selected food item
+        let foodItem = foods[indexPath.row]
+        managedObjectContext.delete(foodItem)
+        
+        // Save the changes
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Failed to delete food item: \(error)")
+        }
+        
+        // Remove the deleted item from the foods array and reload the table view
+        foods.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+        // Update the nutrient labels and reload data
+        reloadData()
     }
 }

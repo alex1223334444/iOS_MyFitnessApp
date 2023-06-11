@@ -204,7 +204,7 @@
         <image name="apple" width="3840" height="2160"/>
         <image name="facebook" width="4000" height="2500"/>
         <image name="google" width="1024" height="1024"/>
-        <image name="whiteLogo" width="512" height="512"/>
+        <image name="whiteLogo" width="1024" height="1024"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

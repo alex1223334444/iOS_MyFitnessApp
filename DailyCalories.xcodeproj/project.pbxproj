@@ -52,6 +52,7 @@
 		83CAFAB729153DDC00C4A4C6 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CAFAB629153DDC00C4A4C6 /* Register.storyboard */; };
 		83CAFAB929153E0C00C4A4C6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CAFAB829153E0C00C4A4C6 /* Login.storyboard */; };
 		83CF8C4A293820FE00C14E7E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83CF8C49293820FD00C14E7E /* GoogleService-Info.plist */; };
+		83CF9BB92A2F585900D326FE /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83CF9BB82A2F585900D326FE /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		83CAFAB629153DDC00C4A4C6 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		83CAFAB829153E0C00C4A4C6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		83CF8C49293820FD00C14E7E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		83CF9BB82A2F585900D326FE /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				83BDDB7028DE804400CBC81E /* Main.storyboard */,
+				83CF9BB82A2F585900D326FE /* Storyboard.storyboard */,
 				83CAFAB629153DDC00C4A4C6 /* Register.storyboard */,
 				8326E5962999762200196C71 /* Profile.storyboard */,
 				83920CAA29A447510029E7A2 /* TabBar.storyboard */,
@@ -375,6 +378,7 @@
 				8349F7F329AD29F900F449BF /* Home.storyboard in Resources */,
 				83920CAB29A447510029E7A2 /* TabBar.storyboard in Resources */,
 				83BDDB7728DE804500CBC81E /* Assets.xcassets in Resources */,
+				83CF9BB92A2F585900D326FE /* Storyboard.storyboard in Resources */,
 				83BDDB7228DE804400CBC81E /* Main.storyboard in Resources */,
 				83920CA929A446090029E7A2 /* Settings.storyboard in Resources */,
 				83CAFAB929153E0C00C4A4C6 /* Login.storyboard in Resources */,

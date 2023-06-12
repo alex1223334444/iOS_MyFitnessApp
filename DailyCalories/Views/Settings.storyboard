@@ -33,26 +33,26 @@
                                     <constraint firstAttribute="height" constant="50" id="8e4-3w-quP"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bmF-DX-dFu">
-                                <rect key="frame" x="148" y="539" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USn-2z-dO5">
+                                <rect key="frame" x="121.66666666666669" y="408.66666666666669" width="150" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Set calories goal"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Gwd-lh-c4d" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="2uD-nT-hQL"/>
+                            <constraint firstItem="USn-2z-dO5" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="EOt-Wg-D0T"/>
                             <constraint firstItem="Gwd-lh-c4d" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="UfT-NP-rMV"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Gwd-lh-c4d" secondAttribute="trailing" id="dtF-EX-bIc"/>
+                            <constraint firstItem="USn-2z-dO5" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="hpD-VJ-dwJ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="jPs-rg-pyg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="submitButton" destination="zl0-z5-wYA" id="HVj-WT-kfp"/>
-                        <outlet property="textfield" destination="bmF-DX-dFu" id="96y-Ar-85k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

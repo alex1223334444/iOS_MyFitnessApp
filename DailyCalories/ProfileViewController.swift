@@ -11,8 +11,8 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
-    private var managedObjectContext: NSManagedObjectContext!
-    private var email = ""
+    var managedObjectContext: NSManagedObjectContext!
+    var email = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -13,6 +13,9 @@
 		831DA031295E4FA5007CDD66 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831DA030295E4FA5007CDD66 /* FoodModel.swift */; };
 		8326E5972999762200196C71 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8326E5962999762200196C71 /* Profile.storyboard */; };
 		8326E5992999773B00196C71 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8326E5982999773B00196C71 /* TabBarViewController.swift */; };
+		832CB08D2A38DE4F008CA544 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832CB08C2A38DE4F008CA544 /* SwiftUIView.swift */; };
+		832CB08F2A391F65008CA544 /* ProfileViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832CB08E2A391F64008CA544 /* ProfileViewTests.swift */; };
+		832CB0912A3929CE008CA544 /* LoggedFoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832CB0902A3929CE008CA544 /* LoggedFoodTests.swift */; };
 		832F70D629EFB483003A46B0 /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832F70D529EFB483003A46B0 /* AddFoodViewController.swift */; };
 		833AA0FE2A0C2A0500E97F30 /* FoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833AA0FD2A0C2A0500E97F30 /* FoodDetailViewController.swift */; };
 		833CA3E52A12E03700391749 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CA3E12A12E03700391749 /* User+CoreDataClass.swift */; };
@@ -79,6 +82,9 @@
 		8326E5962999762200196C71 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		8326E5982999773B00196C71 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		832C25162A17FDB500BC538D /* add date.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "add date.xcdatamodel"; sourceTree = "<group>"; };
+		832CB08C2A38DE4F008CA544 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		832CB08E2A391F64008CA544 /* ProfileViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTests.swift; sourceTree = "<group>"; };
+		832CB0902A3929CE008CA544 /* LoggedFoodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedFoodTests.swift; sourceTree = "<group>"; };
 		832F70D529EFB483003A46B0 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
 		833AA0FD2A0C2A0500E97F30 /* FoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailViewController.swift; sourceTree = "<group>"; };
 		833CA3D82A114F3D00391749 /* changed uid type.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "changed uid type.xcdatamodel"; sourceTree = "<group>"; };
@@ -214,6 +220,7 @@
 				8349F7F029AD29EB00F449BF /* HomeViewController.swift */,
 				832F70D529EFB483003A46B0 /* AddFoodViewController.swift */,
 				833AA0FD2A0C2A0500E97F30 /* FoodDetailViewController.swift */,
+				832CB08C2A38DE4F008CA544 /* SwiftUIView.swift */,
 				8349F7F629AD2B3500F449BF /* FoodLoggedViewController.swift */,
 				8326E5982999773B00196C71 /* TabBarViewController.swift */,
 				834BE6342935894A0005E5CA /* UIViewControllerExtension.swift */,
@@ -243,6 +250,8 @@
 			isa = PBXGroup;
 			children = (
 				83BDDB8428DE804500CBC81E /* MyFitnessTests.swift */,
+				832CB08E2A391F64008CA544 /* ProfileViewTests.swift */,
+				832CB0902A3929CE008CA544 /* LoggedFoodTests.swift */,
 			);
 			path = DailyCaloriesTests;
 			sourceTree = "<group>";
@@ -435,6 +444,7 @@
 				83BDDBA328DE8CF800CBC81E /* RegisterViewController.swift in Sources */,
 				834BE640293665B50005E5CA /* SettingsViewController.swift in Sources */,
 				831DA02F295E453D007CDD66 /* NetworkManager.swift in Sources */,
+				832CB08D2A38DE4F008CA544 /* SwiftUIView.swift in Sources */,
 				834D539B29B52D5700AE8ACC /* extensions.swift in Sources */,
 				83BDDBA128DE8A5F00CBC81E /* LoginViewController.swift in Sources */,
 				832F70D629EFB483003A46B0 /* AddFoodViewController.swift in Sources */,
@@ -446,7 +456,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				832CB0912A3929CE008CA544 /* LoggedFoodTests.swift in Sources */,
 				83BDDB8528DE804500CBC81E /* MyFitnessTests.swift in Sources */,
+				832CB08F2A391F65008CA544 /* ProfileViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

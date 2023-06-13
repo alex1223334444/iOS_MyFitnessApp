@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import MyFitness
+@testable import DailyCalories
 
 class MyFitnessTests: XCTestCase {
 

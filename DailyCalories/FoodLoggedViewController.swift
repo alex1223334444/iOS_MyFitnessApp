@@ -32,15 +32,13 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let selectedFoodItem = cell
         let foodDetailVC = FoodDetailViewController()
-        foodDetailVC.modalPresentationStyle = .custom
+        foodDetailVC.modalPresentationStyle = .automatic
         foodDetailVC.food = foods[indexPath.row]
-        let customTransitionDelegate = HalfScreenTransitionDelegate()
-        foodDetailVC.transitioningDelegate = customTransitionDelegate
         present(foodDetailVC, animated: true, completion: nil)
     }
     
-    private var tableView: UITableView!
-    private var foods: [Food] = []
+    var tableView: UITableView!
+    var foods: [Food] = []
     var caloriesLabel = UILabel()
     var progressBar = UIProgressView(progressViewStyle: .default)
     var nutrients = ["Proteins", "Carbs", "Fats"]
@@ -402,29 +400,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
 }
 
 
-class HalfScreenPresentationController: UIPresentationController {
-    override var frameOfPresentedViewInContainerView: CGRect {
-        guard let containerView = containerView else { return .zero }
-        let height = containerView.bounds.height / 2
-        return CGRect(x: 0, y: containerView.bounds.height - height, width: containerView.bounds.width, height: height)
-    }
-
-    override func presentationTransitionWillBegin() {
-        guard let containerView = containerView else { return }
-        containerView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-    }
-
-    override func dismissalTransitionWillBegin() {
-        guard let containerView = containerView else { return }
-        containerView.backgroundColor = .clear
-    }
-}
-
-class HalfScreenTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
-    }
-}
 
 
 extension FoodLoggedViewController: FoodItemTableViewCellDelegate {

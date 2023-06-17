@@ -113,13 +113,17 @@ class ProfileViewController: UIViewController {
         ])
         changePassword.setTitle("Change your password", for: .normal)
         changePassword.setTitleColor(.black, for: .normal)
-        changePassword.addTarget(self, action:#selector(self.logout), for: .touchUpInside)
+        changePassword.addTarget(self, action:#selector(self.changePassword), for: .touchUpInside)
     }
     
-    @objc private func logout() {
+    fileprivate func logoutMethod() {
         UserDefaults.standard.removeObject(forKey: "username")
         UserDefaults.standard.removeObject(forKey: "uid")
         self.performSegue(withIdentifier: "logout", sender: nil)
+    }
+    
+    @objc private func logout() {
+        logoutMethod()
     }
     
     
@@ -143,17 +147,67 @@ class ProfileViewController: UIViewController {
                 print("Error deleting object: \(error.localizedDescription)")
             }
         }
-        UserDefaults.standard.removeObject(forKey: "username")
-        UserDefaults.standard.removeObject(forKey: "uid")
-        self.performSegue(withIdentifier: "logout", sender: nil)
+        logoutMethod()
         
     }
     
     
+    func changeFirebasePassword(newPassword: String, completion: @escaping (Error?) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else {
+            // User is not logged in or authenticated
+            completion(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "User not logged in"]))
+            return
+        }
+        
+        currentUser.updatePassword(to: newPassword) { error in
+            completion(error)
+        }
+    }
+
+    func changeCoreDataPassword(newPassword: String) {
+        
+            
+            if let currentUser = fetchUser() {
+                currentUser.password = newPassword
+                do {
+                    try managedObjectContext.save()
+                }
+                catch {
+                   print("Failed to change user password")
+               }
+            }
+         
+    }
+    
+    @objc private func changePassword() {
+        let alert = UIAlertController(title: "Change password", message: "", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+                textField.placeholder = "New Password"
+                textField.isSecureTextEntry = true
+            }
+        
+        let change = UIAlertAction(title: "Ok", style: .default) {_ in
+            if let newPassword = alert.textFields?.first?.text {
+                self.changeFirebasePassword(newPassword: newPassword) { error in
+                    print(error as Any)
+                }
+                self.changeCoreDataPassword(newPassword: newPassword)
+                self.logoutMethod()
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+        alert.addAction(change)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     func fetchUser() -> User? {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-
+        
         // Create a predicate to match the UUID
         let uuidPredicate = NSPredicate(format: "email == %@", self.email)
         fetchRequest.predicate = uuidPredicate

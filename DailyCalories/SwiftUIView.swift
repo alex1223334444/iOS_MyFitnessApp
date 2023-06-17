@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SwiftUIView: View {
     var food: Food
-    
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 16) {
@@ -18,11 +17,9 @@ struct SwiftUIView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(maxHeight: geometry.size.height * 0.4)
                     .padding(.horizontal)
-                
                 Name(name: food.name ?? "")
                     .font(.title)
                     .padding(.horizontal)
-                
                 VStack(alignment: .leading, spacing: 8) {
                     NutritionalInfo(label: "Calories", value:  food.calories, unit: "g")
                     NutritionalInfo(label: "Proteins", value:  food.protein, unit: "g")
@@ -36,7 +33,6 @@ struct SwiftUIView: View {
                     NutritionalInfo(label: "Potassium", value:  food.potassium, unit: "mg")
                 }
                 .padding(.horizontal)
-                
                 Spacer()
             }
         }

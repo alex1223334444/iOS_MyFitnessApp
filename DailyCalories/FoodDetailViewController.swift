@@ -9,7 +9,6 @@ import UIKit
 import SwiftUI
 
 class FoodDetailViewController: UIViewController {
-    private let caloriesLabel = UILabel()
     var food: Food = Food()
     
     

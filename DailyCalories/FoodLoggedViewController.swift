@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwiftUI
 class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foods.count
@@ -36,7 +37,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         foodDetailVC.food = foods[indexPath.row]
         present(foodDetailVC, animated: true, completion: nil)
     }
-    
+    var hostingController: UIHostingController<BarChart>!
     var tableView: UITableView!
     var foods: [Food] = []
     var caloriesLabel = UILabel()
@@ -81,9 +82,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
-        if calories != 0 {
-            addPieChart()
-        }
+        addBarChart()
         addProgressBar()
         addLabels()
         if let email = UserDefaults.standard.string(forKey: "username") {
@@ -163,15 +162,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         
         addLabels()
         caloriesLabel.text = "\(calories)/2000"
-        
-        if foods.isEmpty {
-                chartView?.isHidden = true
-            } else {
-                if chartView == nil {
-                    addPieChart()
-                }
-                chartView?.isHidden = false
-            }
+        addBarChart()
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -217,82 +208,29 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         reloadData()
     }
     
-
-    fileprivate func addPieChart() {
-        
-        
-        // Create a new chart view
-        chartView = UIView()
-        
-        guard let chartView = chartView else {
-            return
-        }
-        
-        var centerPoint = CGPoint(x: 0, y: 0)
-        let radius = CGFloat(100) // smaller radius
-        let proteinsPercent = Double(nutrientsValues[0] * 4 / calories)
-        let fatsPercent = Double(nutrientsValues[2] * 9 / calories)
-        let carboPercent = Double(nutrientsValues[1] * 4 / calories)
-        
-        let totalPercentage = nutrientsValues.reduce(0, +) / calories // Calculate the total percentage of all nutrients
-            
-            let sliceData: [(value: Double, color: UIColor, label: String)] = nutrientsValues.enumerated().map { (index, value) in
-                let percentage = Double(value / calories) // Calculate the percentage for the current nutrient
+    
+    fileprivate func addBarChart() {
+        hostingController?.willMove(toParent: nil)
+        hostingController?.view.removeFromSuperview()
+        hostingController?.removeFromParent()
+        if calories != 0 {
+            let customSwiftUIView = BarChart(proteins: nutrientsValues[0], carbs: nutrientsValues[1], fats: nutrientsValues[2])
+            hostingController = UIHostingController(rootView: customSwiftUIView)
+            if let hostingController = hostingController {
+                addChild(hostingController)
+                view.addSubview(hostingController.view)
                 
-                let roundedPercentage = (percentage / totalPercentage) * 100 // Round the percentage relative to the total percentage
+                hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0),
+                    hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 75),
+                    hostingController.view.heightAnchor.constraint(equalToConstant: 200),
+                    hostingController.view.widthAnchor.constraint(equalToConstant: 200)
+                ])
                 
-                var label: String
-                switch index {
-                case 0:
-                    label = String(format: "%.2f", roundedPercentage)
-                    label.append("% P")
-                case 1:
-                    label = String(format: "%.2f", roundedPercentage)
-                    label.append("% C")
-                case 2:
-                    label = String(format: "%.2f", roundedPercentage)
-                    label.append("% F")
-                default:
-                    label = ""
-                }
-                
-                return (value: roundedPercentage / 100, color: randomColor(), label: label) // Divide by 100 to convert to a decimal value
+                hostingController.didMove(toParent: self)
             }
-        
-        chartView.frame = CGRect(x: view.frame.width - 200, y: 300, width: 160, height: 160)
-        
-        centerPoint.x = chartView.bounds.midX
-        centerPoint.y = chartView.bounds.midY + 20
-        
-        var startAngle = -Double.pi / 2 // Start at the top
-        for slice in sliceData {
-            let endAngle = startAngle + slice.value * 2 * Double.pi
-            let path = UIBezierPath()
-            path.move(to: centerPoint)
-            path.addArc(withCenter: centerPoint, radius: radius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: true)
-            path.close()
-            
-            let sliceLayer = CAShapeLayer()
-            sliceLayer.path = path.cgPath
-            sliceLayer.fillColor = slice.color.cgColor
-            chartView.layer.addSublayer(sliceLayer)
-            
-            let label = UILabel()
-            let angle = startAngle + slice.value * Double.pi
-            let labelRadius = radius * 0.6
-            let labelX = centerPoint.x + labelRadius * CGFloat(cos(angle))
-            let labelY = centerPoint.y + labelRadius * CGFloat(sin(angle))
-            label.frame = CGRect(x: 0, y: 0, width: 120, height: 20)
-            label.center = CGPoint(x: labelX, y: labelY)
-            label.textAlignment = .center
-            label.text = slice.label
-            chartView.addSubview(label)
-            
-            startAngle = endAngle
         }
-        
-        // Add the new chart view to the main view
-        view.addSubview(chartView)
     }
     
     func randomColor() -> UIColor {
@@ -390,12 +328,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        chartView?.removeFromSuperview()
-        chartView = nil
-    }
 
 }
 

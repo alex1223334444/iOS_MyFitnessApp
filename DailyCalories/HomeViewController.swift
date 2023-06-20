@@ -291,7 +291,7 @@ class HomeViewController: UIViewController {
         hostingController?.view.removeFromSuperview()
         hostingController?.removeFromParent()
         if calories != 0 {
-            let customSwiftUIView = BarChart(proteins: nutrientsValues[0], carbs: nutrientsValues[1], fats: nutrientsValues[2])
+            let customSwiftUIView = BarChart(proteins: nutrientsValues[0] * 4, carbs: nutrientsValues[1] * 4, fats: nutrientsValues[2] * 9)
             
             hostingController = UIHostingController(rootView: customSwiftUIView)
             if let hostingController = hostingController {

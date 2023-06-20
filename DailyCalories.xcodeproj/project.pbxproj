@@ -189,7 +189,6 @@
 		83BDDB5E28DE804400CBC81E = {
 			isa = PBXGroup;
 			children = (
-				83408E6D2A40F34300924D56 /* Chart.swift */,
 				83BDDB6928DE804400CBC81E /* DailyCalories */,
 				83BDDB8328DE804500CBC81E /* DailyCaloriesTests */,
 				83BDDB8D28DE804600CBC81E /* DailyCaloriesUITests */,
@@ -233,6 +232,7 @@
 				839A23AD29180DD7002F3ED4 /* Textfield.swift */,
 				834D539629B50B1000AE8ACC /* FoodItem.swift */,
 				834BE639293649890005E5CA /* TextfieldTableViewCell.swift */,
+				83408E6D2A40F34300924D56 /* Chart.swift */,
 				834D539829B521DC00AE8ACC /* FoodItemTableViewCell.swift */,
 				83AC60ED2918143500AA621E /* Button.swift */,
 				834BE63B29364BCC0005E5CA /* ButtonTableViewCell.swift */,

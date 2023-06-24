@@ -202,7 +202,6 @@ class HomeViewController: UIViewController {
     func fetchUser() -> User? {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
 
-        // Create a predicate to match the UUID
         let uuidPredicate = NSPredicate(format: "email == %@", self.email)
         fetchRequest.predicate = uuidPredicate
         
@@ -214,7 +213,7 @@ class HomeViewController: UIViewController {
             return nil
         }
     }
-    
+     
     override func viewWillAppear(_ animated: Bool) {
         foods = []
         if let email = UserDefaults.standard.string(forKey: "username") {
@@ -262,7 +261,7 @@ class HomeViewController: UIViewController {
             }
         }
         
-        self.calories = calories // Update the calories value
+        self.calories = calories
         
         nutrientValuesString[0] = "\(String(format: "%.2f", proteins))g"
         nutrientValuesString[1] = "\(String(format: "%.2f", carbs))g"
@@ -332,13 +331,6 @@ class HomeViewController: UIViewController {
             progressBar.progress = 1
             progressBar.progressTintColor = .systemRed
         }
-    }
-    
-    func randomColor() -> UIColor {
-        let red = CGFloat.random(in: 0...1)
-        let green = CGFloat.random(in: 0...1)
-        let blue = CGFloat.random(in: 0...1)
-        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
     
     

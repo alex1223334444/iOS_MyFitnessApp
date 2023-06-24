@@ -285,7 +285,6 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         food.saturatedFat = self.fatSaturated
         food.time = Date.now
         
-        print(food)
         
         let user = fetchUser()
         user?.addToFoods(food)

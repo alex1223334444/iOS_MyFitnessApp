@@ -88,7 +88,7 @@ class Textfield: UIView {
         addSubview(textField)
         //addSubview(placeholderLabel)
         addSubview(bottomBorder)
-        addSubview(leftImageView)
+        //addSubview(leftImageView)
     }
     
     private func animatePlaceholderLabel(position: PlaceholderPosition) {
@@ -142,7 +142,7 @@ class Textfield: UIView {
     private func addConstraintsToSubviews() {
         layoutTextField()
         layoutBorder()
-        layoutLeftImageView()
+        //layoutLeftImageView()
         //layoutPlaceholder()
     }
     
@@ -156,7 +156,7 @@ class Textfield: UIView {
 
     private func layoutTextField() {
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.leadingAnchor.constraint(equalTo: leftImageView.trailingAnchor, constant: 10).isActive = true
+        textField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         textField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         textField.heightAnchor.constraint(equalToConstant: 40).isActive = true
@@ -165,7 +165,7 @@ class Textfield: UIView {
     
     private func layoutBorder() {
         bottomBorder.translatesAutoresizingMaskIntoConstraints = false
-        bottomBorder.leadingAnchor.constraint(equalTo: leftImageView.leadingAnchor, constant: 40).isActive = true
+        bottomBorder.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         bottomBorder.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         bottomBorder.heightAnchor.constraint(equalToConstant: 1).isActive = true
         bottomBorder.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true

@@ -80,50 +80,6 @@ class LoginViewController: UIViewController , TextFieldWithLabelDelegate {
          
          }
          
-        /*let appdelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appdelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        fetchRequest.returnsObjectsAsFaults = false
-        
-        do{
-            let results = try context.fetch(fetchRequest)
-            
-            for result in results as! [NSManagedObject]{
-                if let mail = result.value(forKey: "email") as? String{
-                    self.mailArray.append(mail)
-                }
-                if let password = result.value(forKey: "password") as? String{
-                    self.passwordArray.append(password)
-                }
-                
-            }
-        }
-        catch{
-            print("error")
-        }
-        
-        if (mailArray.contains(user.username)){
-            let mailIndex = mailArray.firstIndex(where: {$0 == user.username})
-            
-            if passwordArray[mailIndex!] == user.password{
-                UserDefaults.standard.set(user.username, forKey: "username")
-                UserDefaults.standard.set(user.password, forKey: "password")
-
-                self.performSegue(withIdentifier: "login", sender: nil)
-            }
-        }
-        else{
-            // create the alert
-            let alert = UIAlertController(title: "Not Found", message: "No account found for this e-mail address", preferredStyle: .alert)
-            // add an action (button)
-            //alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-                UIAlertAction in
-            }
-            alert.addAction(okAction)
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
-        }*/
         
     }
 }

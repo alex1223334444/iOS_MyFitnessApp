@@ -59,7 +59,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         self.addHeader()
         setupDatePicker()
         
-        // Initialize and configure the table view
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
@@ -75,7 +74,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
 
         
-        // Set up constraints for the table view
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 450),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -106,8 +104,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
                     if currentComponents.year == foodDateComponents.year &&
                        currentComponents.month == foodDateComponents.month &&
                        currentComponents.day == foodDateComponents.day {
-                        //print(foodObject.name)
-                        print(foodObject.time)
                         self.foods.append(foodObject)
                         
                     }
@@ -151,7 +147,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        self.calories = calories // Update the calories value
+        self.calories = calories
         
         nutrientValuesString[0] = "\(String(format: "%.2f", proteins))g"
         nutrientValuesString[1] = "\(String(format: "%.2f", carbs))g"
@@ -181,36 +177,26 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func setupDatePicker() {
-        // Initialize the date picker
         let datePicker = UIDatePicker()
         
         let label = UILabel(frame: CGRect(x: 10, y: 190, width: 200, height: 20))
         label.text = "Select the desired date:"
         view.addSubview(label)
-        // Set the desired mode for the date picker
         datePicker.datePickerMode = .date
         
-        // Optional: set the date picker's locale to support different languages and regions
         datePicker.locale = Locale(identifier: "en_US")
         
-        // Set the date picker's frame, position it as needed
         datePicker.frame = CGRect(x: 20, y: 100, width: view.frame.width - 40, height: 200)
         
-        // Optional: configure additional properties, such as minimum and maximum dates
         datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -10, to: Date())
         datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 10, to: Date())
         
-        // Add the date picker to the view controller's view
         view.addSubview(datePicker)
-        
-        // Optional: handle the date picker's value changes by adding a target to the valueChanged event
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
     }
     
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
         selectedDate = sender.date
-        chartView?.removeFromSuperview()
-        chartView = nil
         reloadData()
     }
     

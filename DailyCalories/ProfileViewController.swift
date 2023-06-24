@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import FirebaseAuth
+import StoreKit
 
 class ProfileViewController: UIViewController {
     
@@ -16,9 +17,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addHeader(string: "Profile")
+        self.addHeader()
         addLogoutButton()
-        addGoalButton()
+        addRatingButton()
         addDeleteButton()
         addChangePasswordButton()
         if let email = UserDefaults.standard.string(forKey: "username") {
@@ -32,25 +33,33 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func addDeleteButton() {
-        let deleteButton = UIButton()
+        let deleteButton = UIButton(type: .roundedRect)
+        deleteButton.backgroundColor = .systemRed
+        deleteButton.layer.cornerRadius = 10
         self.view.addSubview(deleteButton)
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             deleteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            deleteButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150)
+            deleteButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 240),
+            deleteButton.heightAnchor.constraint(equalToConstant: 50),
+            deleteButton.widthAnchor.constraint(equalToConstant: 200)
         ])
         deleteButton.setTitle("Delete account", for: .normal)
-        deleteButton.setTitleColor(.systemRed, for: .normal)
+        deleteButton.setTitleColor(.white, for: .normal)
         deleteButton.addTarget(self, action:#selector(self.deleteAccount), for: .touchUpInside)
     }
     
     fileprivate func addLogoutButton() {
-        let logoutButton = UIButton()
+        let logoutButton = UIButton(type: .roundedRect)
+        logoutButton.backgroundColor = .systemGreen
+        logoutButton.layer.cornerRadius = 10
         self.view.addSubview(logoutButton)
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoutButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            logoutButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            logoutButton.heightAnchor.constraint(equalToConstant: 50),
+            logoutButton.widthAnchor.constraint(equalToConstant: 200)
         ])
         logoutButton.setTitle("Logout", for: .normal)
         logoutButton.setTitleColor(.black, for: .normal)
@@ -90,26 +99,34 @@ class ProfileViewController: UIViewController {
         ])
     }
     
-    fileprivate func addGoalButton() {
-        let goalButton = UIButton()
+    fileprivate func addRatingButton() {
+        let goalButton = UIButton(type: .roundedRect)
+        goalButton.backgroundColor = .systemGreen
+        goalButton.layer.cornerRadius = 10
         self.view.addSubview(goalButton)
         goalButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             goalButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            goalButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 100)
+            goalButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 160),
+            goalButton.heightAnchor.constraint(equalToConstant: 50),
+            goalButton.widthAnchor.constraint(equalToConstant: 200)
         ])
-        goalButton.setTitle("Add calories goal", for: .normal)
+        goalButton.setTitle("Rate us", for: .normal)
         goalButton.setTitleColor(.black, for: .normal)
-        goalButton.addTarget(self, action:#selector(self.changeCalorieGoal), for: .touchUpInside)
+        goalButton.addTarget(self, action:#selector(self.addRating), for: .touchUpInside)
     }
     
     fileprivate func addChangePasswordButton() {
-        let changePassword = UIButton()
+        let changePassword = UIButton(type: .roundedRect)
+        changePassword.backgroundColor = .systemGreen
+        changePassword.layer.cornerRadius = 10
         self.view.addSubview(changePassword)
         changePassword.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             changePassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            changePassword.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50)
+            changePassword.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 80),
+            changePassword.heightAnchor.constraint(equalToConstant: 50),
+            changePassword.widthAnchor.constraint(equalToConstant: 200)
         ])
         changePassword.setTitle("Change your password", for: .normal)
         changePassword.setTitleColor(.black, for: .normal)
@@ -127,8 +144,12 @@ class ProfileViewController: UIViewController {
     }
     
     
-    @objc private func changeCalorieGoal() {
-        UserDefaults.standard.removeObject(forKey: "username")
+    @objc private func addRating() {
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                    DispatchQueue.main.async {
+                        SKStoreReviewController.requestReview(in: scene)
+                    }
+                }
     }
     
     @objc private func deleteAccount() {

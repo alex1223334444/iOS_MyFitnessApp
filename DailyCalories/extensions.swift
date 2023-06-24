@@ -11,7 +11,7 @@ import UIKit
 
 extension UIViewController {
 
-    func addHeader(string: String){
+    func addHeader(){
         var header: UIView
         if UIScreen.main.bounds.height < 800 {
             header = UIView(frame: CGRect(x: 0, y: view.safeAreaInsets.top  + 30, width: view.frame.width, height: 100))
@@ -20,9 +20,8 @@ extension UIViewController {
         else {
             header = UIView(frame: CGRect(x: 0, y: view.safeAreaInsets.top  + 60, width: view.frame.width, height: 100))
         }
-        header.backgroundColor = .black
+        header.backgroundColor = .darkGray
         let label: UILabel = UILabel()
-        label.text = string
         label.font = .systemFont(ofSize: 15)
         label.textColor = .white
         label.frame = CGRect(x: header.frame.width/2 - 50, y: header.frame.height/2 - 10, width: 100, height: 20)

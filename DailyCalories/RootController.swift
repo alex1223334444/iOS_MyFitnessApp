@@ -10,18 +10,23 @@ import UIKit
 class RootController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var registerButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.layer.cornerRadius = 25
-        registerButton.layer.cornerRadius = 20
+        loginButton.layer.cornerRadius = 10
+        registerButton.layer.cornerRadius = 10
+        loginButton.backgroundColor = .systemGreen
+        registerButton.backgroundColor = .systemGreen
+        loginButton.tintColor = .black
+        registerButton.tintColor = .black
         self.view.alpha = 1
-        if let storedUsername = UserDefaults.standard.string(forKey: "username"),
-           let storedPassword = UserDefaults.standard.string(forKey: "uid") {
-            // User is already logged in, redirect to the main page
+        let storedUsername = UserDefaults.standard.string(forKey: "username")
+        let storedUid = UserDefaults.standard.string(forKey: "uid")
+        if storedUsername != nil {
             redirectToMainPage()
-            // Do any additional setup after loading the view.
         }
+        
     }
         
         

@@ -15,6 +15,9 @@ struct BarChart: View {
     var carbs: Double
     var fats: Double
     var body: some View {
+        let maxVal = max(proteins, carbs, fats) + 100
+        let yMarkValues = stride(from: 0, to: maxVal, by: 100).map{ $0 }
+
         Chart {
             BarMark(
                 x: .value("Shape Type", data[0]),
@@ -22,6 +25,7 @@ struct BarChart: View {
             )
             .annotation(position: .overlay, alignment: .center) {
                 Text("\(Int(proteins)) kcal")
+                
             }
             BarMark(
                 x: .value("Shape Type", data[1]),
@@ -38,6 +42,11 @@ struct BarChart: View {
                 Text("\(Int(fats)) kcal")
             }
         }
+        .chartYAxis {
+            AxisMarks(values: yMarkValues)
+        }
+        .foregroundStyle(.green)
+        
     }
 }
 

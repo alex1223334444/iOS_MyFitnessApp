@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var proteinLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addHeader(string: "Home")
+        self.addHeader()
         if let email = UserDefaults.standard.string(forKey: "username") {
             self.email = email
         } else {
@@ -299,13 +299,21 @@ class HomeViewController: UIViewController {
                 view.addSubview(hostingController.view)
                 
                 hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
-                    hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-                    hostingController.view.heightAnchor.constraint(equalToConstant: 250),
-                    hostingController.view.widthAnchor.constraint(equalToConstant: 250)
-                ])
-                
+                if UIScreen.main.bounds.height < 800 {
+                    NSLayoutConstraint.activate([
+                        hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 60),
+                        hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+                        hostingController.view.heightAnchor.constraint(equalToConstant: 200),
+                        hostingController.view.widthAnchor.constraint(equalToConstant: 200)
+                    ])
+                } else {
+                    NSLayoutConstraint.activate([
+                        hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
+                        hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+                        hostingController.view.heightAnchor.constraint(equalToConstant: 250),
+                        hostingController.view.widthAnchor.constraint(equalToConstant: 250)
+                    ])
+                }
                 hostingController.didMove(toParent: self)
             }
         }

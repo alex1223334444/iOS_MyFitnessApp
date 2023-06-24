@@ -13,6 +13,7 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         view.bringSubviewToFront(self.tabBar)
+        self.tabBar.backgroundColor = .darkGray
         // Do any additional setup after loading the view.
     }
     

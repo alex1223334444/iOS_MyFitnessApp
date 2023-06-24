@@ -50,15 +50,6 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         ])
     }
     
-    fileprivate func constraintsScanImage(_ image: UIImageView) {
-        NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            image.leadingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -70),
-            image.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            image.heightAnchor.constraint(equalToConstant: 50),
-            image.widthAnchor.constraint(equalToConstant: 50)
-        ])
-    }
     
     fileprivate func constraintsQuantityTextfield(_ quantityText: Textfield) {
         NSLayoutConstraint.activate([
@@ -80,7 +71,6 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     }
     
     func createLabelsInView(_ view: UIView) -> ([UILabel], [UILabel]) {
-        // Create name labels
         let kcal = UILabel()
         kcal.text = "Calories:"
         let proteins = UILabel()
@@ -90,37 +80,30 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         let fats = UILabel()
         fats.text = "Fats:"
         
-        // Add name labels to view
         view.addSubview(kcal)
         view.addSubview(proteins)
         view.addSubview(carbs)
         view.addSubview(fats)
         
-        // Set up constraints for the name labels
         kcal.translatesAutoresizingMaskIntoConstraints = false
         proteins.translatesAutoresizingMaskIntoConstraints = false
         carbs.translatesAutoresizingMaskIntoConstraints = false
         fats.translatesAutoresizingMaskIntoConstraints = false
         let margin: CGFloat = 20
         NSLayoutConstraint.activate([
-            // Calories label constraints
             kcal.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 300),
             kcal.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margin),
             
-            // Proteins label constraints
             proteins.leadingAnchor.constraint(equalTo: kcal.leadingAnchor),
             proteins.topAnchor.constraint(equalTo: kcal.bottomAnchor, constant: margin),
             
-            // Carbs label constraints
             carbs.leadingAnchor.constraint(equalTo: kcal.leadingAnchor),
             carbs.topAnchor.constraint(equalTo: proteins.bottomAnchor, constant: margin),
             
-            // Fats label constraints
             fats.leadingAnchor.constraint(equalTo: kcal.leadingAnchor),
             fats.topAnchor.constraint(equalTo: carbs.bottomAnchor, constant: margin),
         ])
         
-        // Set equal height for all name labels
         let heightConstraints = [
             fats.heightAnchor.constraint(equalToConstant: 20),
             kcal.heightAnchor.constraint(equalTo: proteins.heightAnchor),
@@ -129,7 +112,6 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         ]
         NSLayoutConstraint.activate(heightConstraints)
         
-        // Create value labels
         let kcalValue = UILabel()
         kcalValue.text = "0"
         kcalValue.font = UIFont.systemFont(ofSize: 16)
@@ -143,40 +125,33 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         fatsValue.text = "0"
         fatsValue.font = UIFont.systemFont(ofSize: 16)
         
-        // Add value labels to view
         view.addSubview(kcalValue)
         view.addSubview(proteinsValue)
         view.addSubview(carbsValue)
         view.addSubview(fatsValue)
         
-        // Set up constraints for the value labels
         kcalValue.translatesAutoresizingMaskIntoConstraints = false
         proteinsValue.translatesAutoresizingMaskIntoConstraints = false
         carbsValue.translatesAutoresizingMaskIntoConstraints = false
         fatsValue.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            // Calories value constraints
             kcalValue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             kcalValue.topAnchor.constraint(equalTo: kcal.topAnchor),
             
-            // Proteins value constraints
             proteinsValue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             proteinsValue.topAnchor.constraint(equalTo: proteins.topAnchor),
             
-            // Carbs value constraints
             carbsValue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             carbsValue.topAnchor.constraint(equalTo: carbs.topAnchor),
             
-            // Fats value constraints
             fatsValue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             fatsValue.topAnchor.constraint(equalTo: fats.topAnchor)
         ])
         
-        // Set equal height for all value labels
-        let valueHeightConstraints = [        kcalValue.heightAnchor.constraint(equalTo: proteinsValue.heightAnchor),        proteinsValue.heightAnchor.constraint(equalTo: carbsValue.heightAnchor),        carbsValue.heightAnchor.constraint(equalTo: fatsValue.heightAnchor)    ]
+        let valueHeightConstraints = [kcalValue.heightAnchor.constraint(equalTo: proteinsValue.heightAnchor),        proteinsValue.heightAnchor.constraint(equalTo: carbsValue.heightAnchor),        carbsValue.heightAnchor.constraint(equalTo: fatsValue.heightAnchor)]
         NSLayoutConstraint.activate(valueHeightConstraints)
         
-        // Return name and value labels as tuples
         return ([kcal, proteins, carbs, fats], [kcalValue, proteinsValue, carbsValue, fatsValue])
     }
     
@@ -185,16 +160,11 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         view.backgroundColor = .white
         managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         self.hideKeyboardWhenTappedAround()
-        // Create UI elements
+        
         let foodText = Textfield()
         foodText.configureTextField(with: "Name the food", tag: 1, delegate: self, image: nil)
         foodText.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(foodText)
-        
-        let barScan = UIImageView()
-        barScan.backgroundColor = .systemGreen
-        barScan.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(barScan)
         
         let quantityText = Textfield()
         quantityText.configureTextField(with: "How much?", tag: 2, delegate: self, image: nil)
@@ -205,19 +175,19 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         self.view.addSubview(weightPicker)
         
         let button = UIButton(type: .roundedRect)
+        button.layer.cornerRadius = 10
         button.setTitle("Check food", for: .normal)
         button.backgroundColor = .systemGreen.withAlphaComponent(0.7)
         button.addTarget(self, action: #selector(checkFood(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(button)
         
-        // Add constraints for UI elements
         constraintsFoodTextfield(foodText)
-        constraintsScanImage(barScan)
         constraintsQuantityTextfield(quantityText)
         constraintsWeightPicker(weightPicker)
         
         let buttonSave = UIButton(type: .roundedRect)
+        buttonSave.layer.cornerRadius = 10
         buttonSave.setTitle("Save food", for: .normal)
         buttonSave.backgroundColor = .systemGreen.withAlphaComponent(0.7)
         buttonSave.addTarget(self, action: #selector(saveFood(_:)), for: .touchUpInside)

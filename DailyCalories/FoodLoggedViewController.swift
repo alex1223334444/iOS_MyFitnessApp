@@ -56,7 +56,7 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addHeader(string: "Profile")
+        self.addHeader()
         setupDatePicker()
         
         // Initialize and configure the table view
@@ -161,11 +161,17 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         nutrientsValues[2] = fats
         
         addLabels()
-        caloriesLabel.text = "\(calories)/2000"
+        caloriesLabel.text = "\(Int(calories))/2000"
         addBarChart()
-        
         DispatchQueue.main.async {
             self.tableView.reloadData()
+        }
+        if calories <= 2000 {
+            progressBar.progress = Float(calories/2000)
+        }
+        else {
+            progressBar.progress = 1
+            progressBar.progressTintColor = .systemRed
         }
     }
 
@@ -221,12 +227,29 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
                 view.addSubview(hostingController.view)
                 
                 hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0),
-                    hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 75),
-                    hostingController.view.heightAnchor.constraint(equalToConstant: 200),
-                    hostingController.view.widthAnchor.constraint(equalToConstant: 200)
-                ])
+                
+                if UIScreen.main.bounds.height < 800 {
+                    NSLayoutConstraint.activate([
+                        hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 60),
+                        hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 60),
+                        hostingController.view.heightAnchor.constraint(equalToConstant: 200),
+                        hostingController.view.widthAnchor.constraint(equalToConstant: 200)
+                    ])
+                } else if UIScreen.main.bounds.height < 900{
+                    NSLayoutConstraint.activate([
+                        hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0),
+                        hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 70),
+                        hostingController.view.heightAnchor.constraint(equalToConstant: 225),
+                        hostingController.view.widthAnchor.constraint(equalToConstant: 225)
+                    ])
+                } else {
+                    NSLayoutConstraint.activate([
+                        hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+                        hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 50),
+                        hostingController.view.heightAnchor.constraint(equalToConstant: 225),
+                        hostingController.view.widthAnchor.constraint(equalToConstant: 225)
+                    ])
+                }
                 
                 hostingController.didMove(toParent: self)
             }
@@ -245,23 +268,19 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         caloriesLabel.textAlignment = .center
         caloriesLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        // Create the progress view (progress bar)
-        progressBar.setProgress(0.5, animated: false) // Set the initial progress (0 to 1)
+        progressBar.setProgress(0.5, animated: false)
         progressBar.trackTintColor = .lightGray
         progressBar.progressTintColor = .systemGreen
         progressBar.translatesAutoresizingMaskIntoConstraints = false
         
-        // Add label and progress bar to the main view
         view.addSubview(caloriesLabel)
         view.addSubview(progressBar)
         
-        // Set constraints for the label
         NSLayoutConstraint.activate([
             caloriesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             caloriesLabel.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 250)
         ])
         
-        // Set constraints for the progress bar
         NSLayoutConstraint.activate([
             progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
@@ -271,7 +290,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     fileprivate func addLabels() {
-        // Remove existing nutrient labels and value labels from the superview
         for nutrientLabel in nutrientLabels {
             nutrientLabel.removeFromSuperview()
         }
@@ -279,7 +297,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
             valueLabel.removeFromSuperview()
         }
         
-        // Clear the nutrientLabels and valueLabels arrays
         nutrientLabels.removeAll()
         valueLabels.removeAll()
         
@@ -299,13 +316,12 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
             view.addSubview(valueLabel)
         }
         
-        // Set constraints for nutrient labels and value labels
         for i in 0..<nutrientLabels.count {
             let topAnchor = i == 0 ? progressBar.bottomAnchor : nutrientLabels[i - 1].bottomAnchor
             
             NSLayoutConstraint.activate([
                 nutrientLabels[i].topAnchor.constraint(equalTo: topAnchor, constant: 40),
-                nutrientLabels[i].leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                nutrientLabels[i].leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
                 valueLabels[i].leadingAnchor.constraint(equalTo: nutrientLabels[i].trailingAnchor, constant: 5),
                 valueLabels[i].centerYAnchor.constraint(equalTo: nutrientLabels[i].centerYAnchor)
             ])
@@ -315,7 +331,6 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
     func fetchUser() -> User? {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
 
-        // Create a predicate to match the UUID
         let uuidPredicate = NSPredicate(format: "email == %@", self.email)
         fetchRequest.predicate = uuidPredicate
         
@@ -340,22 +355,18 @@ extension FoodLoggedViewController: FoodItemTableViewCellDelegate {
             return
         }
         
-        // Delete the selected food item
         let foodItem = foods[indexPath.row]
         managedObjectContext.delete(foodItem)
         
-        // Save the changes
         do {
             try managedObjectContext.save()
         } catch {
             print("Failed to delete food item: \(error)")
         }
         
-        // Remove the deleted item from the foods array and reload the table view
         foods.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         
-        // Update the nutrient labels and reload data
         reloadData()
     }
 }

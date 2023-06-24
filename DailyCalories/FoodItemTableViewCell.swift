@@ -47,11 +47,12 @@ class FoodItemTableViewCell: UITableViewCell {
 
     
     private let deleteButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .roundedRect)
         button.setTitle("Delete", for: .normal)
-        button.setImage(UIImage(systemName: "x.square")?.withTintColor(.systemRed), for: .normal)
+        button.backgroundColor = .systemRed
+        button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        button.setTitleColor(.systemRed, for: .normal)
+        button.layer.cornerRadius = 10
         return button
     }()
 

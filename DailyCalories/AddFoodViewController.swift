@@ -203,10 +203,8 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
             buttonSave.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
             buttonSave.widthAnchor.constraint(equalToConstant: 100),
             buttonSave.heightAnchor.constraint(equalToConstant: 40)])
-        // Create and add labels to view
         let (nameLabels, valueLabels) = createLabelsInView(self.view)
         
-        // Store labels as properties of the view controller
         self.nameLabels = nameLabels
         self.valueLabels = valueLabels
         
@@ -232,7 +230,6 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]],
                    let firstItem = json.first {
                     
-                    // Use the first item in the array
                     let name = firstItem["name"] as? String ?? ""
                     let calories = firstItem["calories"] as? Double ?? 0.0
                     let servingSize = firstItem["serving_size_g"] as? Double ?? 0.0
@@ -246,7 +243,6 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
                     let fiber = firstItem["fiber_g"] as? Double ?? 0.0
                     let sugar = firstItem["sugar_g"] as? Double ?? 0.0
                     
-                    // Create an object using the parsed data
                     let foodItem = FoodRequested(name: name, calories: calories, serving_size_g: servingSize, fat_total_g: fatTotal, fat_saturated_g: fatSaturated, protein_g: protein, sodium_mg: Double(sodium), potassium_mg: Double(potassium), cholesterol_mg: Double(cholesterol), carbohydrates_total_g: carbsTotal, fiber_g: fiber, sugar_g: sugar)
                     DispatchQueue.main.async {
                         self.valueLabels[0].text = "\(String(describing: foodItem.calories) )"
@@ -295,6 +291,7 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
         user?.addToFoods(food)
         do {
             try managedObjectContext.save()
+            self.navigationController?.popViewController(animated: true)
         } catch {
             print("error at adding food")
         }
@@ -305,7 +302,6 @@ class AddFoodViewController: UIViewController, TextFieldWithLabelDelegate {
     func fetchUser() -> User? {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
 
-        // Create a predicate to match the UUID
         let mailPredicate = NSPredicate(format: "email == %@", self.email)
         fetchRequest.predicate = mailPredicate
         

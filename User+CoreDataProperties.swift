@@ -24,6 +24,9 @@ extension User {
     @NSManaged public var phone: String?
     @NSManaged public var uid: UUID?
     @NSManaged public var foods: NSSet?
+    @NSManaged public var weight: NSNumber?
+    @NSManaged public var goalWeight: NSNumber?
+
 
 
 }

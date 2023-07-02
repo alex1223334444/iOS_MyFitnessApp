@@ -88,12 +88,13 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             
         }
-        if registerModel.firstName != "" && registerModel.lastName != "" && registerModel.email != "" && registerModel.phone != "" && registerModel.password != "" && registerModel.passwordConfirmation != ""
+        if registerModel.firstName != "" && registerModel.lastName != "" && registerModel.email != "" && registerModel.phone != "" && registerModel.password != "" && registerModel.passwordConfirmation != "" && registerModel.password == registerModel.passwordConfirmation
         {
             self.button.isEnabled = true
             self.button.backgroundColor = .systemBlue
         }
         else {
+            self.button.isEnabled = false
             self.button.backgroundColor = .gray
         }
     }
@@ -128,6 +129,8 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
                     person.setValue(registerModel.phone, forKeyPath: "phone")
                     person.setValue(UUID(uuidString: uid), forKeyPath: "uid")
                     person.setValue(2000, forKey: "caloriesGoal")
+                    person.setValue(0, forKey: "weight")
+                    person.setValue(0, forKey: "goalWeight")
 
                     do {
                         try managedContext.save()

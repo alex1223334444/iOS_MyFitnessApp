@@ -635,6 +635,8 @@
 				DEVELOPMENT_TEAM = MWA5ATM4HR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyCalories/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Daily Calories";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -666,6 +668,8 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyCalories/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Daily Calories";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

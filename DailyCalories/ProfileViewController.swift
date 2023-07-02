@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addHeader()
+        addGoalButton()
         addLogoutButton()
         addRatingButton()
         addDeleteButton()
@@ -133,6 +134,23 @@ class ProfileViewController: UIViewController {
         changePassword.addTarget(self, action:#selector(self.changePassword), for: .touchUpInside)
     }
     
+    fileprivate func addGoalButton() {
+        let button = UIButton(type: .roundedRect)
+        button.backgroundColor = .systemGreen
+        button.layer.cornerRadius = 10
+        self.view.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80),
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.widthAnchor.constraint(equalToConstant: 200)
+        ])
+        button.setTitle("Set calories goal", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action:#selector(self.setCalories), for: .touchUpInside)
+    }
+    
     fileprivate func logoutMethod() {
         UserDefaults.standard.removeObject(forKey: "username")
         UserDefaults.standard.removeObject(forKey: "uid")
@@ -143,6 +161,40 @@ class ProfileViewController: UIViewController {
         logoutMethod()
     }
     
+    @objc private func setCalories() {
+        let alert = UIAlertController(title: "Type your calories goal", message: "", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+                textField.placeholder = "Number of calories:"
+            }
+        
+        let change = UIAlertAction(title: "Ok", style: .default) {_ in
+            if let number = alert.textFields?.first?.text {
+                self.changeCalories(with: Double(number) ?? 2000)
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+        alert.addAction(change)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    fileprivate func changeCalories(with number: Double) {
+        if let currentUser = fetchUser() {
+            currentUser.caloriesGoal = (number) as NSNumber
+            do {
+                try managedObjectContext.save()
+            }
+            catch {
+               print("Failed to change calories number")
+           }
+        }
+    }
     
     @objc private func addRating() {
         if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {

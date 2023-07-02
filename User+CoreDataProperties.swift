@@ -16,6 +16,7 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
+    @NSManaged public var caloriesGoal: NSNumber?
     @NSManaged public var email: String?
     @NSManaged public var firstName: String?
     @NSManaged public var lastName: String?
@@ -23,6 +24,7 @@ extension User {
     @NSManaged public var phone: String?
     @NSManaged public var uid: UUID?
     @NSManaged public var foods: NSSet?
+
 
 }
 

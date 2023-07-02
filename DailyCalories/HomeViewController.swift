@@ -319,18 +319,24 @@ class HomeViewController: UIViewController {
     }
     
     func reloadData() {
+        let userCalories = fetchUser()?.caloriesGoal
         addBarCharts()
-        caloriesLabel.text = "Total of calories consumed: \(Int(calories))/2000"
+        if let cal = userCalories {
+            var value = Double(truncating: cal)
+            caloriesLabel.text = "Total of calories consumed: \(Int(calories))/\(value)"
+            if calories <= value {
+                progressBar.progress = Float(calories/value)
+                progressBar.progressTintColor = .systemGreen
+            }
+            else {
+                progressBar.progress = 1
+                progressBar.progressTintColor = .systemRed
+            }
+        }
         proteinLabel.text = nutrientValuesString[0]
         carbsLabel.text = nutrientValuesString[1]
         fatsLabel.text = nutrientValuesString[2]
-        if calories <= 2000 {
-            progressBar.progress = Float(calories/2000)
-        }
-        else {
-            progressBar.progress = 1
-            progressBar.progressTintColor = .systemRed
-        }
+        
     }
     
     

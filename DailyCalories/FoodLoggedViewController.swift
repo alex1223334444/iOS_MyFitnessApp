@@ -156,19 +156,25 @@ class FoodLoggedViewController: UIViewController, UITableViewDelegate, UITableVi
         nutrientsValues[1] = carbs
         nutrientsValues[2] = fats
         
+        let userCalories = fetchUser()?.caloriesGoal
         addLabels()
-        caloriesLabel.text = "\(Int(calories))/2000"
+        if let value = userCalories {
+            let cal = Double(truncating: value)
+            caloriesLabel.text = "\(Int(calories))/\(cal)"
+            if calories <= cal{
+                progressBar.progress = Float(calories/cal)
+                progressBar.progressTintColor = .systemGreen
+            }
+            else {
+                progressBar.progress = 1
+                progressBar.progressTintColor = .systemRed
+            }
+        }
         addBarChart()
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        if calories <= 2000 {
-            progressBar.progress = Float(calories/2000)
-        }
-        else {
-            progressBar.progress = 1
-            progressBar.progressTintColor = .systemRed
-        }
+       
     }
 
     

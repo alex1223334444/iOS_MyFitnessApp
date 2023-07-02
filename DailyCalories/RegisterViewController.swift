@@ -46,7 +46,14 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "textfield", for: indexPath) as? TextfieldTableViewCell else {
             return UITableViewCell()
         }
-        cell.configureTextFieldCell(placeholders[indexPath.section], tag: indexPath.section, secure: false, delegate : self, image: icons[indexPath.section])
+        if indexPath.section == 4 || indexPath.section == 5 {
+            cell.configureTextFieldCell(placeholders[indexPath.section], tag: indexPath.section, secure: true, delegate : self, image: icons[indexPath.section])
+        }
+        else
+        {
+            cell.configureTextFieldCell(placeholders[indexPath.section], tag: indexPath.section, secure: false, delegate : self, image: icons[indexPath.section])
+
+        }
         cell.showsReorderControl = true
         return cell
     }
@@ -120,6 +127,7 @@ class RegisterViewController: UIViewController, UITableViewDataSource, UITableVi
                     person.setValue(registerModel.email, forKeyPath: "email")
                     person.setValue(registerModel.phone, forKeyPath: "phone")
                     person.setValue(UUID(uuidString: uid), forKeyPath: "uid")
+                    person.setValue(2000, forKey: "caloriesGoal")
 
                     do {
                         try managedContext.save()
